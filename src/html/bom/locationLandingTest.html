@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2014 George Norman.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+<html>
+<head>
+  <title>Location Landing Test</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style>
+    @import "../../css/all-css.css";
+  </style>
+</head>
+<body onload="jsLabModule.handleOnLoad();">
+<header>
+  <h1>Location Landing Test</h1>
+  <style>
+    a {
+      cursor: pointer;
+    }
+  </style>
+</header>
+
+<main>
+  <lk-js-example width="640px" renderCode="false" resultHeaderTitle="Location Info" id="locationTest">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("locationTest");
+
+      logger.logLabelValue("Current Location", document.location);
+    </script>
+  </lk-js-example>
+
+  <h4>Options</h4>
+  <ul>
+    <li>
+      <a id="backViaHistory">Back to <i>somewhere</i> via history.back()</a><br>
+      If <code>history.replace()</code> was used, then return to the page before the Location lab.<p>
+    </li>
+    <li>
+      <a href="location.html">Back to Location via direct link</a><br>
+      Return to the Location lab.
+    </li>
+  </ul>
+</main>
+
+<footer></footer>
+
+<script>
+var backElement = document.getElementById( "backViaHistory" );
+
+backElement.onclick = function(event) {
+  history.back();
+}
+</script>
+
+
+<script type="text/javascript" src="../../js/all-javascript.js"></script> <!-- http://stackoverflow.com/questions/5220313/where-should-js-scripts-go-in-an-html-file -->
+</body>
+</html>

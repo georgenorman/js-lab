@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2014 George Norman.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+<html>
+<head>
+  <title>Screen Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style>
+    @import "../../css/all-css.css";
+  </style>
+</head>
+<body onload="jsLabModule.handleOnLoad();">
+<header>
+  <h1>Screen Interface</h1>
+</header>
+
+<progress class="page-load-progress">Loading...</progress>
+<main class="hide">
+  <js-lab-about></js-lab-about>
+
+  <lk-table-of-contents class="toc" level1ItemsTagName="h2" level2ItemsTagName="h3"></lk-table-of-contents>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="overview">Overview</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.screen">See MDN Screen Interface</a>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicProperties">Basic Properties</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.orientation">Orientation</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <p>
+    Return the color/pixel Depth of the screen, as it's currently configured (e.g., in the Monitors control panel).
+  </p>
+
+  <lk-js-example width="640px" id="orientation">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("orientation");
+
+      logger.logLabelValue("screen.orientation", window.screen.orientation);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.onorientationchange">onorientationchange</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px">
+    <script type="multiline-template">
+      window.screen.onorientationchange = function(event) {
+        alert("Screen orientation has changed.");
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.available">Available Top/Left, Height/Width</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    These properties return the available space on the Screen that's not being used by the operating system.
+    For example, OS X has a menu bar that uses some of the screen pixels at the top of the screen.
+    A dock can be positioned on the left of the screen and will consume a variable amount of pixels, depending on its configured size.
+  </p>
+
+  <lk-js-example width="640px" id="available">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("available");
+
+      logger.logLabelValue("screen.availTop", window.screen.availTop);
+      logger.logLabelValue("screen.availLeft", window.screen.availLeft);
+      logger.logLabelValue("screen.availHeight", window.screen.availHeight);
+      logger.logLabelValue("screen.availWidth", window.screen.availWidth);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.dim">Screen Top/Left, Height/Width</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <p>
+    Return the total screen size in pixels, as it's currently configured (e.g., in the Monitors control panel).
+  </p>
+
+  <lk-js-example width="640px" id="dim">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("dim");
+
+      logger.logLabelValue("screen.height", window.screen.height);
+      logger.logLabelValue("screen.width", window.screen.width);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.colorDepth">Color/Pixel Depth</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <p>
+    Return the color/pixel Depth of the screen, as it's currently configured (e.g., in the Monitors control panel).
+  </p>
+
+  <lk-js-example width="640px" id="colorDepth">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("colorDepth");
+
+      logger.logLabelValue("screen.colorDepth", window.screen.colorDepth);
+      logger.logLabelValue("screen.pixelDepth", window.screen.pixelDepth);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+</main>
+
+<footer></footer>
+
+<script type="text/javascript" src="../../js/all-javascript.js"></script> <!-- http://stackoverflow.com/questions/5220313/where-should-js-scripts-go-in-an-html-file -->
+</body>
+</html>

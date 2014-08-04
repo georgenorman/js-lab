@@ -1,0 +1,93 @@
+/*
+  ~ jsLabSupport.css v1.0.0
+  ~ Copyright (c) 2014 George Norman.
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ CSS specific to JS Lab
+  ~
+*/
+
+
+/* ---------------------------------
+ * Soften the background a bit
+ * --------------------------------- */
+
+body {
+  background: #fdfdfd;
+
+  font-size: 14px;
+  line-height: 1.4;
+}
+
+/* override the code.lk-code-example css, because body background is not #fff */
+code.lk-code-example {
+  /* hack to shade gutter, without also shading the code area. */
+  background: linear-gradient(to right, #efefef, #fdfdfd 40%);
+}
+
+/* ---------------------------------
+ * Inner-div box (to outline rendered example and show hover events)
+ * --------------------------------- */
+
+.divInner {
+  border: thin solid #ccc;
+}
+
+.divInner:hover {
+  cursor: pointer;
+}
+
+/* ---------------------------------
+ * A background grid to illustrate the positions
+ * --------------------------------- */
+
+/* genesis: http://lea.verou.me/css3patterns/#blueprint-grid. */
+.grid {
+  background-color: #6ad;
+  background-image:
+    linear-gradient(#fff 2px, transparent 2px),
+    linear-gradient(90deg, #fff 2px, transparent 2px),
+    linear-gradient(rgba(255, 255, 255, .6) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, .6) 1px, transparent 1px);
+  background-size: 100px 100px, 100px 100px, 10px 10px, 10px 10px;
+  background-position: -2px -2px, -2px -2px, -1px -1px, -1px -1px;
+  padding:0;
+  margin:0;
+}
+
+/* ---------------------------------
+ * Simple right-arrow
+ * --------------------------------- */
+
+/* genesis: http://css-tricks.com/snippets/css/css-triangle/ */
+.arrow-right {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 14px 0 14px 20px;
+  border-color: transparent transparent transparent #B2E0B2;
+  margin: 0 0 54px 0;
+  padding-right: 2px;
+  display: inline-block;
+}
+
+.sq {
+  width: 0;
+  height: 0;
+  border: 7px solid #B2E0B2;
+  margin: 0 -2px 61px 6px;
+  display: inline-block;
+}
+
+/* ---------------------------------
+ * Example code structure
+ * --------------------------------- */
+
+.example-code-structure {
+  background-color:#ccc;
+  width:190px;
+  height:185px;
+  text-align:center;
+  margin:20px;
+}

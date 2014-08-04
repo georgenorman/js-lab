@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2014 George Norman.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+<html>
+<head>
+  <title>Navigator Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style>
+    @import "../../css/all-css.css";
+  </style>
+</head>
+<body onload="jsLabModule.handleOnLoad();">
+<header>
+  <h1>Navigator Interface</h1>
+</header>
+
+<progress class="page-load-progress">Loading...</progress>
+<main class="hide">
+  <js-lab-about></js-lab-about>
+
+  <lk-table-of-contents class="toc" level1ItemsTagName="h2" level2ItemsTagName="h3"></lk-table-of-contents>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="overview">Overview</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator">See MDN Navigator Interface</a>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="stdProperties">Standard Properties/Methods</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.appCodeName">appCodeName</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="appCodeName">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("appCodeName");
+
+      logger.log(navigator.appCodeName);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.appName">appName</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="appName">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("appName");
+
+      logger.log(navigator.appName);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.appVersion">appVersion</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="appVersion">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("appVersion");
+
+      logger.log(navigator.appVersion);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.oscpu">oscpu</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="oscpu">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("oscpu");
+
+      logger.log(navigator.oscpu);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.platform">platform</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="platform">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("platform");
+
+      logger.log(navigator.platform);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.userAgent">userAgent</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="userAgent">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("userAgent");
+
+      logger.log(navigator.userAgent);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.battery">battery level</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="battery.level">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("battery.level");
+
+      logger.log(navigator.battery.level);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.onLine">onLine</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="onLine">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("onLine");
+
+      logger.log(navigator.onLine);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.connection">connection bandwidth</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="connection.bandwidth">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("connection.bandwidth");
+      var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+
+      logger.log(connection.bandwidth);
+    </script>
+  </lk-js-example>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.geolocation">geolocation</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="geolocation">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("geolocation");
+
+      navigator.geolocation.getCurrentPosition(function(pos) {
+        var crd = pos.coords;
+
+        logger.log('Latitude : ' + crd.latitude);
+        logger.log('Longitude : ' + crd.longitude);
+
+        jsLabModule.appendGotoMapLinkTo("geolocation", crd.latitude, crd.longitude);
+      });
+      logger.waiting();
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="nonStdProperties">Non-Standard Properties/Methods</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="nonStdProperties.cookieEnabled">cookieEnabled</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="cookieEnabled">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("cookieEnabled");
+
+      logger.log(navigator.cookieEnabled);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+</main>
+
+<footer></footer>
+
+<script type="text/javascript" src="../../js/all-javascript.js"></script> <!-- http://stackoverflow.com/questions/5220313/where-should-js-scripts-go-in-an-html-file -->
+</body>
+</html>

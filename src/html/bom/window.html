@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2014 George Norman.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+<html>
+<head>
+  <title>Window Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style>
+    @import "../../css/all-css.css";
+  </style>
+</head>
+<body onload="jsLabModule.handleOnLoad();">
+<header>
+  <h1>Window Interface</h1>
+</header>
+
+<progress class="page-load-progress">Loading...</progress>
+<main class="hide">
+  <js-lab-about></js-lab-about>
+
+  <lk-table-of-contents class="toc" level1ItemsTagName="h2" level2ItemsTagName="h3"></lk-table-of-contents>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="overview">Overview</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window">See MDN Window Interface</a>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicProperties">Basic Properties</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.applicationCache">applicationCache</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache">Using the application cache</a>
+  </p>
+
+  <lk-js-example width="640px" id="applicationCache">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("applicationCache");
+
+      logger.logLabelValue("Status legend", "0=UNCACHED, 1=IDLE, 2=CHECKING, ..., 5=OBSOLETE");
+      logger.logLabelValue("status", window.applicationCache.status);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.devicePixelRatio">devicePixelRatio</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    The ratio between the physical pixels and the device independent pixels.
+  </p>
+
+  <lk-js-example width="640px" id="devicePixelRatio">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("devicePixelRatio");
+
+      logger.logLabelValue("devicePixelRatio", window.devicePixelRatio);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.document">document</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    The document contained by the window.
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/document">Document</a>
+    and <a href="./dom/document.html">Document Lab</a>
+  </p>
+
+  <lk-js-example width="640px" id="document">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("document");
+
+      logger.logLabelValue("document", window.document);
+      logger.logLabelValue("document.title", window.document.title);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.frameElement">frameElement</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    The element in which the window is embedded, or null if not embedded.
+  </p>
+
+  <lk-js-example width="640px" id="frameElement">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("frameElement");
+
+      logger.logLabelValue("frameElement", window.frameElement);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.frames">frames</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    The array of subframes in the current window.
+  </p>
+
+  <lk-js-example width="640px" id="frames">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("frames");
+
+      logger.logLabelValue("frames.length", window.frames.length);
+      logger.logLabelValue("window.length", window.length + " (number of frames in the window)");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.history">history</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="./history.html">History Lab</a>
+  </p>
+
+  <lk-js-example width="640px" id="history">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("history");
+
+      logger.logLabelValue("history.length", window.history.length);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.innerWidthHeight">innerWidth/Height</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    The width and height of the content area (including scrollbars).
+  </p>
+
+  <lk-js-example width="640px" id="innerWidthHeight">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("innerWidthHeight");
+
+      logger.logLabelValue("innerWidth", window.innerWidth);
+      logger.logLabelValue("innerHeight", window.innerHeight);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.length">length</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    The number of frames in the window (see also <a href="#basicProperties.frames">window.frames</a>).
+  </p>
+
+  <lk-js-example width="640px" id="length">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("length");
+
+      logger.logLabelValue("frames.length", window.frames.length);
+      logger.logLabelValue("window.length", window.length + " (number of frames in the window)");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.location">location</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Get and set the URL of the document resource that's currently loaded.
+    Also see the <a href="./location.html">Location Lab</a>.
+  </p>
+
+  <lk-js-example width="640px" id="location">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("location");
+
+      // register for the 'Location' button 'click' event.
+      var locationBtn = document.getElementById( "locationBtn" );
+
+      locationBtn.onclick = function(event) {
+        var href = window.prompt("Enter the new Location URL:", document.location);
+
+        if (href != null) {
+          window.location = href;
+        }
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="locationBtn">Location</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.locationbar">locationbar</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Returns true if the location bar is visible.
+  </p>
+
+  <lk-js-example width="640px" id="locationbar">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("locationbar");
+
+      logger.logLabelValue("locationbar", window.locationbar);
+      logger.logLabelValue("locationbar.visible", window.locationbar.visible);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.localStorage">localStorage</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage">DOM Storage guide</a>.
+  </p>
+
+  <lk-js-example width="640px" id="localStorage">
+    <script type="multiline-template">
+      // register for the 'Add To Local Storage' button 'click' event.
+      var addToLocalStorageBtn = document.getElementById( "addToLocalStorageBtn" );
+
+      addToLocalStorageBtn.onclick = function(event) {
+        var jsonStr = window.prompt("Enter a JSON (key/value)", '{"key1": "'+new Date()+'"}');
+
+        if (jsonStr != null) {
+          var kvMap = JSON.parse(jsonStr);
+
+          for (var key in kvMap) {
+            window.localStorage.setItem(key, kvMap[key]);
+          }
+          window.location.reload(true);
+        }
+      }
+
+      // register for the 'Clear Local Storage' button 'click' event.
+      var clearLocalStorageBtn = document.getElementById( "clearLocalStorageBtn" );
+
+      clearLocalStorageBtn.onclick = function(event) {
+        window.localStorage.clear();
+        window.location.reload(true);
+      }
+
+      // display local storage info
+      var logger = lkResultLoggerModule.getLogger("localStorage");
+
+      logger.logLabelValue("localStorage", window.localStorage);
+      logger.logLabelValue("localStorage.length", window.localStorage.length, "the number of key/value pairs");
+
+      var i;
+      for (i=0; i<window.localStorage.length; i++) {
+        logger.logLabelValue(window.localStorage.key(i), window.localStorage.getItem(window.localStorage.key(i)));
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="addToLocalStorageBtn">Add To Local Storage</button>
+      <button id="clearLocalStorageBtn">Clear Local Storage</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.name">name</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>Gets/sets the name of the window</p>
+
+  <lk-js-example width="640px" id="name">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("name");
+
+      logger.logLabelValue("name", window.name);
+      window.name = "New Window Name";
+      logger.logLabelValue("name", window.name);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.navigator">navigator</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="./navigator.html">Navigator Lab</a>
+  </p>
+
+  <lk-js-example width="640px" id="navigator">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("navigator");
+
+      logger.logLabelValue("window.navigator", window.navigator);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.opener">opener</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>Returns a reference to the window that opened this window.</p>
+
+  <lk-js-example width="640px" id="opener">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("opener");
+
+      logger.logLabelValue("opener", window.opener);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.parent">parent</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>Returns a reference to the parent of this window.</p>
+
+  <lk-js-example width="640px" id="parent">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("parent");
+
+      logger.logLabelValue("parent", window.parent);
+      if (window.parent != null) {
+      logger.logLabelValue("parent.name", window.parent.name);
+      logger.logLabelValue("window.parent === window", window.parent === window);
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.screen">screen</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="./screen.html">Screen Lab</a>
+  </p>
+
+  <lk-js-example width="640px" id="screen">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("screen");
+
+      logger.logLabelValue("screen", window.screen);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.screenXY">screenX/Y</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>The distance between the browser and the edge of the screen.</p>
+
+  <lk-js-example width="640px" id="screenXY">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("screenXY");
+
+      logger.logLabelValue("screenX", window.screenX);
+      logger.logLabelValue("screenY", window.screenY);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.scrollbars">scrollbars</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="scrollbars">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("scrollbars");
+
+      logger.logLabelValue("scrollbars", window.scrollbars);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.scrollMaxXY">scrollMaxXY</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="scrollMaxXY">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("scrollMaxXY");
+
+      logger.logLabelValue("scrollMaxX", window.scrollMaxX);
+      logger.logLabelValue("scrollMaxY", window.scrollMaxY);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.scrollXY">scrollXY</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="scrollXY">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("scrollXY");
+
+      logger.logLabelValue("scrollX", window.scrollX);
+      logger.logLabelValue("scrollY", window.scrollY);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.sessionStorage">sessionStorage</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Session_store_API">Session store API</a>
+  </p>
+
+  <lk-js-example width="640px" id="sessionStorage">
+    <script type="multiline-template">
+      // register for the 'Add To Session Storage' button 'click' event.
+      var addToSessionStorageBtn = document.getElementById( "addToSessionStorageBtn" );
+
+      addToSessionStorageBtn.onclick = function(event) {
+        var jsonStr = window.prompt("Enter a JSON (key/value)", '{"key1": "'+new Date()+'"}');
+
+        if (jsonStr != null) {
+          var kvMap = JSON.parse(jsonStr);
+
+          for (var key in kvMap) {
+            window.sessionStorage.setItem(key, kvMap[key]);
+          }
+          window.location.reload(true);
+        }
+      }
+
+      // log sessionStorage info
+      var logger = lkResultLoggerModule.getLogger("sessionStorage");
+
+      logger.logLabelValue("sessionStorage", window.sessionStorage);
+      logger.logLabelValue("sessionStorage.length", window.sessionStorage.length, "the number of key/value pairs");
+
+      var i;
+      for (i=0; i<window.sessionStorage.length; i++) {
+        logger.logLabelValue(window.sessionStorage.key(i), window.sessionStorage.getItem(window.sessionStorage.key(i)));
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="addToSessionStorageBtn">Add To Session Storage</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.status">status/statusbar</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="status">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("status");
+
+      logger.logLabelValue("status", window.status);
+      window.status = "Test Status for this window.";
+      logger.logLabelValue("status", window.status);
+      logger.logLabelValue("statusbar", window.statusbar);
+      logger.logLabelValue("statusbar.visible", window.statusbar.visible);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicMethods">Basic Methods</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.confirm">confirm()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="confirm">
+    <script type="multiline-template">
+      // register for the 'Confirm' button 'click' event.
+      var confirmBtn = document.getElementById( "confirmBtn" );
+
+      confirmBtn.onclick = function(event) {
+        var confirmResult = window.confirm("Are you sure you want to confirm?");
+
+        // log sessionStorage info
+        var logger = lkResultLoggerModule.getLogger("confirm");
+
+        logger.logLabelValue("confirmResult", confirmResult);
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="confirmBtn">Confirm</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.dispatchEvent">dispatchEvent()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.dispatchEvent">EventTarget.dispatchEvent</a>
+    and <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events">Creating and triggering events</a>
+  </p>
+
+  <lk-js-example width="640px" id="dispatchEvent">
+    <script type="multiline-template">
+      // TO DO
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.find">find()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.find">Window.find</a>.
+  </p>
+
+  <lk-js-example width="640px" id="find">
+    <script type="multiline-template">
+      // TO DO
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.getAttention">getAttention()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getAttention">Window.getAttention</a>
+  </p>
+
+  <lk-js-example width="640px" id="getAttention">
+    <script type="multiline-template">
+      // register for the 'Get Attention' button 'click' event.
+      var getAttentionBtn = document.getElementById( "getAttentionBtn" );
+
+      getAttentionBtn.onclick = function(event) {
+        window.getAttention();
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="getAttentionBtn">Get Attention</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.getComputedStyle">getComputedStyle()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getComputedStyle">Window.getComputedStyle</a>.
+  </p>
+
+  <lk-js-example width="640px" id="getComputedStyle">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("getComputedStyle");
+      var computedStyleEle = document.getElementById("getComputedStyle");
+      var computedStyle = window.getComputedStyle(computedStyleEle);
+
+      logger.logLabelValue("computedStyle", computedStyle);
+      logger.logLabelValue("computedStyle.length", computedStyle.length);
+      logger.logLabelValue("computedStyle.@font-family", computedStyle.getPropertyValue('font-family'));
+      logger.logLabelValue("computedStyle.@font-size", computedStyle.getPropertyValue('font-size'));
+      logger.logLabelValue("computedStyle.@text-decoration", computedStyle.getPropertyValue('text-decoration'));
+
+      //for (var i=0; i<computedStyle.length; i++) {
+      //  var style = computedStyle[i];
+      //  logger.logLabelValue(style, computedStyle.getPropertyValue(style));
+      //}
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.getSelection">getSelection()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection">Window.getSelection</a>.
+  </p>
+
+  <lk-js-example width="640px" id="getSelection">
+    <script type="multiline-template">
+      // TO DO
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.matchMedia">matchMedia()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.matchMedia">Window.matchMedia</a>.
+  </p>
+
+  <lk-js-example width="640px" id="matchMedia">
+    <script type="multiline-template">
+      // TO DO
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.print">print()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.matchMedia">Window.matchMedia</a>.
+  </p>
+
+  <lk-js-example width="640px" id="print">
+    <script type="multiline-template">
+      // register for the 'Get Attention' button 'click' event.
+      var printBtn = document.getElementById( "printBtn" );
+
+      printBtn.onclick = function(event) {
+        window.print();
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="printBtn">Print</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.prompt">prompt()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="prompt">
+    <script type="multiline-template">
+      // register for the 'Prompt' button 'click' event.
+      var promptBtn = document.getElementById( "promptBtn" );
+
+      promptBtn.onclick = function(event) {
+        var promptResult = window.prompt("Enter some data", "Default data");
+
+        if (promptResult != null) {
+          // log prompt info
+          var logger = lkResultLoggerModule.getLogger("prompt");
+
+          logger.logLabelValue("promptResult", promptResult);
+        }
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="promptBtn">Prompt</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.more-to-do">More TO DO...</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+
+</main>
+
+<footer></footer>
+
+<script type="text/javascript" src="../../js/all-javascript.js"></script> <!-- http://stackoverflow.com/questions/5220313/where-should-js-scripts-go-in-an-html-file -->
+</body>
+</html>

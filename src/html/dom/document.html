@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2014 George Norman.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+<html>
+<head>
+  <title>Document Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style>
+    @import "../../css/all-css.css";
+  </style>
+</head>
+<body onload="jsLabModule.handleOnLoad();">
+<header>
+  <h1>Document Interface</h1>
+</header>
+
+<progress class="page-load-progress">Loading...</progress>
+<main class="hide">
+  <js-lab-about></js-lab-about>
+
+  <lk-table-of-contents class="toc" level1ItemsTagName="h2" level2ItemsTagName="h3"></lk-table-of-contents>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="overview">Overview</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document">See MDN Document Interface</a>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicProperties">Basic Properties</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.doctype">doctype</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="doctype">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("doctype");
+
+      logger.logLabelValue("doctype", document.doctype);
+      logger.logLabelValue("doctype.name", document.doctype.name);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.documentElement">documentElement</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="documentElement">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("documentElement");
+
+      logger.logLabelValue("doctype", document.documentElement);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.documentURI">documentURI</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="documentURI">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("documentURI");
+
+      logger.logLabelValue("documentURI", document.documentURI);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.implementation">implementation</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="implementation">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("implementation");
+
+      logger.logLabelValue("implementation", document.implementation);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.styleSheets">styleSheets</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="styleSheets">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("styleSheets");
+
+      logger.logLabelValue("styleSheets", document.styleSheets);
+      logger.logLabelValue("styleSheets.length", document.styleSheets.length);
+      for (var i=0; i<document.styleSheets.length; i++) {
+      logger.logLabelValue("styleSheets["+i+"]", document.styleSheets[i]);
+      logger.logLabelValue("styleSheets["+i+"].href", document.styleSheets[i].href);
+      logger.logLabelValue("styleSheets["+i+"].type", document.styleSheets[i].type);
+      logger.logLabelValue("styleSheets["+i+"].ownerNode", document.styleSheets[i].ownerNode);
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.children">children</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="children">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("children");
+
+      logger.logLabelValue("children", document.children);
+      logger.logLabelValue("children.length", document.children.length);
+      logger.logLabelValue("children.childElementCount", document.childElementCount);
+      logger.logLabelValue("children[0]", document.children[0]);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.activeElement">activeElement</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="activeElement">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("activeElement");
+
+      logger.logLabelValue("activeElement", document.activeElement);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.anchors">anchors</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Returns a list of all of the anchors in the document.
+  </p>
+
+  <lk-js-example width="640px" id="anchors">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("anchors");
+
+      logger.logLabelValue("anchors", document.anchors);
+      logger.logLabelValue("anchors.length", document.anchors.length);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.body">body</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="body">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("body");
+
+      logger.logLabelValue("body", document.body);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.cookie">cookie</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="cookie">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("cookie");
+
+      logger.logLabelValue("cookie", document.cookie);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.designMode">designMode</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Controls whether the entire document is editable.
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document.designMode">Document.designMode</a>
+  </p>
+
+  <lk-js-example width="640px" id="designMode">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("designMode");
+
+      logger.logLabelValue("designMode", document.designMode);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.forms">forms</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="forms">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("forms");
+
+      logger.logLabelValue("forms", document.forms);
+      logger.logLabelValue("forms.length", document.forms.length);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.head">head</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="head">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("head");
+
+      logger.logLabelValue("head", document.head);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.images">images</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="images">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("images");
+
+      logger.logLabelValue("images", document.images);
+      logger.logLabelValue("images.length", document.images.length);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.lastModified">lastModified</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="lastModified">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("lastModified");
+
+      logger.logLabelValue("lastModified", document.lastModified);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.links">links</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="links">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("links");
+
+      logger.logLabelValue("links", document.links);
+      logger.logLabelValue("links.length", document.links.length);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.location">location</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="location">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("location");
+
+      logger.logLabelValue("location", document.location);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.plugins">plugins</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="plugins">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("plugins");
+
+      logger.logLabelValue("plugins", document.plugins);
+      logger.logLabelValue("plugins.length", document.plugins.length);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.readyState">readyState</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="readyState">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("readyState");
+
+      logger.logLabelValue("readyState", document.readyState);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.referrer">referrer</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="referrer">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("referrer");
+
+      logger.logLabelValue("referrer", document.referrer);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.scripts">scripts</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="scripts">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("scripts");
+
+      logger.logLabelValue("scripts", document.scripts);
+      logger.logLabelValue("scripts.length", document.scripts.length);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.title">title</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="title">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("title");
+
+      logger.logLabelValue("title", document.title);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicProperties.URL">URL</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="URL">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("URL");
+
+      logger.logLabelValue("URL", document.URL);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicMethods">Basic Methods</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicMethods.todo">TO DO</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="todo">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("todo");
+
+      //logger.log(navigator.todo);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+</main>
+
+<footer></footer>
+
+<script type="text/javascript" src="../../js/all-javascript.js"></script> <!-- http://stackoverflow.com/questions/5220313/where-should-js-scripts-go-in-an-html-file -->
+</body>
+</html>

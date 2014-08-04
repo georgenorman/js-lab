@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2014 George Norman.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+<html>
+<head>
+  <title>Location Interface</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style>
+    @import "../../css/all-css.css";
+  </style>
+</head>
+<body onload="jsLabModule.handleOnLoad();">
+<header>
+  <h1>Location Interface</h1>
+</header>
+
+<progress class="page-load-progress">Loading...</progress>
+<main class="hide">
+  <js-lab-about></js-lab-about>
+
+  <lk-table-of-contents class="toc" level1ItemsTagName="h2" level2ItemsTagName="h3"></lk-table-of-contents>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="overview">Overview</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <a href="https://developer.mozilla.org/en-US/docs/Web/API/Location">See MDN Location Interface</a>
+
+  <p>
+    There are two objects that maintain a Location object:
+    <ol>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.location">Window.location</a>
+      <li><a href="https://developer.mozilla.org/en-US/docs/Web/API/Document.location">Document.location</a>
+    </ol>
+
+    For info on the historical differences,
+    see <a href="http://stackoverflow.com/questions/2430936/whats-the-difference-between-window-location-and-document-location-in-javascrip">What's the difference between window.location and document.location</a>
+  </p>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicLocationProperties">Basic Properties</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="basicProperties">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("basicProperties");
+
+      logger.logLabelValue("href", window.location.href);
+      logger.logLabelValue("protocol", window.location.protocol);
+      logger.logLabelValue("host", window.location.host);
+      logger.logLabelValue("hostname", window.location.hostname);
+      logger.logLabelValue("pathname", window.location.pathname);
+      logger.logLabelValue("search", window.location.search);
+      logger.logLabelValue("hash", window.location.hash);
+      logger.logLabelValue("origin", window.location.origin);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicLocationMethods">Basic Methods</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicLocationMethods.assign">location.assign()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Loads the resource at the URL provided by the given parameter.
+    The location will be added to the browser history.
+  </p>
+
+  <lk-js-example width="640px" id="assign">
+    <script type="multiline-template">
+      // register for the 'Assign' button 'click' event.
+      var assignBtn = document.getElementById( "assignBtn" );
+
+      assignBtn.onclick = function(event) {
+        var href = window.prompt("Enter the URL to assign:", "locationLandingTest.html?t="+Date.now());
+
+        if (href != null) {
+          window.location.assign(href);
+        }
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="assignBtn">Assign</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicLocationMethods.replace">location.replace()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Replaces the current history location with the resource at the URL provided by the given parameter and loads that resource.
+    The current page is no longer in the history, so after the new resource is loaded, using the browser back button will bypass this page.
+  </p>
+
+  <lk-js-example width="640px" id="replace">
+    <script type="multiline-template">
+      // register for the 'Replace' button 'click' event.
+      var replaceBtn = document.getElementById( "replaceBtn" );
+
+      replaceBtn.onclick = function(event) {
+        var href = window.prompt("Enter the URL to replace:", "locationLandingTest.html?t="+Date.now());
+
+        if (href != null) {
+          window.location.replace(href);
+        }
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="replaceBtn">Replace</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicLocationMethods.reload">location.reload()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Reloads the resource from the current URL.
+    If the optional parameter is true, then reloads from the server; otherwise, reloads from the browser cache.
+  </p>
+
+  <lk-js-example width="640px" id="reload">
+    <script type="multiline-template">
+      var reloadBtn = document.getElementById( "reloadBtn" );
+
+      reloadBtn.onclick = function(event) {
+        var forcedReload = window.prompt("Force a Reload?", "true") === "true" ? true : false;
+
+        window.location.reload(forcedReload);
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="reloadBtn">Reload</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="basicLocationMethods.toString">location.toString()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="640px" id="toString">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("toString");
+
+      logger.logLabelValue("toString", window.location.toString());
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+
+</main>
+
+<footer></footer>
+
+<script type="text/javascript" src="../../js/all-javascript.js"></script> <!-- http://stackoverflow.com/questions/5220313/where-should-js-scripts-go-in-an-html-file -->
+</body>
+</html>
