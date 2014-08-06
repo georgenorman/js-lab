@@ -260,42 +260,52 @@
     See <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Storage">DOM Storage guide</a>.
   </p>
 
-  <lk-js-example width="640px" id="localStorage">
+  <lk-js-example width="800px" id="localStorage">
     <script type="multiline-template">
-      // register for the 'Add To Local Storage' button 'click' event.
+      // function to display some local storage info
+      function displayLocalStorage() {
+        var logger = lkResultLoggerModule.getLogger("localStorage", true);
+
+        logger.logLabelValue("localStorage", window.localStorage);
+        logger.logLabelValue("localStorage.length", window.localStorage.length, "the number of key/value pairs");
+
+        var i;
+        for (i=0; i<window.localStorage.length; i++) {
+          logger.logLabelValue(window.localStorage.key(i), window.localStorage.getItem(window.localStorage.key(i)));
+        }
+      }
+
+      // register the 'Add To Local Storage' button 'click' event.
       var addToLocalStorageBtn = document.getElementById( "addToLocalStorageBtn" );
 
       addToLocalStorageBtn.onclick = function(event) {
         var jsonStr = window.prompt("Enter a JSON (key/value)", '{"key1": "'+new Date()+'"}');
 
         if (jsonStr != null) {
-          var kvMap = JSON.parse(jsonStr);
+          try {
+            var kvMap = JSON.parse(jsonStr);
 
-          for (var key in kvMap) {
-            window.localStorage.setItem(key, kvMap[key]);
+            for (var key in kvMap) {
+              window.localStorage.setItem(key, kvMap[key]);
+            }
+            displayLocalStorage();
+          } catch (e) {
+            var logger = lkResultLoggerModule.getLogger("localStorage", true);
+            logger.logError("JSON Error: \n" + e + "\n["+jsonStr+"]");
           }
-          window.location.reload(true);
         }
       }
 
-      // register for the 'Clear Local Storage' button 'click' event.
+      // register the 'Clear Local Storage' button 'click' event.
       var clearLocalStorageBtn = document.getElementById( "clearLocalStorageBtn" );
 
       clearLocalStorageBtn.onclick = function(event) {
         window.localStorage.clear();
-        window.location.reload(true);
+        displayLocalStorage();
       }
 
       // display local storage info
-      var logger = lkResultLoggerModule.getLogger("localStorage");
-
-      logger.logLabelValue("localStorage", window.localStorage);
-      logger.logLabelValue("localStorage.length", window.localStorage.length, "the number of key/value pairs");
-
-      var i;
-      for (i=0; i<window.localStorage.length; i++) {
-        logger.logLabelValue(window.localStorage.key(i), window.localStorage.getItem(window.localStorage.key(i)));
-      }
+      displayLocalStorage();
     </script>
   </lk-js-example>
 
@@ -318,9 +328,14 @@
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("name");
 
+      // save origianl name (restore when done)
+      var originalName = window.name;
       logger.logLabelValue("name", window.name);
       window.name = "New Window Name";
       logger.logLabelValue("name", window.name);
+
+      // restore to original name
+      window.name = originalName;
     </script>
   </lk-js-example>
 
@@ -372,8 +387,8 @@
 
       logger.logLabelValue("parent", window.parent);
       if (window.parent != null) {
-      logger.logLabelValue("parent.name", window.parent.name);
-      logger.logLabelValue("window.parent === window", window.parent === window);
+        logger.logLabelValue("parent.name", window.parent.name);
+        logger.logLabelValue("window.parent === window", window.parent === window);
       }
     </script>
   </lk-js-example>
@@ -467,8 +482,22 @@
     See <a href="https://developer.mozilla.org/en-US/docs/Session_store_API">Session store API</a>
   </p>
 
-  <lk-js-example width="640px" id="sessionStorage">
+  <lk-js-example width="840px" id="sessionStorage">
     <script type="multiline-template">
+      // function to display some session storage info
+      function displaySessionStorage() {
+        // log sessionStorage info
+        var logger = lkResultLoggerModule.getLogger("sessionStorage", true);
+
+        logger.logLabelValue("sessionStorage", window.sessionStorage);
+        logger.logLabelValue("sessionStorage.length", window.sessionStorage.length, "the number of key/value pairs");
+
+        var i;
+        for (i=0; i<window.sessionStorage.length; i++) {
+          logger.logLabelValue(window.sessionStorage.key(i), window.sessionStorage.getItem(window.sessionStorage.key(i)));
+        }
+      }
+
       // register for the 'Add To Session Storage' button 'click' event.
       var addToSessionStorageBtn = document.getElementById( "addToSessionStorageBtn" );
 
@@ -476,25 +505,21 @@
         var jsonStr = window.prompt("Enter a JSON (key/value)", '{"key1": "'+new Date()+'"}');
 
         if (jsonStr != null) {
-          var kvMap = JSON.parse(jsonStr);
-
-          for (var key in kvMap) {
-            window.sessionStorage.setItem(key, kvMap[key]);
+          try {
+            var kvMap = JSON.parse(jsonStr);
+            for (var key in kvMap) {
+              window.sessionStorage.setItem(key, kvMap[key]);
+            }
+            displaySessionStorage();
+          } catch (e) {
+            var logger = lkResultLoggerModule.getLogger("sessionStorage", true);
+            logger.logError("JSON Error: \n" + e + "\n["+jsonStr+"]");
           }
-          window.location.reload(true);
         }
       }
 
-      // log sessionStorage info
-      var logger = lkResultLoggerModule.getLogger("sessionStorage");
-
-      logger.logLabelValue("sessionStorage", window.sessionStorage);
-      logger.logLabelValue("sessionStorage.length", window.sessionStorage.length, "the number of key/value pairs");
-
-      var i;
-      for (i=0; i<window.sessionStorage.length; i++) {
-        logger.logLabelValue(window.sessionStorage.key(i), window.sessionStorage.getItem(window.sessionStorage.key(i)));
-      }
+      // display session storage info
+      displaySessionStorage();
     </script>
   </lk-js-example>
 
@@ -625,24 +650,47 @@
     See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getComputedStyle">Window.getComputedStyle</a>.
   </p>
 
-  <lk-js-example width="640px" id="getComputedStyle">
+  <lk-js-example width="750px" id="getComputedStyle">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("getComputedStyle");
-      var computedStyleEle = document.getElementById("getComputedStyle");
-      var computedStyle = window.getComputedStyle(computedStyleEle);
+      function displayStyles(mode) {
+        // get the computed style of the default element
+        var computedStyleEle = document.getElementById("getComputedStyle");
+        var computedStyle = window.getComputedStyle(computedStyleEle);
 
-      logger.logLabelValue("computedStyle", computedStyle);
-      logger.logLabelValue("computedStyle.length", computedStyle.length);
-      logger.logLabelValue("computedStyle.@font-family", computedStyle.getPropertyValue('font-family'));
-      logger.logLabelValue("computedStyle.@font-size", computedStyle.getPropertyValue('font-size'));
-      logger.logLabelValue("computedStyle.@text-decoration", computedStyle.getPropertyValue('text-decoration'));
+        // display all styles (could be hundreds) or just a few
+        var logger = lkResultLoggerModule.getLogger("getComputedStyle", true);
+        if (mode === "all") {
+          for (var i=0; i<computedStyle.length; i++) {
+            var style = computedStyle[i];
+            logger.logLabelValue(style, computedStyle.getPropertyValue(style));
+          }
+        } else {
+          logger.logLabelValue("computedStyle", computedStyle);
+          logger.logLabelValue("computedStyle.length", computedStyle.length);
+          logger.logLabelValue("computedStyle.@font-family", computedStyle.getPropertyValue('font-family'));
+          logger.logLabelValue("computedStyle.@font-size", computedStyle.getPropertyValue('font-size'));
+          logger.logLabelValue("computedStyle.@text-decoration", computedStyle.getPropertyValue('text-decoration'));
+        }
+      }
 
-      //for (var i=0; i<computedStyle.length; i++) {
-      //  var style = computedStyle[i];
-      //  logger.logLabelValue(style, computedStyle.getPropertyValue(style));
-      //}
+      // register for the 'Render All Styles?' button 'click' event.
+      var renderAllStylesBtn = document.getElementById( "renderAllStylesBtn" );
+
+      renderAllStylesBtn.onclick = function(event) {
+        var confirmResult = window.confirm("Are you sure you want to render all of the styles?");
+
+        displayStyles(confirmResult == true ? "all" : "limited");
+      }
+
+      displayStyles("limited");
     </script>
   </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="renderAllStylesBtn">Render All Styles?</button>
+    </script>
+  </lk-html-example>
 
   <lk-navigation-bar></lk-navigation-bar>
 
@@ -683,7 +731,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <p>
-    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.matchMedia">Window.matchMedia</a>.
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.matchMedia">Window.print</a>.
   </p>
 
   <lk-js-example width="640px" id="print">
