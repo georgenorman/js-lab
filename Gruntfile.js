@@ -19,7 +19,7 @@ module.exports = function(grunt) {
     pkg: grunt.file.readJSON('package.json'),
 
     // https://github.com/gruntjs/grunt-contrib-clean
-    clean: ["target"],
+    clean: ["target", 'releases/<%= pkg.version %>'],
 
     // https://github.com/gruntjs/grunt-contrib-concat/blob/master/docs/concat-examples.md
     concat: {
@@ -146,8 +146,9 @@ module.exports = function(grunt) {
           {expand: true, flatten: true, src: ['target/html/*.html'], dest: 'releases/<%= pkg.version %>/html/'},
           {expand: true, flatten: true, src: ['target/html/bom/*.html'], dest: 'releases/<%= pkg.version %>/html/bom/'},
           {expand: true, flatten: true, src: ['target/html/dom/*.html'], dest: 'releases/<%= pkg.version %>/html/dom/'},
+          {expand: true, flatten: true, src: ['lib/img/*'], dest: 'releases/<%= pkg.version %>/img/'},
+          {expand: true, flatten: true, src: ['lib/img/logo/*'], dest: 'releases/<%= pkg.version %>/img/logo/'},
           {expand: true, flatten: true, src: ['src/img/*'], dest: 'releases/<%= pkg.version %>/img/'},
-          {expand: true, flatten: true, src: ['src/img/logo/*'], dest: 'releases/<%= pkg.version %>/img/logo/'},
           {expand: true, flatten: true, src: ['src/img/scenic/*'], dest: 'releases/<%= pkg.version %>/img/scenic/'}
         ]
       }
@@ -183,8 +184,8 @@ module.exports = function(grunt) {
 
   // register main task(s)
   grunt.registerTask('docs', ['jsdoc']);
-  grunt.registerTask('release', ['assemble-fragments', 'assemble-final', 'uglify:jsLab', 'autoprefixer:jsLab', 'cssmin:jsLab', 'replace-hack', 'copy:release', 'docs']);
+  grunt.registerTask('release', ['clean', 'assemble-fragments', 'assemble-final', 'uglify:jsLab', 'autoprefixer:jsLab', 'cssmin:jsLab', 'replace-hack', 'copy:release', 'docs']);
 
   // register default task
-  grunt.registerTask('default', ['clean', 'release']);
+  grunt.registerTask('default', ['release']);
 };
