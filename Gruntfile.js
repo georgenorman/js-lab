@@ -184,7 +184,9 @@ module.exports = function(grunt) {
 
   // register main task(s)
   grunt.registerTask('docs', ['jsdoc']);
-  grunt.registerTask('release', ['clean', 'assemble-fragments', 'assemble-final', 'uglify:jsLab', 'autoprefixer:jsLab', 'cssmin:jsLab', 'replace-hack', 'copy:release', 'docs']);
+  grunt.registerTask('build', ['assemble-fragments', 'assemble-final', 'uglify:jsLab', 'autoprefixer:jsLab', 'cssmin:jsLab', 'replace-hack', 'copy:release']);
+
+  grunt.registerTask('release', ['clean', 'build', 'docs']);
 
   // register default task
   grunt.registerTask('default', ['release']);
