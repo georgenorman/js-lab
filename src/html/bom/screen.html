@@ -55,6 +55,10 @@
     Return the color/pixel Depth of the screen, as it's currently configured (e.g., in the Monitors control panel).
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.orientation">
+    window.screen.orientation
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="orientation">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("orientation");
@@ -69,9 +73,13 @@
   <h3 id="basicProperties.onorientationchange">onorientationchange</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.onorientationchange">
+    window.screen.onorientationchange = function(){}
+  </lk-api-reference>
+
   <lk-js-example width="640px">
     <script type="multiline-template">
-      window.screen.onorientationchange = function(event) {
+      window.screen.onorientationchange = function() {
         alert("Screen orientation has changed.");
       }
     </script>
@@ -89,12 +97,29 @@
     A dock can be positioned on the left of the screen and will consume a variable amount of pixels, depending on its configured size.
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.availTop">
+    window.screen.availTop
+  </lk-api-reference>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.availLeft">
+    window.screen.availLeft
+  </lk-api-reference>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.availHeight">
+    window.screen.availHeight
+  </lk-api-reference>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.availWidth">
+    window.screen.availWidth
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="available">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("available");
 
       logger.logLabelValue("screen.availTop", window.screen.availTop);
       logger.logLabelValue("screen.availLeft", window.screen.availLeft);
+
       logger.logLabelValue("screen.availHeight", window.screen.availHeight);
       logger.logLabelValue("screen.availWidth", window.screen.availWidth);
     </script>
@@ -109,9 +134,28 @@
     Return the total screen size in pixels, as it's currently configured (e.g., in the Monitors control panel).
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.top">
+    window.screen.top
+  </lk-api-reference>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.left">
+    window.screen.left
+  </lk-api-reference>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.height">
+    window.screen.height
+  </lk-api-reference>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.width">
+    window.screen.width
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="dim">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("dim");
+
+      logger.logLabelValue("screen.top", window.screen.top);
+      logger.logLabelValue("screen.left", window.screen.left);
 
       logger.logLabelValue("screen.height", window.screen.height);
       logger.logLabelValue("screen.width", window.screen.width);
@@ -126,6 +170,14 @@
   <p>
     Return the color/pixel Depth of the screen, as it's currently configured (e.g., in the Monitors control panel).
   </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.colorDepth">
+    window.screen.colorDepth
+  </lk-api-reference>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Screen.pixelDepth">
+    window.screen.pixelDepth
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="colorDepth">
     <script type="multiline-template">

@@ -44,6 +44,34 @@
 
   <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window">See MDN Window Interface</a>
 
+  <p>
+    The following code renders all of the first-level Window properties (global variables and functions).
+  </p>
+
+  <lk-js-example width="640px" logger-height="300px" id="window">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("window");
+
+      // Hide/Show the window properties
+      tzDomHelperModule.onclickEventToggler("windowPropertiesBtn", {
+        on: function(event) {
+          logger.logLabelValueProperties("Window Properties", window);
+          event.toElement.innerHTML = "Hide Window Properties";
+        },
+        off: function(event) {
+          logger.clear();
+          event.toElement.innerHTML = "Show Window Properties";
+        }
+      });
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="windowPropertiesBtn">Show Window Properties</button>
+    </script>
+  </lk-html-example>
+
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <h2 id="basicProperties">Basic Properties</h2>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -56,12 +84,17 @@
     See <a href="https://developer.mozilla.org/en-US/docs/Web/HTML/Using_the_application_cache">Using the application cache</a>
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.applicationCache">
+    Window.applicationCache
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="applicationCache">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("applicationCache");
 
-      logger.logLabelValue("Status legend", "0=UNCACHED, 1=IDLE, 2=CHECKING, ..., 5=OBSOLETE");
       logger.logLabelValue("status", window.applicationCache.status);
+      logger.logLabelValue("applicationCache", window.applicationCache);
+      logger.logLabelValueProperties("applicationCache", window.applicationCache);
     </script>
   </lk-js-example>
 
@@ -74,6 +107,10 @@
   <p>
     The ratio between the physical pixels and the device independent pixels.
   </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.devicePixelRatio">
+    Window.devicePixelRatio
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="devicePixelRatio">
     <script type="multiline-template">
@@ -95,6 +132,10 @@
     and <a href="./dom/document.html">Document Lab</a>
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.document">
+    Window.document
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="document">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("document");
@@ -114,6 +155,10 @@
     The element in which the window is embedded, or null if not embedded.
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.frameElement">
+    Window.frameElement
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="frameElement">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("frameElement");
@@ -131,6 +176,10 @@
   <p>
     The array of subframes in the current window.
   </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.frames">
+    Window.frames
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="frames">
     <script type="multiline-template">
@@ -151,6 +200,10 @@
     See <a href="./history.html">History Lab</a>
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.history">
+    Window.history
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="history">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("history");
@@ -169,12 +222,27 @@
     The width and height of the content area (including scrollbars).
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/window.innerWidth">
+    window.innerWidth
+  </lk-api-reference>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/window.innerHeight">
+    Window.innerHeight
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="innerWidthHeight">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("innerWidthHeight");
+      // function to log inner width/heght
+      var innerWidthHeightLogger = function() {
+        var logger = lkResultLoggerModule.getLogger("innerWidthHeight");
+        logger.clear();
+        logger.logLabelValue("innerWidth", window.innerWidth);
+        logger.logLabelValue("innerHeight", window.innerHeight);
+      }
 
-      logger.logLabelValue("innerWidth", window.innerWidth);
-      logger.logLabelValue("innerHeight", window.innerHeight);
+      window.onresize = innerWidthHeightLogger;
+
+      innerWidthHeightLogger();
     </script>
   </lk-js-example>
 
@@ -187,6 +255,10 @@
   <p>
     The number of frames in the window (see also <a href="#basicProperties.frames">window.frames</a>).
   </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.length">
+    Window.length
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="length">
     <script type="multiline-template">
@@ -208,6 +280,10 @@
     Also see the <a href="./location.html">Location Lab</a>.
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.location">
+    Window.location
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="location">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("location");
@@ -227,7 +303,7 @@
 
   <lk-html-example width="630px">
     <script type="multiline-template">
-      <button id="locationBtn">Location</button>
+      <button id="locationBtn">Change Location</button>
     </script>
   </lk-html-example>
 
@@ -241,12 +317,15 @@
     Returns true if the location bar is visible.
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.locationbar">
+    Window.locationbar
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="locationbar">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("locationbar");
 
-      logger.logLabelValue("locationbar", window.locationbar);
-      logger.logLabelValue("locationbar.visible", window.locationbar.visible);
+      logger.logLabelValueProperties("locationbar", window.locationbar);
     </script>
   </lk-js-example>
 
@@ -262,7 +341,7 @@
 
   <lk-js-example width="800px" id="localStorage">
     <script type="multiline-template">
-      // function to display some local storage info
+      // function to display the localStorage contents
       function displayLocalStorage() {
         var logger = lkResultLoggerModule.getLogger("localStorage", true);
 
@@ -324,11 +403,15 @@
 
   <p>Gets/sets the name of the window</p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.name">
+    Window.name
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="name">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("name");
 
-      // save origianl name (restore when done)
+      // save origianl name (restore it when done)
       var originalName = window.name;
       logger.logLabelValue("name", window.name);
       window.name = "New Window Name";
@@ -349,11 +432,15 @@
     See <a href="./navigator.html">Navigator Lab</a>
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.navigator">
+    Window.navigator
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="navigator">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("navigator");
 
-      logger.logLabelValue("window.navigator", window.navigator);
+      logger.logLabelValueProperties("window.navigator", window.navigator );
     </script>
   </lk-js-example>
 
@@ -364,6 +451,10 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <p>Returns a reference to the window that opened this window.</p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.opener">
+    Window.opener
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="opener">
     <script type="multiline-template">
@@ -380,6 +471,10 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <p>Returns a reference to the parent of this window.</p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.parent">
+    Window.parent
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="parent">
     <script type="multiline-template">
@@ -403,6 +498,10 @@
     See <a href="./screen.html">Screen Lab</a>
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.screen">
+    Window.screen
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="screen">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("screen");
@@ -418,6 +517,9 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <p>The distance between the browser and the edge of the screen.</p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.screenX">Window.screenX</lk-api-reference>
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.screenY">Window.screenY</lk-api-reference>
 
   <lk-js-example width="640px" id="screenXY">
     <script type="multiline-template">
@@ -438,7 +540,7 @@
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("scrollbars");
 
-      logger.logLabelValue("scrollbars", window.scrollbars);
+      logger.logLabelValueProperties("scrollbars", window.scrollbars);
     </script>
   </lk-js-example>
 
@@ -478,9 +580,9 @@
   <h3 id="basicProperties.sessionStorage">sessionStorage</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <p>
-    See <a href="https://developer.mozilla.org/en-US/docs/Session_store_API">Session store API</a>
-  </p>
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Session_store_API">
+    Window.sessionStorage
+  </lk-api-reference>
 
   <lk-js-example width="840px" id="sessionStorage">
     <script type="multiline-template">
@@ -587,9 +689,12 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <p>
-    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.dispatchEvent">EventTarget.dispatchEvent</a>
-    and <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events">Creating and triggering events</a>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/Guide/Events/Creating_and_triggering_events">Creating and triggering events</a>
   </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget.dispatchEvent">
+    canceled = !target.dispatchEvent(event)
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="dispatchEvent">
     <script type="multiline-template">
@@ -603,9 +708,9 @@
   <h3 id="basicMethods.find">find()</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <p>
-    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.find">Window.find</a>.
-  </p>
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.find">
+    window.find(str, caseSensitive, backwards, wrapAround, wholeWord, searchInFrames, showDialog)
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="find">
     <script type="multiline-template">
@@ -619,9 +724,9 @@
   <h3 id="basicMethods.getAttention">getAttention()</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <p>
-    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getAttention">Window.getAttention</a>
-  </p>
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getAttention">
+    window.getAttention()
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="getAttention">
     <script type="multiline-template">
@@ -646,9 +751,9 @@
   <h3 id="basicMethods.getComputedStyle">getComputedStyle()</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <p>
-    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getComputedStyle">Window.getComputedStyle</a>.
-  </p>
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getComputedStyle">
+    var style = window.getComputedStyle(element[, pseudoElt])
+  </lk-api-reference>
 
   <lk-js-example width="750px" id="getComputedStyle">
     <script type="multiline-template">
@@ -698,9 +803,9 @@
   <h3 id="basicMethods.getSelection">getSelection()</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <p>
-    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection">Window.getSelection</a>.
-  </p>
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.getSelection">
+    selection = window.getSelection()
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="getSelection">
     <script type="multiline-template">
@@ -714,9 +819,9 @@
   <h3 id="basicMethods.matchMedia">matchMedia()</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <p>
-    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.matchMedia">Window.matchMedia</a>.
-  </p>
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.matchMedia">
+    mql = window.matchMedia(mediaQueryString)
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="matchMedia">
     <script type="multiline-template">
@@ -730,9 +835,9 @@
   <h3 id="basicMethods.print">print()</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <p>
-    See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window.matchMedia">Window.print</a>.
-  </p>
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Window.print">
+    window.print()
+  </lk-api-reference>
 
   <lk-js-example width="640px" id="print">
     <script type="multiline-template">

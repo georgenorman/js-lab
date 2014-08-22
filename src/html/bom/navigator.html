@@ -52,11 +52,15 @@
   <h3 id="stdProperties.appCodeName">appCodeName</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID.appCodeName">
+    window.navigator.appCodeName
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="appCodeName">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("appCodeName");
 
-      logger.log(navigator.appCodeName);
+      logger.log(window.navigator.appCodeName);
     </script>
   </lk-js-example>
 
@@ -66,11 +70,15 @@
   <h3 id="stdProperties.appName">appName</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID.appName">
+    window.navigator.appName
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="appName">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("appName");
 
-      logger.log(navigator.appName);
+      logger.log(window.navigator.appName);
     </script>
   </lk-js-example>
 
@@ -80,11 +88,15 @@
   <h3 id="stdProperties.appVersion">appVersion</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID.appVersion">
+    window.navigator.appVersion
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="appVersion">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("appVersion");
 
-      logger.log(navigator.appVersion);
+      logger.log(window.navigator.appVersion);
     </script>
   </lk-js-example>
 
@@ -94,11 +106,15 @@
   <h3 id="stdProperties.oscpu">oscpu</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.oscpu">
+    window.navigator.oscpu
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="oscpu">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("oscpu");
 
-      logger.log(navigator.oscpu);
+      logger.log(window.navigator.oscpu);
     </script>
   </lk-js-example>
 
@@ -108,11 +124,15 @@
   <h3 id="stdProperties.platform">platform</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID.platform">
+    window.navigator.platform
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="platform">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("platform");
 
-      logger.log(navigator.platform);
+      logger.log(window.navigator.platform);
     </script>
   </lk-js-example>
 
@@ -122,11 +142,15 @@
   <h3 id="stdProperties.userAgent">userAgent</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorID.userAgent">
+    window.navigator.userAgent
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="userAgent">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("userAgent");
 
-      logger.log(navigator.userAgent);
+      logger.log(window.navigator.userAgent);
     </script>
   </lk-js-example>
 
@@ -136,11 +160,20 @@
   <h3 id="stdProperties.battery">battery level</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.battery">
+    window.navigator.battery
+  </lk-api-reference>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/BatteryManager">
+    BatteryManager.charging
+    BatteryManager.level
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="battery.level">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("battery.level");
 
-      logger.log(navigator.battery.level);
+      logger.log(window.navigator.battery.level);
     </script>
   </lk-js-example>
 
@@ -150,11 +183,15 @@
   <h3 id="stdProperties.onLine">onLine</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorOnLine.onLine">
+    window.navigator.onLine
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="onLine">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("onLine");
 
-      logger.log(navigator.onLine);
+      logger.log(window.navigator.onLine);
     </script>
   </lk-js-example>
 
@@ -164,10 +201,14 @@
   <h3 id="stdProperties.connection">connection bandwidth</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/NetworkInformation.connection">
+    window.navigator.connection
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="connection.bandwidth">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("connection.bandwidth");
-      var connection = navigator.connection || navigator.mozConnection || navigator.webkitConnection;
+      var connection = window.navigator.connection || window.navigator.mozConnection || window.navigator.webkitConnection;
 
       logger.log(connection.bandwidth);
     </script>
@@ -177,11 +218,19 @@
   <h3 id="stdProperties.geolocation">geolocation</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/NavigatorGeolocation.geolocation">
+    window.navigator.geolocation
+  </lk-api-reference>
+
+  <lk-api-reference href="http://www.w3.org/TR/geolocation-API/#navi-geo">
+    NavigatorGeolocation
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="geolocation">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("geolocation");
 
-      navigator.geolocation.getCurrentPosition(function(pos) {
+      window.navigator.geolocation.getCurrentPosition(function(pos) {
         var crd = pos.coords;
 
         logger.log('Latitude : ' + crd.latitude);
@@ -203,13 +252,31 @@
   <h3 id="nonStdProperties.cookieEnabled">cookieEnabled</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.cookieEnabled">
+    window.navigator.cookieEnabled
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="cookieEnabled">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("cookieEnabled");
 
-      logger.log(navigator.cookieEnabled);
+      logger.log(window.navigator.cookieEnabled);
     </script>
   </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="nonStdProperties.mozCamera">mozCamera</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Navigator.cookieEnabled">
+    window.navigator.mozCamera   // Requires FirefoxOS 1.0
+  </lk-api-reference>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/CameraManager">
+    CameraManager   // Requires FirefoxOS 1.0
+  </lk-api-reference>
 
   <lk-navigation-bar></lk-navigation-bar>
 

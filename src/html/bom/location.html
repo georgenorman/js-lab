@@ -90,16 +90,20 @@
     The location will be added to the browser history.
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Location.assign" width="678px">
+    document.location.assign(url)
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="assign">
     <script type="multiline-template">
       // register for the 'Assign' button 'click' event.
       var assignBtn = document.getElementById( "assignBtn" );
 
       assignBtn.onclick = function(event) {
-        var href = window.prompt("Enter the URL to assign:", "locationLandingTest.html?t="+Date.now());
+        var href = window.prompt("Enter URL:", "locationLandingTest.html?t="+Date.now());
 
         if (href != null) {
-          window.location.assign(href);
+          document.location.assign(href);
         }
       }
     </script>
@@ -123,16 +127,20 @@
     The current page is no longer in the history, so after the new resource is loaded, using the browser back button will bypass this page.
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Location.replace" width="678px">
+    document.location.replace(url)
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="replace">
     <script type="multiline-template">
       // register for the 'Replace' button 'click' event.
       var replaceBtn = document.getElementById( "replaceBtn" );
 
       replaceBtn.onclick = function(event) {
-        var href = window.prompt("Enter the URL to replace:", "locationLandingTest.html?t="+Date.now());
+        var href = window.prompt("Enter URL:", "locationLandingTest.html?t="+Date.now());
 
         if (href != null) {
-          window.location.replace(href);
+          document.location.replace(href);
         }
       }
     </script>
@@ -156,6 +164,10 @@
     If the optional parameter is true, then reloads from the server; otherwise, reloads from the browser cache.
   </p>
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/Location.reload" width="678px">
+    document.reload.reload(forcedReload)
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="reload">
     <script type="multiline-template">
       var reloadBtn = document.getElementById( "reloadBtn" );
@@ -163,7 +175,7 @@
       reloadBtn.onclick = function(event) {
         var forcedReload = window.prompt("Force a Reload?", "true") === "true" ? true : false;
 
-        window.location.reload(forcedReload);
+        document.location.reload(forcedReload);
       }
     </script>
   </lk-js-example>
@@ -181,17 +193,19 @@
   <h3 id="basicLocationMethods.toString">location.toString()</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/URLUtils.toString" width="678px">
+    document.location.toString()
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="toString">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("toString");
 
-      logger.logLabelValue("toString", window.location.toString());
+      logger.logLabelValue("toString", document.location.toString());
     </script>
   </lk-js-example>
 
   <lk-navigation-bar></lk-navigation-bar>
-
-
 </main>
 
 <footer></footer>

@@ -52,11 +52,15 @@
   <h3 id="stdProperties.length">history.length</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/API/History.length">
+    window.history.length
+  </lk-api-reference>
+
   <lk-js-example width="640px" id="length">
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("length");
 
-      logger.log(history.length);
+      logger.log(window.history.length);
     </script>
   </lk-js-example>
 
@@ -71,7 +75,7 @@
       var backBtn = document.getElementById( "back" );
 
       backBtn.onclick = function(event) {
-        history.back();
+        window.history.back();
       }
     </script>
   </lk-js-example>
@@ -85,20 +89,60 @@
   <lk-navigation-bar></lk-navigation-bar>
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <h2 id="nonStdProperties">Non-Standard Properties/Methods</h2>
+  <h3 id="stdProperties.forward">history.forward()</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <h3 id="nonStdProperties.cookieEnabled">cookieEnabled</h3>
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-  <lk-js-example width="640px" id="cookieEnabled">
+  <lk-js-example width="640px">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("cookieEnabled");
+      var forwardBtn = document.getElementById( "forward" );
 
-      logger.log(navigator.cookieEnabled);
+      forwardBtn.onclick = function(event) {
+        window.history.forward();
+      }
     </script>
   </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="forward">Forward</button>
+    </script>
+  </lk-html-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="stdProperties.pushState">history.pushState()</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/Guide/API/DOM/Manipulating_the_browser_history">
+    window.history.pushState(stateObj, title, url)
+  </lk-api-reference>
+
+  <lk-js-example width="640px" id="pushState">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("pushState");
+      var pushStateBtn = document.getElementById( "pushStateBtn" );
+
+      pushStateBtn.onclick = function(event) {
+        var href = window.prompt("Enter Relative URL:", "locationLandingTest.html?t="+Date.now());
+
+        if (href != null) {
+          try {
+            window.history.pushState({"key1":"Value-1", "key2":"Value-2"}, "Title", href);
+            logger.log("Browser address bar just changed to the URL you entered.");
+          } catch(e) {
+            logger.log(e);
+          }
+        }
+      }
+    </script>
+  </lk-js-example>
+
+  <lk-html-example width="630px">
+    <script type="multiline-template">
+      <button id="pushStateBtn">Push State</button>
+    </script>
+  </lk-html-example>
 
   <lk-navigation-bar></lk-navigation-bar>
 
