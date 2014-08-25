@@ -56,8 +56,7 @@
     <script type="multiline-template">
       var logger = lkResultLoggerModule.getLogger("doctype");
 
-      logger.logLabelValue("doctype", document.doctype);
-      logger.logLabelValue("doctype.name", document.doctype.name);
+      logger.logLabelValueProperties("doctype", document.doctype);
     </script>
   </lk-js-example>
 
@@ -115,11 +114,12 @@
 
       logger.logLabelValue("styleSheets", document.styleSheets);
       logger.logLabelValue("styleSheets.length", document.styleSheets.length);
+
       for (var i=0; i<document.styleSheets.length; i++) {
-      logger.logLabelValue("styleSheets["+i+"]", document.styleSheets[i]);
-      logger.logLabelValue("styleSheets["+i+"].href", document.styleSheets[i].href);
-      logger.logLabelValue("styleSheets["+i+"].type", document.styleSheets[i].type);
-      logger.logLabelValue("styleSheets["+i+"].ownerNode", document.styleSheets[i].ownerNode);
+        logger.logLabelValue("styleSheets["+i+"]", document.styleSheets[i]);
+        logger.logLabelValue("styleSheets["+i+"].href", document.styleSheets[i].href);
+        logger.logLabelValue("styleSheets["+i+"].type", document.styleSheets[i].type);
+        logger.logLabelValue("styleSheets["+i+"].ownerNode", document.styleSheets[i].ownerNode);
       }
     </script>
   </lk-js-example>

@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2014 George Norman.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+<html>
+<head>
+  <title>Basic Objects</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style>
+    @import "../../css/all-css.css";
+  </style>
+</head>
+<body onload="jsLabModule.handleOnLoad();">
+<header>
+  <h1>Basic Objects</h1>
+</header>
+
+<progress class="page-load-progress">Loading...</progress>
+<main class="hide">
+  <js-lab-about></js-lab-about>
+
+  <lk-table-of-contents class="toc" level1ItemsTagName="h2" level2ItemsTagName="h3"></lk-table-of-contents>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="overview">Overview</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference#Fundamental_objects">See MDN 'Fundamental objects'</a>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="fundamental">Fundamental Objects</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="fundamental.object">Object</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/fundamentalbal_Objects/Object">
+    // Object literal
+    { "name1": value1, ... }
+
+    // Object constructor
+    new Object( [ value ] )
+  </lk-api-reference>
+
+  <h4>Object Literal</h4>
+
+  <lk-js-example width="720px" id="object">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("object");
+
+      // TODO
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="fundamental.function">Function</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Function">
+    // Function constructor
+    new Function ([arg1[, arg2[, ...argN]],] functionBody)
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="function">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("function");
+
+      // TODO
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="fundamental.boolean">Boolean</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">
+    // Boolean constructor
+    new Boolean(value)
+  </lk-api-reference>
+
+  <lk-bullet-point iconClass="lk-bullet-point-fail">
+    <p>
+      All non-null objects are implicitly true. Examples:
+<pre>
+  // non-null object is true
+  var result = new Boolean(new Boolean(false));
+
+  // non-null object is true
+  if (new Boolean(false)) { /* executes */ }
+
+  // null object is false
+  if (null) { /* does not execute */ }
+</pre>
+    </p>
+  </lk-bullet-point>
+
+  <lk-js-example width="720px" id="boolean">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("boolean");
+
+      logger.logLabel("Basic evaluation","");
+      logger.logExpression("  Boolean()");
+      logger.logExpression("  Boolean(true)");
+      logger.logExpression("  Boolean(false)");
+      logger.logExpression("  Boolean(0)");
+      logger.logExpression("  Boolean(1)");
+      logger.logExpression("  Boolean(-12)");
+      logger.logExpression("  Boolean(12)");
+
+      logger.logLabel("\nNon-Obvious evaluation");
+      logger.logExpression("  Boolean(null)");
+      logger.logExpression("  Boolean('')");
+      logger.logExpression("  Boolean(' ')");
+      logger.logExpression("  Boolean('false')", "", "#e66");
+      logger.logExpression("  Boolean(new Boolean(false))", "non-null object evals to true", "#e66");
+      logger.logExpression("  null ? 'true' : 'false'", "null object evals to false");
+      logger.logExpression("  new Boolean(true) ? 'true' : 'false'");
+      logger.logExpression("  new Boolean(false) ? 'true' : 'false'", "", "#e66");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="fundamental.error">Error</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Error">
+    new Error([message[, fileName[,lineNumber]]])
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="error">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("error");
+
+      // TODO
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="nad">Numbers and Dates</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="nad.number">Number</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">
+    // Number constructor
+    new Number(value);
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="number">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("number");
+
+      logger.logLabel("Conversions");
+      logger.logExpression("  Number('0')");
+      logger.logExpression("  Number('01')");
+      logger.logExpression("  Number('1234')");
+      logger.logExpression("  Number('1234px')", "", "#FF8C00");
+      logger.logExpression("  Number({})", "", "#FF8C00");
+      logger.logExpression("  Number(null)");
+      logger.logExpression("  Number(true)");
+      logger.logExpression("  Number(false)");
+
+      logger.logLabel("\nProperties");
+      logger.logExpression("  Number.MAX_VALUE");
+      logger.logExpression("  Number.MIN_VALUE");
+
+      logger.logLabel("\nMethods");
+      logger.log("To Exponential Notation:");
+      logger.logExpression("  new Number(1234).toExponential()");
+      logger.logExpression("  new Number(1234567890).toExponential()");
+      logger.logExpression("  new Number(123456789012345678).toExponential()");
+      logger.logExpression("  new Number(123456789012345678901234567890).toExponential()");
+
+      logger.log("\nTo Fixed Notation:");
+      logger.logExpression("  new Number(1.2345678901234568e+8).toFixed(20)");
+
+      logger.log("\nValue Of:");
+      logger.logTypeOfExpressionAndValue("  typeof '1.234'");
+      logger.logExpression("  typeof Number.valueOf('1.234')");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="nad.date">Date</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
+    new Date();
+    new Date(integerValue);
+    new Date(dateString); // recognizable by Date.parse()
+    new Date(year, month, day, hour, minute, second, millisecond);
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="date">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("date");
+      Window.now = new Date(); // TODO: Fix eval context issue with logExpression.
+
+      logger.logLabel("Methods");
+      logger.logExpression("Window.now.getDate()");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="nad.math">Math</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Math">
+    Not a function object
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="math">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("math");
+
+      logger.logLabel("Properties");
+      logger.logExpression("  Math.E");
+      logger.logExpression("  Math.PI");
+      logger.logExpression("  Math.SQRT2");
+
+      logger.logLabel("\nMethods");
+      logger.log("Ceiling:");
+      logger.logExpression("  Math.ceil(0.001)");
+      logger.logExpression("  Math.ceil(1.001)");
+      logger.logExpression("  Math.ceil(1.999)");
+
+      logger.log("\nFloor:");
+      logger.logExpression("  Math.floor(0.001)");
+      logger.logExpression("  Math.floor(1.001)");
+      logger.logExpression("  Math.floor(1.999)");
+
+      logger.log("\nMin and Max:");
+      logger.logExpression("  Math.min(1, 2, 3, 33, 22, 11)");
+      logger.logExpression("  Math.max(1, 2, 3, 33, 22, 11)");
+
+      logger.log("\nExponent:");
+      logger.logExpression("  Math.pow(2,0)");
+      logger.logExpression("  Math.pow(2,1)");
+      logger.logExpression("  Math.pow(2,2)");
+      logger.logExpression("  Math.pow(2,3)");
+      logger.logExpression("  Math.pow(2,4)");
+      logger.logExpression("  Math.pow(2,0.5)");
+      logger.logExpression("  Math.sqrt(2)");
+
+      logger.log("\nRandom:");
+      logger.logExpression("  Math.floor(Math.random()*6)", "between 0 and 5");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="text">Text processing</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="text.string">String</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Note: JavaScript distinguishes between String objects and primitive string values.
+    JavaScript automatically converts primitives to String objects.
+  </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String">
+    "String Literal"
+    String(str)
+    new String(str)
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="string">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("string");
+
+      // TODO
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="text.regExp">RegExp</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular Expressions</a> in the JavaScript Guide.
+  </p>
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">
+    /pattern/flags;
+    new RegExp(pattern [, flags]);
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="regExp">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("regExp");
+
+      // TODO
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+      </main>
+
+<footer></footer>
+
+<script type="text/javascript" src="../../js/all-javascript.js"></script> <!-- http://stackoverflow.com/questions/5220313/where-should-js-scripts-go-in-an-html-file -->
+</body>
+</html>

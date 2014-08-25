@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2014 George Norman.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+<html>
+<head>
+  <title>Basic Functions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style>
+    @import "../../css/all-css.css";
+  </style>
+</head>
+<body onload="jsLabModule.handleOnLoad();">
+<header>
+  <h1>Basic Functions</h1>
+</header>
+
+<progress class="page-load-progress">Loading...</progress>
+<main class="hide">
+  <js-lab-about></js-lab-about>
+
+  <lk-table-of-contents class="toc" level1ItemsTagName="h2" level2ItemsTagName="h3"></lk-table-of-contents>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="overview">Overview</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference#Function_properties">See MDN 'Function properties'</a>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicFunctions.isFinite">isFinite()</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    If the argument is NaN, positive infinity, or negative infinity, this method returns false.
+  </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite">
+    isFinite(testValue)
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="isFinite">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("isFinite");
+
+      logger.logLabel("Simple numbers");
+      logger.logExpression("  isFinite('1.234')");
+      logger.logExpression("  isFinite('01.234')");
+      logger.logExpression("  isFinite('-01.234')");
+
+      logger.logLabel("\nMixed numbers and chars");
+      logger.logExpression("  isFinite('1.234px')");
+      logger.logExpression("  isFinite('-1.234px')");
+      logger.logExpression("  isFinite('px1234')");
+      logger.logExpression("  isFinite('1,234')");
+      logger.logExpression("  isFinite('1,234.00')");
+
+      logger.logLabel("\nMisc");
+      logger.logExpression("  isFinite(NaN)");
+      logger.logExpression("  isFinite(Infinity)");
+      logger.logExpression("  isFinite(-Infinity)");
+      logger.logExpression("  isFinite(undefined)", "Number(undefined) is " + Number(undefined));
+      logger.logExpression("  isFinite(true)", "Number(true) is " + Number(true));
+      logger.logExpression("  isFinite(false)", "Number(false) is " + Number(false));
+      logger.logExpression("  isFinite(null)", "Number(null) is " + Number(null));
+      logger.logExpression("  isFinite({})", "Number({}) is " + Number({}));
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicFunctions.isNaN">isNaN()</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    If the argument, when coerced to a numeric value, is an IEEE-794 'Not A Number' value, this method returns true.
+  </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN">
+    isNaN(testValue)
+  </lk-api-reference>
+
+  <script>function isaNum(x) {return !isNaN(x);}</script>
+  <lk-js-example width="720px" id="isNaN">
+    <codeComment>Note: Using isaNum(x), which is the inverse of isNaN(x) and is used to avoid the confusion of double-negatives.</codeComment>
+    <resultComment>Note: Using isaNum(x), which is the inverse of isNaN(x) and is used to avoid the confusion of double-negatives.</resultComment>
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("isNaN");
+
+      logger.logLabel("NaN const");
+      logger.logExpression("  NaN == NaN");
+      logger.logExpression("  NaN === NaN");
+
+      logger.logLabel("\nSimple numbers");
+      logger.logExpression("  isaNum('1.234')");
+      logger.logExpression("  isaNum('01.234')");
+      logger.logExpression("  isaNum('-01.234')");
+
+      logger.logLabel("\nMixed numbers and chars");
+      logger.logExpression("  isaNum('1.234px')");
+      logger.logExpression("  isaNum('-1.234px')");
+      logger.logExpression("  isaNum('px1234')");
+      logger.logExpression("  isaNum('1,234')");
+      logger.logExpression("  isaNum('1,234.00')");
+
+      logger.logLabel("\nMisc");
+      logger.logExpression("  isaNum(NaN)");
+      logger.logExpression("  isaNum(Infinity)");
+      logger.logExpression("  isaNum(-Infinity)");
+      logger.logExpression("  isaNum(undefined)", "Number(undefined) is " + Number(undefined));
+      logger.logExpression("  isaNum(true)", "Number(true) is " + Number(true));
+      logger.logExpression("  isaNum(false)", "Number(false) is " + Number(false));
+      logger.logExpression("  isaNum(null)", "Number(null) is " + Number(null));
+      logger.logExpression("  isaNum({})", "Number({}) is " + Number({}));
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicFunctions.pareseInt">parseInt()</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Parses a string up to the first non-digit character
+    (whereas the Number() function parses the entire string as a number).
+  </p>
+
+  <p>
+    See <a href="http://stackoverflow.com/questions/4564158/what-is-the-difference-between-parseintstring-and-numberstring-in-javascript">What's the difference between parseInt and Number?</a>
+  </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt">
+    parseInt(string, radix)
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="parseInt">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("parseInt");
+
+      logger.logLabel("Simple numbers");
+      logger.logExpression("  parseInt('1234')");
+      logger.logExpression("  parseInt('01234')");
+      logger.logExpression("  parseInt('1',2)");
+      logger.logExpression("  parseInt('123',2)", "in base-2, 2 is the first non-digit character", "#e66");
+      logger.logExpression("  parseInt('2',2)");
+      logger.logExpression("  parseInt('-01234')");
+      logger.logExpression("  Number('01234')");
+
+      logger.logLabel("\nMixed numbers and chars");
+      logger.logExpression("  parseInt('1234px')");
+      logger.logExpression("  parseInt('-1234px')");
+      logger.logExpression("  parseInt('px1234')", "", "#FF8C00");
+      logger.logExpression("  Number('1234px')", "", "#FF8C00");
+
+      logger.logLabel("\nFloats");
+      logger.logExpression("  parseInt('12.34')");
+
+      logger.logLabel("\nHexadecimal");
+      logger.logExpression("  parseInt('0xff')");
+      logger.logExpression("  parseInt('0xff',10)", "", "#e66");
+      logger.logExpression("  parseInt('-0xff')");
+      logger.logExpression("  parseInt('ff')", "", "#FF8C00");
+      logger.logExpression("  parseInt('ff',16)");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicFunctions.parseFloat">parseFloat()</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Parses a string up to the first non-digit character
+    (whereas the Number() function parses the entire string as a float).
+  </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/parseInt">
+    parseInt(string, radix)
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="parseFloat">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("parseFloat");
+
+      logger.logLabel("Simple numbers");
+      logger.logExpression("  parseFloat('1.234')");
+      logger.logExpression("  parseFloat('01.234')");
+      logger.logExpression("  parseFloat('-01.234')");
+      logger.logExpression("  Number('-01.234')");
+
+      logger.logLabel("\nMixed numbers and chars");
+      logger.logExpression("  parseFloat('1.234px')");
+      logger.logExpression("  Number('1.234px')");
+      logger.logExpression("  parseFloat('-1.234px')");
+      logger.logExpression("  parseFloat('px1234')");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicFunctions.encodeURI">encodeURI()</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Encodes the entire URI, preserving special chars required for GET and POST requests (e.g., "&" and "=").
+    To encode user entered data, that could contain these chars, use  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">encodeURIComponent()</a>
+    on each component of user data making up the URI.
+  </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURI">
+    encodeURI(uri)
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="encodeURI">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("encodeURI");
+
+      logger.logExpression("encodeURI('http://thruzero.com?x=1&y=2')");
+      logger.logExpression("encodeURI('http://thruzero.com?x=1 + 2')");
+      logger.logExpression("encodeURI('http://thruzero.com?x=a,b,c.&y=2@1:4')");
+      logger.logExpression("encodeURI('http://thruzero.com?x=1!&y=-2')");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicFunctions.encodeURIComponent">encodeURIComponent()</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Encodes user data, used as a component of a URI.
+  </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/encodeURIComponent">
+    encodeURIComponent(userStr)
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="yyy">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("yyy");
+
+      logger.log("Same URIs as encodeURI, above:");
+      logger.logExpression("  '?x='+encodeURIComponent('1')+'&y='+encodeURIComponent('2')");
+      logger.logExpression("  '?x='+encodeURIComponent('a,b,c.')+'&y='+encodeURIComponent('2@1:4')");
+      logger.logExpression("  '?x='+encodeURIComponent('1!')+'&y='+encodeURIComponent('-2')");
+
+      logger.log("\nEncoding sample user data:");
+      logger.logExpression("  encodeURIComponent('#1 char is !a')");
+      logger.logExpression("  encodeURIComponent('x == 2 && y != 4')");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="basicFunctions.decodeURIComponent">decodeURIComponent()</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/decodeURIComponent">
+    decodeURIComponent(encodedUserData)
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="decodeURIComponent">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("decodeURIComponent");
+
+      logger.log("Decode components from encodeURIComponent above:");
+      logger.logExpression("decodeURIComponent('a%2Cb%2Cc.')");
+      logger.logExpression("decodeURIComponent('2%401%3A4')");
+      logger.logExpression("decodeURIComponent('%231%20char%20is%20!a')");
+      logger.logExpression("decodeURIComponent('x%20%3D%3D%202%20%26%26%20y%20!%3D%204')");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+</main>
+
+<footer></footer>
+
+<script type="text/javascript" src="../../js/all-javascript.js"></script> <!-- http://stackoverflow.com/questions/5220313/where-should-js-scripts-go-in-an-html-file -->
+</body>
+</html>

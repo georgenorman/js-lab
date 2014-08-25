@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<!--
+  ~ Copyright (c) 2014 George Norman.
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  ~
+  -->
+<html>
+<head>
+  <title>Operators</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+  <link rel="shortcut icon" type="image/x-icon" href="../../img/favicon.ico"/>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+  <style>
+    @import "../../css/all-css.css";
+  </style>
+</head>
+<body onload="jsLabModule.handleOnLoad();">
+<header>
+  <h1>Operators</h1>
+</header>
+
+<progress class="page-load-progress">Loading...</progress>
+<main class="hide">
+  <js-lab-about></js-lab-about>
+
+  <lk-table-of-contents class="toc" level1ItemsTagName="h2" level2ItemsTagName="h3"></lk-table-of-contents>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="overview">Overview</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference#Operators">See MDN 'Expressions and operators'</a>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="unary">Unary operators</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="unary.delete">delete</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Removes a property from an object.
+    However, if a property with the same name exists up the prototype chain,
+    then the inherited property will become exposed by the object.
+  </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/delete">
+    delete property
+  </lk-api-reference>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="unary.delete.simpleObject">Delete property from simple Object</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="delete.fromSimpleObject">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("delete.fromSimpleObject");
+
+      // Create object
+      var obj = {"a":"v1", "b":"v2", "c":"v3"};
+
+      logger.logLabelValue("  obj.b", obj.b);
+      logger.logLabelValue("  obj length", Object.keys(obj).length);
+      logger.logLabelValue("  delete obj.b", delete obj.b);
+      logger.logLabelValue("  obj length", Object.keys(obj).length, "the object size is reduced", "#FF8C00");
+      logger.logLabelValue("  obj.b", obj.b);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="unary.delete.fromSubclass">Delete property from subclass</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This example illustrates what happens when a property is deleted from a subclass,
+    but the superclass has a property of the same name.
+  </p>
+
+  <lk-js-example width="720px" id="delete.fromSubclass">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("delete.fromSubclass");
+
+      /** Base Shape class. */
+      function Shape() {
+      this.name = "Abstract Shape";
+      }
+
+      /** Concrete Square subclass. */
+      Square.prototype = new Shape();
+      Square.prototype.constructor = Square;
+      function Square() {
+      this.name = "Square";
+      }
+
+      // Create base Shape and Square shape.
+      var s2 = new Square();
+
+      logger.logLabel("Delete property from subclass");
+      logger.logLabelValue("  s2.name", s2.name);
+      logger.logLabelValue("  delete s2.name", delete s2.name, "returns true on success");
+      logger.logLabelValue("  s2.name", s2.name, "inherited property is now exposed");
+
+      logger.logLabel("\nDelete property from subclass again");
+      logger.logLabelValue("  delete s2.name", delete s2.name, "property is already deleted");
+      logger.logLabelValue("  s2.name", s2.name, "inherited property was not deleted");
+
+      logger.logLabel("\nDelete inherited property via prototype");
+      logger.logLabelValue("  delete Square.prototype.name", delete Square.prototype.name);
+      logger.logLabelValue("  s2.name", s2.name, "inherited property was deleted");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="unary.delete.fromArray">Delete property from array</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>This example illustrates what happens when an array item is deleted.</p>
+
+  <lk-js-example width="720px" id="delete.fromArray">
+    <resultComment>
+      Note: Deleting an item in an array does not remove the slot from the array.
+      See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">Array.splice</a>
+      to remove an item from an array.
+    </resultComment>
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("delete.fromArray");
+
+      // Create array.
+      var array = [0, 1, 2, "3", 4, 5, "6"];
+
+      logger.logLabel("Display initial array size and value");
+      logger.logLabelValue("  array.length", array.length);
+      logger.logLabelValue("  array[2]", array[2]);
+
+      logger.logLabel("\nDelete an item");
+      logger.logLabelValue("  delete array[2]", delete array[2]);
+
+      logger.logLabel("\nDisplay initial array size and value again");
+      logger.logLabelValue("  array.length", array.length);
+      logger.logLabelValue("  array[2]", array[2]);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="unary.typeof">typeof</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-bullet-point iconClass="lk-bullet-point-fail">
+    <p>
+      Using parseInt or Number is a bit dangerous for detecting if a string is numeric, since all non-numeric values
+      resolve to NaN, which is a type of number (e.g., typeof parseInt('xx3') is "number").
+    </p>
+  </lk-bullet-point>
+
+  <lk-js-example width="720px" id="typeof">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("typeof");
+      var unAssignedVar;
+
+      // undefined
+      logger.logLabel("Undefined");
+      logger.logExpression("  typeof unAssignedVar");
+      logger.logExpression("  typeof undefined");
+
+      // objects
+      logger.logLabel("\nObjects");
+      logger.logExpression("  typeof null", "", "#e66");
+      logger.logExpression("  typeof {a:1}");
+      logger.logExpression("  typeof new Boolean(true)", "using new operator");
+      logger.logExpression("  typeof new Number(1)", "using new operator");
+
+      // numbers
+      logger.logLabel("\nNumbers");
+      logger.logExpression("  typeof -3");
+      logger.logExpression("  typeof 3");
+      logger.logExpression("  typeof 3.14");
+      logger.logExpression("  typeof Infinity");
+      logger.logExpression("  typeof NaN", "", "#e66");
+      logger.logExpression("  typeof Number(3)");
+
+      logger.logTypeOfExpressionAndValue("  typeof Number('3px')", "#e66");
+      logger.logTypeOfExpressionAndValue("  typeof parseInt('3px')");
+      logger.logTypeOfExpressionAndValue("  typeof parseInt('xx3')", "#e66");
+      logger.logTypeOfExpressionAndValue("  typeof Number('030')");
+      logger.logTypeOfExpressionAndValue("  typeof parseInt('030')");
+      logger.logTypeOfExpressionAndValue("  typeof Number('0x30')");
+      logger.logTypeOfExpressionAndValue("  typeof parseInt('0x30')");
+
+      // booleans
+      logger.logLabel("\nBooleans");
+      logger.logExpression("  typeof true");
+      logger.logExpression("  typeof Boolean(true)");
+
+      // strings
+      logger.logLabel("\nStrings");
+      logger.logExpression("  typeof \"10\"");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h2 id="relational">Relational Operators</h2>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="relational.in">in</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/in">
+    propIndex in array
+    propName in objInstance
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="in">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("in");
+
+      // Create objects.
+      var array = [0, 1, 2, "3", 4, 5, "6"];
+      var obj = {"a":"v1", "b":"v2", "c":"v3"};
+
+      logger.logLabel("By index (array only)");
+      logger.logLabelValue("  2 in array", 2 in array);
+
+      logger.logLabel("\nBy key");
+      logger.logLabelValue("  '2' in array", '2' in array, "array is object, indexed by key");
+      logger.logLabelValue("  obj length", Object.keys(obj).length);
+      logger.logLabelValue("  'b' in obj", 'b' in obj);
+
+      logger.logLabel("\nDelete an array item");
+      logger.logLabelValue("  array[2]", array[2]);
+      logger.logLabelValue("  delete array[2]", delete array[2]);
+      logger.logLabelValue("  2 in array", 2 in array);
+      logger.logLabelValue("  array[2]", array[2]);
+
+      logger.logLabel("\nDelete property from Object");
+      logger.logLabelValue("  obj.b", obj.b);
+      logger.logLabelValue("  obj length", Object.keys(obj).length);
+      logger.logLabelValue("  delete obj.b", delete obj.b);
+      logger.logLabelValue("  obj length", Object.keys(obj).length);
+      logger.logLabelValue("  'b' in obj", 'b' in obj);
+      logger.logLabelValue("  obj.b", obj.b);
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="relational.instanceof">instanceof</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/instanceof">
+    object instanceof constructor
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="instanceof">
+    <script type="multiline-template">
+      var logger = lkResultLoggerModule.getLogger("instanceof");
+
+      // TODO
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+
+</main>
+
+<footer></footer>
+
+<script type="text/javascript" src="../../js/all-javascript.js"></script> <!-- http://stackoverflow.com/questions/5220313/where-should-js-scripts-go-in-an-html-file -->
+</body>
+</html>
