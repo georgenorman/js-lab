@@ -61,9 +61,9 @@
 
   <lk-js-example width="640px" id="orientation">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("orientation");
+      var log = lkResultLoggerModule.getLogger("orientation");
 
-      logger.logLabelValue("screen.orientation", window.screen.orientation);
+      log.labelValue("screen.orientation", window.screen.orientation);
     </script>
   </lk-js-example>
 
@@ -115,13 +115,13 @@
 
   <lk-js-example width="640px" id="available">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("available");
+      var log = lkResultLoggerModule.getLogger("available");
 
-      logger.logLabelValue("screen.availTop", window.screen.availTop);
-      logger.logLabelValue("screen.availLeft", window.screen.availLeft);
+      log.labelValue("screen.availTop", window.screen.availTop);
+      log.labelValue("screen.availLeft", window.screen.availLeft);
 
-      logger.logLabelValue("screen.availHeight", window.screen.availHeight);
-      logger.logLabelValue("screen.availWidth", window.screen.availWidth);
+      log.labelValue("screen.availHeight", window.screen.availHeight);
+      log.labelValue("screen.availWidth", window.screen.availWidth);
     </script>
   </lk-js-example>
 
@@ -152,13 +152,13 @@
 
   <lk-js-example width="640px" id="dim">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("dim");
+      var log = lkResultLoggerModule.getLogger("dim");
 
-      logger.logLabelValue("screen.top", window.screen.top);
-      logger.logLabelValue("screen.left", window.screen.left);
+      log.labelValue("screen.top", window.screen.top);
+      log.labelValue("screen.left", window.screen.left);
 
-      logger.logLabelValue("screen.height", window.screen.height);
-      logger.logLabelValue("screen.width", window.screen.width);
+      log.labelValue("screen.height", window.screen.height);
+      log.labelValue("screen.width", window.screen.width);
     </script>
   </lk-js-example>
 
@@ -181,10 +181,10 @@
 
   <lk-js-example width="640px" id="colorDepth">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("colorDepth");
+      var log = lkResultLoggerModule.getLogger("colorDepth");
 
-      logger.logLabelValue("screen.colorDepth", window.screen.colorDepth);
-      logger.logLabelValue("screen.pixelDepth", window.screen.pixelDepth);
+      log.labelValue("screen.colorDepth", window.screen.colorDepth);
+      log.labelValue("screen.pixelDepth", window.screen.pixelDepth);
     </script>
   </lk-js-example>
 

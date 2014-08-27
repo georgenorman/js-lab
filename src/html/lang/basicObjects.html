@@ -64,7 +64,7 @@
 
   <lk-js-example width="720px" id="object">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("object");
+      var log = lkResultLoggerModule.getLogger("object");
 
       // TODO
     </script>
@@ -83,7 +83,7 @@
 
   <lk-js-example width="720px" id="function">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("function");
+      var log = lkResultLoggerModule.getLogger("function");
 
       // TODO
     </script>
@@ -118,26 +118,26 @@
 
   <lk-js-example width="720px" id="boolean">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("boolean");
+      var log = lkResultLoggerModule.getLogger("boolean");
 
-      logger.logLabel("Basic evaluation","");
-      logger.logExpression("  Boolean()");
-      logger.logExpression("  Boolean(true)");
-      logger.logExpression("  Boolean(false)");
-      logger.logExpression("  Boolean(0)");
-      logger.logExpression("  Boolean(1)");
-      logger.logExpression("  Boolean(-12)");
-      logger.logExpression("  Boolean(12)");
+      log.label("Basic evaluation","");
+      log.expression("  Boolean()");
+      log.expression("  Boolean(true)");
+      log.expression("  Boolean(false)");
+      log.expression("  Boolean(0)");
+      log.expression("  Boolean(1)");
+      log.expression("  Boolean(-12)");
+      log.expression("  Boolean(12)");
 
-      logger.logLabel("\nNon-Obvious evaluation");
-      logger.logExpression("  Boolean(null)");
-      logger.logExpression("  Boolean('')");
-      logger.logExpression("  Boolean(' ')");
-      logger.logExpression("  Boolean('false')", "", "#e66");
-      logger.logExpression("  Boolean(new Boolean(false))", "non-null object evals to true", "#e66");
-      logger.logExpression("  null ? 'true' : 'false'", "null object evals to false");
-      logger.logExpression("  new Boolean(true) ? 'true' : 'false'");
-      logger.logExpression("  new Boolean(false) ? 'true' : 'false'", "", "#e66");
+      log.label("\nNon-Obvious evaluation");
+      log.expression("  Boolean(null)");
+      log.expression("  Boolean('')");
+      log.expression("  Boolean(' ')");
+      log.expression("  Boolean('false')", "", "#e66");
+      log.expression("  Boolean(new Boolean(false))", "non-null object evals to true", "#e66");
+      log.expression("  null ? 'true' : 'false'", "null object evals to false");
+      log.expression("  new Boolean(true) ? 'true' : 'false'");
+      log.expression("  new Boolean(false) ? 'true' : 'false'", "", "#e66");
     </script>
   </lk-js-example>
 
@@ -153,7 +153,7 @@
 
   <lk-js-example width="720px" id="error">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("error");
+      var log = lkResultLoggerModule.getLogger("error");
 
       // TODO
     </script>
@@ -176,35 +176,35 @@
 
   <lk-js-example width="720px" id="number">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("number");
+      var log = lkResultLoggerModule.getLogger("number");
 
-      logger.logLabel("Conversions");
-      logger.logExpression("  Number('0')");
-      logger.logExpression("  Number('01')");
-      logger.logExpression("  Number('1234')");
-      logger.logExpression("  Number('1234px')", "", "#FF8C00");
-      logger.logExpression("  Number({})", "", "#FF8C00");
-      logger.logExpression("  Number(null)");
-      logger.logExpression("  Number(true)");
-      logger.logExpression("  Number(false)");
+      log.label("Conversions");
+      log.expression("  Number('0')");
+      log.expression("  Number('01')");
+      log.expression("  Number('1234')");
+      log.expression("  Number('1234px')", "", "#FF8C00");
+      log.expression("  Number({})", "", "#FF8C00");
+      log.expression("  Number(null)");
+      log.expression("  Number(true)");
+      log.expression("  Number(false)");
 
-      logger.logLabel("\nProperties");
-      logger.logExpression("  Number.MAX_VALUE");
-      logger.logExpression("  Number.MIN_VALUE");
+      log.label("\nProperties");
+      log.expression("  Number.MAX_VALUE");
+      log.expression("  Number.MIN_VALUE");
 
-      logger.logLabel("\nMethods");
-      logger.log("To Exponential Notation:");
-      logger.logExpression("  new Number(1234).toExponential()");
-      logger.logExpression("  new Number(1234567890).toExponential()");
-      logger.logExpression("  new Number(123456789012345678).toExponential()");
-      logger.logExpression("  new Number(123456789012345678901234567890).toExponential()");
+      log.label("\nMethods");
+      log.msg("To Exponential Notation:");
+      log.expression("  new Number(1234).toExponential()");
+      log.expression("  new Number(1234567890).toExponential()");
+      log.expression("  new Number(123456789012345678).toExponential()");
+      log.expression("  new Number(123456789012345678901234567890).toExponential()");
 
-      logger.log("\nTo Fixed Notation:");
-      logger.logExpression("  new Number(1.2345678901234568e+8).toFixed(20)");
+      log.msg("\nTo Fixed Notation:");
+      log.expression("  new Number(1.2345678901234568e+8).toFixed(20)");
 
-      logger.log("\nValue Of:");
-      logger.logTypeOfExpressionAndValue("  typeof '1.234'");
-      logger.logExpression("  typeof Number.valueOf('1.234')");
+      log.msg("\nValue Of:");
+      log.typeOfExpressionAndValue("  typeof '1.234'");
+      log.expression("  typeof Number.valueOf('1.234')");
     </script>
   </lk-js-example>
 
@@ -223,11 +223,11 @@
 
   <lk-js-example width="720px" id="date">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("date");
-      Window.now = new Date(); // TODO: Fix eval context issue with logExpression.
+      var log = lkResultLoggerModule.getLogger("date");
+      Window.now = new Date(); // TODO: Fix eval context issue with log.expression.
 
-      logger.logLabel("Methods");
-      logger.logExpression("Window.now.getDate()");
+      log.label("Methods");
+      log.expression("Window.now.getDate()");
     </script>
   </lk-js-example>
 
@@ -243,39 +243,39 @@
 
   <lk-js-example width="720px" id="math">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("math");
+      var log = lkResultLoggerModule.getLogger("math");
 
-      logger.logLabel("Properties");
-      logger.logExpression("  Math.E");
-      logger.logExpression("  Math.PI");
-      logger.logExpression("  Math.SQRT2");
+      log.label("Properties");
+      log.expression("  Math.E");
+      log.expression("  Math.PI");
+      log.expression("  Math.SQRT2");
 
-      logger.logLabel("\nMethods");
-      logger.log("Ceiling:");
-      logger.logExpression("  Math.ceil(0.001)");
-      logger.logExpression("  Math.ceil(1.001)");
-      logger.logExpression("  Math.ceil(1.999)");
+      log.label("\nMethods");
+      log.msg("Ceiling:");
+      log.expression("  Math.ceil(0.001)");
+      log.expression("  Math.ceil(1.001)");
+      log.expression("  Math.ceil(1.999)");
 
-      logger.log("\nFloor:");
-      logger.logExpression("  Math.floor(0.001)");
-      logger.logExpression("  Math.floor(1.001)");
-      logger.logExpression("  Math.floor(1.999)");
+      log.msg("\nFloor:");
+      log.expression("  Math.floor(0.001)");
+      log.expression("  Math.floor(1.001)");
+      log.expression("  Math.floor(1.999)");
 
-      logger.log("\nMin and Max:");
-      logger.logExpression("  Math.min(1, 2, 3, 33, 22, 11)");
-      logger.logExpression("  Math.max(1, 2, 3, 33, 22, 11)");
+      log.msg("\nMin and Max:");
+      log.expression("  Math.min(1, 2, 3, 33, 22, 11)");
+      log.expression("  Math.max(1, 2, 3, 33, 22, 11)");
 
-      logger.log("\nExponent:");
-      logger.logExpression("  Math.pow(2,0)");
-      logger.logExpression("  Math.pow(2,1)");
-      logger.logExpression("  Math.pow(2,2)");
-      logger.logExpression("  Math.pow(2,3)");
-      logger.logExpression("  Math.pow(2,4)");
-      logger.logExpression("  Math.pow(2,0.5)");
-      logger.logExpression("  Math.sqrt(2)");
+      log.msg("\nExponent:");
+      log.expression("  Math.pow(2,0)");
+      log.expression("  Math.pow(2,1)");
+      log.expression("  Math.pow(2,2)");
+      log.expression("  Math.pow(2,3)");
+      log.expression("  Math.pow(2,4)");
+      log.expression("  Math.pow(2,0.5)");
+      log.expression("  Math.sqrt(2)");
 
-      logger.log("\nRandom:");
-      logger.logExpression("  Math.floor(Math.random()*6)", "between 0 and 5");
+      log.msg("\nRandom:");
+      log.expression("  Math.floor(Math.random()*6)", "between 0 and 5");
     </script>
   </lk-js-example>
 
@@ -302,7 +302,7 @@
 
   <lk-js-example width="720px" id="string">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("string");
+      var log = lkResultLoggerModule.getLogger("string");
 
       // TODO
     </script>
@@ -324,7 +324,7 @@
 
   <lk-js-example width="720px" id="regExp">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("regExp");
+      var log = lkResultLoggerModule.getLogger("regExp");
 
       // TODO
     </script>

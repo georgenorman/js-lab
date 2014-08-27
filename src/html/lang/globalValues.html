@@ -59,14 +59,14 @@
 
   <lk-js-example width="720px" id="undefined">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("undefined");
+      var log = lkResultLoggerModule.getLogger("undefined");
 
       var x = "x";
       var y;
 
-      logger.logLabelValue("x === undefined", x === undefined);
-      logger.logLabelValue("y === undefined", y === undefined);
-      logger.logLabelValue("z === undefined", z === undefined);
+      log.labelValue("x === undefined", x === undefined);
+      log.labelValue("y === undefined", y === undefined);
+      log.labelValue("z === undefined", z === undefined);
     </script>
   </lk-js-example>
 

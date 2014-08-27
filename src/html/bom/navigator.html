@@ -58,9 +58,9 @@
 
   <lk-js-example width="640px" id="appCodeName">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("appCodeName");
+      var log = lkResultLoggerModule.getLogger("appCodeName");
 
-      logger.log(window.navigator.appCodeName);
+      log.msg(window.navigator.appCodeName);
     </script>
   </lk-js-example>
 
@@ -76,9 +76,9 @@
 
   <lk-js-example width="640px" id="appName">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("appName");
+      var log = lkResultLoggerModule.getLogger("appName");
 
-      logger.log(window.navigator.appName);
+      log.msg(window.navigator.appName);
     </script>
   </lk-js-example>
 
@@ -94,9 +94,9 @@
 
   <lk-js-example width="640px" id="appVersion">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("appVersion");
+      var log = lkResultLoggerModule.getLogger("appVersion");
 
-      logger.log(window.navigator.appVersion);
+      log.msg(window.navigator.appVersion);
     </script>
   </lk-js-example>
 
@@ -112,9 +112,9 @@
 
   <lk-js-example width="640px" id="oscpu">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("oscpu");
+      var log = lkResultLoggerModule.getLogger("oscpu");
 
-      logger.log(window.navigator.oscpu);
+      log.msg(window.navigator.oscpu);
     </script>
   </lk-js-example>
 
@@ -130,9 +130,9 @@
 
   <lk-js-example width="640px" id="platform">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("platform");
+      var log = lkResultLoggerModule.getLogger("platform");
 
-      logger.log(window.navigator.platform);
+      log.msg(window.navigator.platform);
     </script>
   </lk-js-example>
 
@@ -148,9 +148,9 @@
 
   <lk-js-example width="640px" id="userAgent">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("userAgent");
+      var log = lkResultLoggerModule.getLogger("userAgent");
 
-      logger.log(window.navigator.userAgent);
+      log.msg(window.navigator.userAgent);
     </script>
   </lk-js-example>
 
@@ -171,9 +171,9 @@
 
   <lk-js-example width="640px" id="battery.level">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("battery.level");
+      var log = lkResultLoggerModule.getLogger("battery.level");
 
-      logger.log(window.navigator.battery.level);
+      log.msg(window.navigator.battery.level);
     </script>
   </lk-js-example>
 
@@ -189,9 +189,9 @@
 
   <lk-js-example width="640px" id="onLine">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("onLine");
+      var log = lkResultLoggerModule.getLogger("onLine");
 
-      logger.log(window.navigator.onLine);
+      log.msg(window.navigator.onLine);
     </script>
   </lk-js-example>
 
@@ -207,10 +207,10 @@
 
   <lk-js-example width="640px" id="connection.bandwidth">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("connection.bandwidth");
+      var log = lkResultLoggerModule.getLogger("connection.bandwidth");
       var connection = window.navigator.connection || window.navigator.mozConnection || window.navigator.webkitConnection;
 
-      logger.log(connection.bandwidth);
+      log.msg(connection.bandwidth);
     </script>
   </lk-js-example>
 
@@ -228,17 +228,17 @@
 
   <lk-js-example width="640px" id="geolocation">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("geolocation");
+      var log = lkResultLoggerModule.getLogger("geolocation");
 
       window.navigator.geolocation.getCurrentPosition(function(pos) {
         var crd = pos.coords;
 
-        logger.log('Latitude : ' + crd.latitude);
-        logger.log('Longitude : ' + crd.longitude);
+        log.msg('Latitude : ' + crd.latitude);
+        log.msg('Longitude : ' + crd.longitude);
 
         jsLabModule.appendGotoMapLinkTo("geolocation", crd.latitude, crd.longitude);
       });
-      logger.waiting();
+      log.waiting();
     </script>
   </lk-js-example>
 
@@ -258,9 +258,9 @@
 
   <lk-js-example width="640px" id="cookieEnabled">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("cookieEnabled");
+      var log = lkResultLoggerModule.getLogger("cookieEnabled");
 
-      logger.log(window.navigator.cookieEnabled);
+      log.msg(window.navigator.cookieEnabled);
     </script>
   </lk-js-example>
 

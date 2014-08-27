@@ -68,16 +68,16 @@
 
   <lk-js-example width="720px" id="delete.fromSimpleObject">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("delete.fromSimpleObject");
+      var log = lkResultLoggerModule.getLogger("delete.fromSimpleObject");
 
       // Create object
       var obj = {"a":"v1", "b":"v2", "c":"v3"};
 
-      logger.logLabelValue("  obj.b", obj.b);
-      logger.logLabelValue("  obj length", Object.keys(obj).length);
-      logger.logLabelValue("  delete obj.b", delete obj.b);
-      logger.logLabelValue("  obj length", Object.keys(obj).length, "the object size is reduced", "#FF8C00");
-      logger.logLabelValue("  obj.b", obj.b);
+      log.labelValue("  obj.b", obj.b);
+      log.labelValue("  obj length", Object.keys(obj).length);
+      log.labelValue("  delete obj.b", delete obj.b);
+      log.labelValue("  obj length", Object.keys(obj).length, "the object size is reduced", "#FF8C00");
+      log.labelValue("  obj.b", obj.b);
     </script>
   </lk-js-example>
 
@@ -94,7 +94,7 @@
 
   <lk-js-example width="720px" id="delete.fromSubclass">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("delete.fromSubclass");
+      var log = lkResultLoggerModule.getLogger("delete.fromSubclass");
 
       /** Base Shape class. */
       function Shape() {
@@ -111,18 +111,18 @@
       // Create base Shape and Square shape.
       var s2 = new Square();
 
-      logger.logLabel("Delete property from subclass");
-      logger.logLabelValue("  s2.name", s2.name);
-      logger.logLabelValue("  delete s2.name", delete s2.name, "returns true on success");
-      logger.logLabelValue("  s2.name", s2.name, "inherited property is now exposed");
+      log.label("Delete property from subclass");
+      log.labelValue("  s2.name", s2.name);
+      log.labelValue("  delete s2.name", delete s2.name);
+      log.labelValue("  s2.name", s2.name, "inherited property is now exposed");
 
-      logger.logLabel("\nDelete property from subclass again");
-      logger.logLabelValue("  delete s2.name", delete s2.name, "property is already deleted");
-      logger.logLabelValue("  s2.name", s2.name, "inherited property was not deleted");
+      log.label("\nDelete property from subclass again");
+      log.labelValue("  delete s2.name", delete s2.name, "property is already deleted");
+      log.labelValue("  s2.name", s2.name, "inherited property was not deleted");
 
-      logger.logLabel("\nDelete inherited property via prototype");
-      logger.logLabelValue("  delete Square.prototype.name", delete Square.prototype.name);
-      logger.logLabelValue("  s2.name", s2.name, "inherited property was deleted");
+      log.label("\nDelete inherited property via prototype");
+      log.labelValue("  delete Square.prototype.name", delete Square.prototype.name);
+      log.labelValue("  s2.name", s2.name, "inherited property was deleted");
     </script>
   </lk-js-example>
 
@@ -141,21 +141,21 @@
       to remove an item from an array.
     </resultComment>
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("delete.fromArray");
+      var log = lkResultLoggerModule.getLogger("delete.fromArray");
 
       // Create array.
-      var array = [0, 1, 2, "3", 4, 5, "6"];
+      var array = ["v0", "v1", "v2", "v3", "v4", "v5", "v6"];
 
-      logger.logLabel("Display initial array size and value");
-      logger.logLabelValue("  array.length", array.length);
-      logger.logLabelValue("  array[2]", array[2]);
+      log.label("Display initial array size and value");
+      log.labelValue("  array.length", array.length);
+      log.labelValue("  array[2]", array[2]);
 
-      logger.logLabel("\nDelete an item");
-      logger.logLabelValue("  delete array[2]", delete array[2]);
+      log.label("\nDelete an item");
+      log.labelValue("  delete array[2]", delete array[2]);
 
-      logger.logLabel("\nDisplay initial array size and value again");
-      logger.logLabelValue("  array.length", array.length);
-      logger.logLabelValue("  array[2]", array[2]);
+      log.label("\nDisplay updated array size and value");
+      log.labelValue("  array.length", array.length);
+      log.labelValue("  array[2]", array[2]);
     </script>
   </lk-js-example>
 
@@ -174,46 +174,46 @@
 
   <lk-js-example width="720px" id="typeof">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("typeof");
+      var log = lkResultLoggerModule.getLogger("typeof");
       var unAssignedVar;
 
       // undefined
-      logger.logLabel("Undefined");
-      logger.logExpression("  typeof unAssignedVar");
-      logger.logExpression("  typeof undefined");
+      log.label("Undefined");
+      log.expression("  typeof unAssignedVar");
+      log.expression("  typeof undefined");
 
       // objects
-      logger.logLabel("\nObjects");
-      logger.logExpression("  typeof null", "", "#e66");
-      logger.logExpression("  typeof {a:1}");
-      logger.logExpression("  typeof new Boolean(true)", "using new operator");
-      logger.logExpression("  typeof new Number(1)", "using new operator");
+      log.label("\nObjects");
+      log.expression("  typeof null", "", "#e66");
+      log.expression("  typeof {a:1}");
+      log.expression("  typeof new Boolean(true)", "using new operator");
+      log.expression("  typeof new Number(1)", "using new operator");
 
       // numbers
-      logger.logLabel("\nNumbers");
-      logger.logExpression("  typeof -3");
-      logger.logExpression("  typeof 3");
-      logger.logExpression("  typeof 3.14");
-      logger.logExpression("  typeof Infinity");
-      logger.logExpression("  typeof NaN", "", "#e66");
-      logger.logExpression("  typeof Number(3)");
+      log.label("\nNumbers");
+      log.expression("  typeof -3");
+      log.expression("  typeof 3");
+      log.expression("  typeof 3.14");
+      log.expression("  typeof Infinity");
+      log.expression("  typeof NaN", "", "#e66");
+      log.expression("  typeof Number(3)");
 
-      logger.logTypeOfExpressionAndValue("  typeof Number('3px')", "#e66");
-      logger.logTypeOfExpressionAndValue("  typeof parseInt('3px')");
-      logger.logTypeOfExpressionAndValue("  typeof parseInt('xx3')", "#e66");
-      logger.logTypeOfExpressionAndValue("  typeof Number('030')");
-      logger.logTypeOfExpressionAndValue("  typeof parseInt('030')");
-      logger.logTypeOfExpressionAndValue("  typeof Number('0x30')");
-      logger.logTypeOfExpressionAndValue("  typeof parseInt('0x30')");
+      log.typeOfExpressionAndValue("  typeof Number('3px')", "#e66");
+      log.typeOfExpressionAndValue("  typeof parseInt('3px')");
+      log.typeOfExpressionAndValue("  typeof parseInt('xx3')", "#e66");
+      log.typeOfExpressionAndValue("  typeof Number('030')");
+      log.typeOfExpressionAndValue("  typeof parseInt('030')");
+      log.typeOfExpressionAndValue("  typeof Number('0x30')");
+      log.typeOfExpressionAndValue("  typeof parseInt('0x30')");
 
       // booleans
-      logger.logLabel("\nBooleans");
-      logger.logExpression("  typeof true");
-      logger.logExpression("  typeof Boolean(true)");
+      log.label("\nBooleans");
+      log.expression("  typeof true");
+      log.expression("  typeof Boolean(true)");
 
       // strings
-      logger.logLabel("\nStrings");
-      logger.logExpression("  typeof \"10\"");
+      log.label("\nStrings");
+      log.expression("  typeof \"10\"");
     </script>
   </lk-js-example>
 
@@ -234,33 +234,35 @@
 
   <lk-js-example width="720px" id="in">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("in");
+      var log = lkResultLoggerModule.getLogger("in");
 
       // Create objects.
-      var array = [0, 1, 2, "3", 4, 5, "6"];
+      var array = ["v0", "v1", "v2", "v3", "v4", "v5", "v6"];
       var obj = {"a":"v1", "b":"v2", "c":"v3"};
 
-      logger.logLabel("By index (array only)");
-      logger.logLabelValue("  2 in array", 2 in array);
+      log.label("By index (array only)");
+      log.labelValue("  2 in array", 2 in array);
+      log.labelValue("  array[2]", array[2]);
 
-      logger.logLabel("\nBy key");
-      logger.logLabelValue("  '2' in array", '2' in array, "array is object, indexed by key");
-      logger.logLabelValue("  obj length", Object.keys(obj).length);
-      logger.logLabelValue("  'b' in obj", 'b' in obj);
+      log.label("\nBy key");
+      log.labelValue("  '2' in array", '2' in array, "array is object, indexed by key; or maybe '2' was converted to int?");
+      log.labelValue("  array['2']", array['2']);
+      log.labelValue("  obj length", Object.keys(obj).length);
+      log.labelValue("  'b' in obj", 'b' in obj);
 
-      logger.logLabel("\nDelete an array item");
-      logger.logLabelValue("  array[2]", array[2]);
-      logger.logLabelValue("  delete array[2]", delete array[2]);
-      logger.logLabelValue("  2 in array", 2 in array);
-      logger.logLabelValue("  array[2]", array[2]);
+      log.label("\nDelete item from array");
+      log.labelValue("  array[2]", array[2]);
+      log.labelValue("  delete array[2]", delete array[2]);
+      log.labelValue("  2 in array", 2 in array);
+      log.labelValue("  array[2]", array[2]);
 
-      logger.logLabel("\nDelete property from Object");
-      logger.logLabelValue("  obj.b", obj.b);
-      logger.logLabelValue("  obj length", Object.keys(obj).length);
-      logger.logLabelValue("  delete obj.b", delete obj.b);
-      logger.logLabelValue("  obj length", Object.keys(obj).length);
-      logger.logLabelValue("  'b' in obj", 'b' in obj);
-      logger.logLabelValue("  obj.b", obj.b);
+      log.label("\nDelete property from Object");
+      log.labelValue("  obj.b", obj.b);
+      log.labelValue("  obj length", Object.keys(obj).length);
+      log.labelValue("  delete obj.b", delete obj.b);
+      log.labelValue("  obj length", Object.keys(obj).length);
+      log.labelValue("  'b' in obj", 'b' in obj);
+      log.labelValue("  obj.b", obj.b);
     </script>
   </lk-js-example>
 
@@ -276,7 +278,7 @@
 
   <lk-js-example width="720px" id="instanceof">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("instanceof");
+      var log = lkResultLoggerModule.getLogger("instanceof");
 
       // TODO
     </script>

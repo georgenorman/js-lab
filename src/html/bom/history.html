@@ -58,9 +58,9 @@
 
   <lk-js-example width="640px" id="length">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("length");
+      var log = lkResultLoggerModule.getLogger("length");
 
-      logger.log(window.history.length);
+      log.msg(window.history.length);
     </script>
   </lk-js-example>
 
@@ -120,7 +120,7 @@
 
   <lk-js-example width="640px" id="pushState">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("pushState");
+      var log = lkResultLoggerModule.getLogger("pushState");
       var pushStateBtn = document.getElementById( "pushStateBtn" );
 
       pushStateBtn.onclick = function(event) {
@@ -129,9 +129,9 @@
         if (href != null) {
           try {
             window.history.pushState({"key1":"Value-1", "key2":"Value-2"}, "Title", href);
-            logger.log("Browser address bar just changed to the URL you entered.");
+            log.msg("Browser address bar just changed to the URL you entered.");
           } catch(e) {
-            logger.log(e);
+            log.error(e);
           }
         }
       }

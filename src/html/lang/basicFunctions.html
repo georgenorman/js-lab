@@ -58,29 +58,29 @@
 
   <lk-js-example width="720px" id="isFinite">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("isFinite");
+      var log = lkResultLoggerModule.getLogger("isFinite");
 
-      logger.logLabel("Simple numbers");
-      logger.logExpression("  isFinite('1.234')");
-      logger.logExpression("  isFinite('01.234')");
-      logger.logExpression("  isFinite('-01.234')");
+      log.label("Simple numbers");
+      log.expression("  isFinite('1.234')");
+      log.expression("  isFinite('01.234')");
+      log.expression("  isFinite('-01.234')");
 
-      logger.logLabel("\nMixed numbers and chars");
-      logger.logExpression("  isFinite('1.234px')");
-      logger.logExpression("  isFinite('-1.234px')");
-      logger.logExpression("  isFinite('px1234')");
-      logger.logExpression("  isFinite('1,234')");
-      logger.logExpression("  isFinite('1,234.00')");
+      log.label("\nMixed numbers and chars");
+      log.expression("  isFinite('1.234px')");
+      log.expression("  isFinite('-1.234px')");
+      log.expression("  isFinite('px1234')");
+      log.expression("  isFinite('1,234')");
+      log.expression("  isFinite('1,234.00')");
 
-      logger.logLabel("\nMisc");
-      logger.logExpression("  isFinite(NaN)");
-      logger.logExpression("  isFinite(Infinity)");
-      logger.logExpression("  isFinite(-Infinity)");
-      logger.logExpression("  isFinite(undefined)", "Number(undefined) is " + Number(undefined));
-      logger.logExpression("  isFinite(true)", "Number(true) is " + Number(true));
-      logger.logExpression("  isFinite(false)", "Number(false) is " + Number(false));
-      logger.logExpression("  isFinite(null)", "Number(null) is " + Number(null));
-      logger.logExpression("  isFinite({})", "Number({}) is " + Number({}));
+      log.label("\nMisc");
+      log.expression("  isFinite(NaN)");
+      log.expression("  isFinite(Infinity)");
+      log.expression("  isFinite(-Infinity)");
+      log.expression("  isFinite(undefined)", "Number(undefined) is " + Number(undefined));
+      log.expression("  isFinite(true)", "Number(true) is " + Number(true));
+      log.expression("  isFinite(false)", "Number(false) is " + Number(false));
+      log.expression("  isFinite(null)", "Number(null) is " + Number(null));
+      log.expression("  isFinite({})", "Number({}) is " + Number({}));
     </script>
   </lk-js-example>
 
@@ -103,33 +103,33 @@
     <codeComment>Note: Using isaNum(x), which is the inverse of isNaN(x) and is used to avoid the confusion of double-negatives.</codeComment>
     <resultComment>Note: Using isaNum(x), which is the inverse of isNaN(x) and is used to avoid the confusion of double-negatives.</resultComment>
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("isNaN");
+      var log = lkResultLoggerModule.getLogger("isNaN");
 
-      logger.logLabel("NaN const");
-      logger.logExpression("  NaN == NaN");
-      logger.logExpression("  NaN === NaN");
+      log.label("NaN const");
+      log.expression("  NaN == NaN");
+      log.expression("  NaN === NaN");
 
-      logger.logLabel("\nSimple numbers");
-      logger.logExpression("  isaNum('1.234')");
-      logger.logExpression("  isaNum('01.234')");
-      logger.logExpression("  isaNum('-01.234')");
+      log.label("\nSimple numbers");
+      log.expression("  isaNum('1.234')");
+      log.expression("  isaNum('01.234')");
+      log.expression("  isaNum('-01.234')");
 
-      logger.logLabel("\nMixed numbers and chars");
-      logger.logExpression("  isaNum('1.234px')");
-      logger.logExpression("  isaNum('-1.234px')");
-      logger.logExpression("  isaNum('px1234')");
-      logger.logExpression("  isaNum('1,234')");
-      logger.logExpression("  isaNum('1,234.00')");
+      log.label("\nMixed numbers and chars");
+      log.expression("  isaNum('1.234px')");
+      log.expression("  isaNum('-1.234px')");
+      log.expression("  isaNum('px1234')");
+      log.expression("  isaNum('1,234')");
+      log.expression("  isaNum('1,234.00')");
 
-      logger.logLabel("\nMisc");
-      logger.logExpression("  isaNum(NaN)");
-      logger.logExpression("  isaNum(Infinity)");
-      logger.logExpression("  isaNum(-Infinity)");
-      logger.logExpression("  isaNum(undefined)", "Number(undefined) is " + Number(undefined));
-      logger.logExpression("  isaNum(true)", "Number(true) is " + Number(true));
-      logger.logExpression("  isaNum(false)", "Number(false) is " + Number(false));
-      logger.logExpression("  isaNum(null)", "Number(null) is " + Number(null));
-      logger.logExpression("  isaNum({})", "Number({}) is " + Number({}));
+      log.label("\nMisc");
+      log.expression("  isaNum(NaN)");
+      log.expression("  isaNum(Infinity)");
+      log.expression("  isaNum(-Infinity)");
+      log.expression("  isaNum(undefined)", "Number(undefined) is " + Number(undefined));
+      log.expression("  isaNum(true)", "Number(true) is " + Number(true));
+      log.expression("  isaNum(false)", "Number(false) is " + Number(false));
+      log.expression("  isaNum(null)", "Number(null) is " + Number(null));
+      log.expression("  isaNum({})", "Number({}) is " + Number({}));
     </script>
   </lk-js-example>
 
@@ -154,32 +154,32 @@
 
   <lk-js-example width="720px" id="parseInt">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("parseInt");
+      var log = lkResultLoggerModule.getLogger("parseInt");
 
-      logger.logLabel("Simple numbers");
-      logger.logExpression("  parseInt('1234')");
-      logger.logExpression("  parseInt('01234')");
-      logger.logExpression("  parseInt('1',2)");
-      logger.logExpression("  parseInt('123',2)", "in base-2, 2 is the first non-digit character", "#e66");
-      logger.logExpression("  parseInt('2',2)");
-      logger.logExpression("  parseInt('-01234')");
-      logger.logExpression("  Number('01234')");
+      log.label("Simple numbers");
+      log.expression("  parseInt('1234')");
+      log.expression("  parseInt('01234')");
+      log.expression("  parseInt('1',2)");
+      log.expression("  parseInt('123',2)", "in base-2, 2 is the first non-digit character", "#e66");
+      log.expression("  parseInt('2',2)");
+      log.expression("  parseInt('-01234')");
+      log.expression("  Number('01234')");
 
-      logger.logLabel("\nMixed numbers and chars");
-      logger.logExpression("  parseInt('1234px')");
-      logger.logExpression("  parseInt('-1234px')");
-      logger.logExpression("  parseInt('px1234')", "", "#FF8C00");
-      logger.logExpression("  Number('1234px')", "", "#FF8C00");
+      log.label("\nMixed numbers and chars");
+      log.expression("  parseInt('1234px')");
+      log.expression("  parseInt('-1234px')");
+      log.expression("  parseInt('px1234')", "", "#FF8C00");
+      log.expression("  Number('1234px')", "", "#FF8C00");
 
-      logger.logLabel("\nFloats");
-      logger.logExpression("  parseInt('12.34')");
+      log.label("\nFloats");
+      log.expression("  parseInt('12.34')");
 
-      logger.logLabel("\nHexadecimal");
-      logger.logExpression("  parseInt('0xff')");
-      logger.logExpression("  parseInt('0xff',10)", "", "#e66");
-      logger.logExpression("  parseInt('-0xff')");
-      logger.logExpression("  parseInt('ff')", "", "#FF8C00");
-      logger.logExpression("  parseInt('ff',16)");
+      log.label("\nHexadecimal");
+      log.expression("  parseInt('0xff')");
+      log.expression("  parseInt('0xff',10)", "", "#e66");
+      log.expression("  parseInt('-0xff')");
+      log.expression("  parseInt('ff')", "", "#FF8C00");
+      log.expression("  parseInt('ff',16)");
     </script>
   </lk-js-example>
 
@@ -200,19 +200,19 @@
 
   <lk-js-example width="720px" id="parseFloat">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("parseFloat");
+      var log = lkResultLoggerModule.getLogger("parseFloat");
 
-      logger.logLabel("Simple numbers");
-      logger.logExpression("  parseFloat('1.234')");
-      logger.logExpression("  parseFloat('01.234')");
-      logger.logExpression("  parseFloat('-01.234')");
-      logger.logExpression("  Number('-01.234')");
+      log.label("Simple numbers");
+      log.expression("  parseFloat('1.234')");
+      log.expression("  parseFloat('01.234')");
+      log.expression("  parseFloat('-01.234')");
+      log.expression("  Number('-01.234')");
 
-      logger.logLabel("\nMixed numbers and chars");
-      logger.logExpression("  parseFloat('1.234px')");
-      logger.logExpression("  Number('1.234px')");
-      logger.logExpression("  parseFloat('-1.234px')");
-      logger.logExpression("  parseFloat('px1234')");
+      log.label("\nMixed numbers and chars");
+      log.expression("  parseFloat('1.234px')");
+      log.expression("  Number('1.234px')");
+      log.expression("  parseFloat('-1.234px')");
+      log.expression("  parseFloat('px1234')");
     </script>
   </lk-js-example>
 
@@ -234,12 +234,12 @@
 
   <lk-js-example width="720px" id="encodeURI">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("encodeURI");
+      var log = lkResultLoggerModule.getLogger("encodeURI");
 
-      logger.logExpression("encodeURI('http://thruzero.com?x=1&y=2')");
-      logger.logExpression("encodeURI('http://thruzero.com?x=1 + 2')");
-      logger.logExpression("encodeURI('http://thruzero.com?x=a,b,c.&y=2@1:4')");
-      logger.logExpression("encodeURI('http://thruzero.com?x=1!&y=-2')");
+      log.expression("encodeURI('http://thruzero.com?x=1&y=2')");
+      log.expression("encodeURI('http://thruzero.com?x=1 + 2')");
+      log.expression("encodeURI('http://thruzero.com?x=a,b,c.&y=2@1:4')");
+      log.expression("encodeURI('http://thruzero.com?x=1!&y=-2')");
     </script>
   </lk-js-example>
 
@@ -259,16 +259,16 @@
 
   <lk-js-example width="720px" id="yyy">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("yyy");
+      var log = lkResultLoggerModule.getLogger("yyy");
 
-      logger.log("Same URIs as encodeURI, above:");
-      logger.logExpression("  '?x='+encodeURIComponent('1')+'&y='+encodeURIComponent('2')");
-      logger.logExpression("  '?x='+encodeURIComponent('a,b,c.')+'&y='+encodeURIComponent('2@1:4')");
-      logger.logExpression("  '?x='+encodeURIComponent('1!')+'&y='+encodeURIComponent('-2')");
+      log.msg("Same URIs as encodeURI, above:");
+      log.expression("  '?x='+encodeURIComponent('1')+'&y='+encodeURIComponent('2')");
+      log.expression("  '?x='+encodeURIComponent('a,b,c.')+'&y='+encodeURIComponent('2@1:4')");
+      log.expression("  '?x='+encodeURIComponent('1!')+'&y='+encodeURIComponent('-2')");
 
-      logger.log("\nEncoding sample user data:");
-      logger.logExpression("  encodeURIComponent('#1 char is !a')");
-      logger.logExpression("  encodeURIComponent('x == 2 && y != 4')");
+      log.msg("\nEncoding sample user data:");
+      log.expression("  encodeURIComponent('#1 char is !a')");
+      log.expression("  encodeURIComponent('x == 2 && y != 4')");
     </script>
   </lk-js-example>
 
@@ -284,13 +284,13 @@
 
   <lk-js-example width="720px" id="decodeURIComponent">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("decodeURIComponent");
+      var log = lkResultLoggerModule.getLogger("decodeURIComponent");
 
-      logger.log("Decode components from encodeURIComponent above:");
-      logger.logExpression("decodeURIComponent('a%2Cb%2Cc.')");
-      logger.logExpression("decodeURIComponent('2%401%3A4')");
-      logger.logExpression("decodeURIComponent('%231%20char%20is%20!a')");
-      logger.logExpression("decodeURIComponent('x%20%3D%3D%202%20%26%26%20y%20!%3D%204')");
+      log.msg("Decode components from encodeURIComponent above:");
+      log.expression("decodeURIComponent('a%2Cb%2Cc.')");
+      log.expression("decodeURIComponent('2%401%3A4')");
+      log.expression("decodeURIComponent('%231%20char%20is%20!a')");
+      log.expression("decodeURIComponent('x%20%3D%3D%202%20%26%26%20y%20!%3D%204')");
     </script>
   </lk-js-example>
 

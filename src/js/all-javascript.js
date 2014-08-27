@@ -16,8 +16,8 @@
  */
 
 /* Common helper libs */
-document.write('<script type="text/javascript" src="../../../lib/js/labkit-1.0.0-SNAPSHOT.js"></script>');
+document.write('<script type="text/javascript" src="../../../lib/js/labkit-1.0.0-SNAPSHOT.js?v3"></script>');
 
 /* CSS Lab specific */
-document.write('<script type="text/javascript" src="../../js/tags/jsLabAbout.js?v2"></script>');
-document.write('<script type="text/javascript" src="../../js/jsLabSupport.js?v2"></script>');
+document.write('<script type="text/javascript" src="../../js/tags/jsLabAbout.js?v3"></script>');
+document.write('<script type="text/javascript" src="../../js/jsLabSupport.js?v3"></script>');

@@ -50,16 +50,16 @@
 
   <lk-js-example width="640px" logger-height="300px" id="window">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("window");
+      var log = lkResultLoggerModule.getLogger("window");
 
       // Hide/Show the window properties
       tzDomHelperModule.onclickEventToggler("windowPropertiesBtn", {
         on: function(event) {
-          logger.logLabelValueProperties("Window Properties", window);
+          log.labelValueProperties("Window Properties", window);
           event.toElement.innerHTML = "Hide Window Properties";
         },
         off: function(event) {
-          logger.clear();
+          log.clear();
           event.toElement.innerHTML = "Show Window Properties";
         }
       });
@@ -90,11 +90,11 @@
 
   <lk-js-example width="640px" id="applicationCache">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("applicationCache");
+      var log = lkResultLoggerModule.getLogger("applicationCache");
 
-      logger.logLabelValue("status", window.applicationCache.status);
-      logger.logLabelValue("applicationCache", window.applicationCache);
-      logger.logLabelValueProperties("applicationCache", window.applicationCache);
+      log.labelValue("status", window.applicationCache.status);
+      log.labelValue("applicationCache", window.applicationCache);
+      log.labelValueProperties("applicationCache", window.applicationCache);
     </script>
   </lk-js-example>
 
@@ -114,9 +114,9 @@
 
   <lk-js-example width="640px" id="devicePixelRatio">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("devicePixelRatio");
+      var log = lkResultLoggerModule.getLogger("devicePixelRatio");
 
-      logger.logLabelValue("devicePixelRatio", window.devicePixelRatio);
+      log.labelValue("devicePixelRatio", window.devicePixelRatio);
     </script>
   </lk-js-example>
 
@@ -138,10 +138,10 @@
 
   <lk-js-example width="640px" id="document">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("document");
+      var log = lkResultLoggerModule.getLogger("document");
 
-      logger.logLabelValue("document", window.document);
-      logger.logLabelValue("document.title", window.document.title);
+      log.labelValue("document", window.document);
+      log.labelValue("document.title", window.document.title);
     </script>
   </lk-js-example>
 
@@ -161,9 +161,9 @@
 
   <lk-js-example width="640px" id="frameElement">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("frameElement");
+      var log = lkResultLoggerModule.getLogger("frameElement");
 
-      logger.logLabelValue("frameElement", window.frameElement);
+      log.labelValue("frameElement", window.frameElement);
     </script>
   </lk-js-example>
 
@@ -183,10 +183,10 @@
 
   <lk-js-example width="640px" id="frames">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("frames");
+      var log = lkResultLoggerModule.getLogger("frames");
 
-      logger.logLabelValue("frames.length", window.frames.length);
-      logger.logLabelValue("window.length", window.length, "number of frames in the window");
+      log.labelValue("frames.length", window.frames.length);
+      log.labelValue("window.length", window.length, "number of frames in the window");
     </script>
   </lk-js-example>
 
@@ -206,9 +206,9 @@
 
   <lk-js-example width="640px" id="history">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("history");
+      var log = lkResultLoggerModule.getLogger("history");
 
-      logger.logLabelValue("history.length", window.history.length);
+      log.labelValue("history.length", window.history.length);
     </script>
   </lk-js-example>
 
@@ -234,10 +234,10 @@
     <script type="multiline-template">
       // function to log inner width/heght
       var innerWidthHeightLogger = function() {
-        var logger = lkResultLoggerModule.getLogger("innerWidthHeight");
-        logger.clear();
-        logger.logLabelValue("innerWidth", window.innerWidth);
-        logger.logLabelValue("innerHeight", window.innerHeight);
+        var log = lkResultLoggerModule.getLogger("innerWidthHeight");
+        log.clear();
+        log.labelValue("innerWidth", window.innerWidth);
+        log.labelValue("innerHeight", window.innerHeight);
       }
 
       window.onresize = innerWidthHeightLogger;
@@ -262,10 +262,10 @@
 
   <lk-js-example width="640px" id="length">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("length");
+      var log = lkResultLoggerModule.getLogger("length");
 
-      logger.logLabelValue("frames.length", window.frames.length);
-      logger.logLabelValue("window.length", window.length, "number of frames in the window");
+      log.labelValue("frames.length", window.frames.length);
+      log.labelValue("window.length", window.length, "number of frames in the window");
     </script>
   </lk-js-example>
 
@@ -286,7 +286,7 @@
 
   <lk-js-example width="640px" id="location">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("location");
+      var log = lkResultLoggerModule.getLogger("location");
 
       // register for the 'Location' button 'click' event.
       var locationBtn = document.getElementById( "locationBtn" );
@@ -323,9 +323,9 @@
 
   <lk-js-example width="640px" id="locationbar">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("locationbar");
+      var log = lkResultLoggerModule.getLogger("locationbar");
 
-      logger.logLabelValueProperties("locationbar", window.locationbar);
+      log.labelValueProperties("locationbar", window.locationbar);
     </script>
   </lk-js-example>
 
@@ -343,14 +343,14 @@
     <script type="multiline-template">
       // function to display the localStorage contents
       function displayLocalStorage() {
-        var logger = lkResultLoggerModule.getLogger("localStorage", true);
+        var log = lkResultLoggerModule.getLogger("localStorage", true);
 
-        logger.logLabelValue("localStorage", window.localStorage);
-        logger.logLabelValue("localStorage.length", window.localStorage.length, "the number of key/value pairs");
+        log.labelValue("localStorage", window.localStorage);
+        log.labelValue("localStorage.length", window.localStorage.length, "the number of key/value pairs");
 
         var i;
         for (i=0; i<window.localStorage.length; i++) {
-          logger.logLabelValue(window.localStorage.key(i), window.localStorage.getItem(window.localStorage.key(i)));
+          log.labelValue(window.localStorage.key(i), window.localStorage.getItem(window.localStorage.key(i)));
         }
       }
 
@@ -369,8 +369,8 @@
             }
             displayLocalStorage();
           } catch (e) {
-            var logger = lkResultLoggerModule.getLogger("localStorage", true);
-            logger.logError("JSON Error: \n" + e + "\n["+jsonStr+"]");
+            var log = lkResultLoggerModule.getLogger("localStorage", true);
+            log.logError("JSON Error: \n" + e + "\n["+jsonStr+"]");
           }
         }
       }
@@ -409,13 +409,13 @@
 
   <lk-js-example width="640px" id="name">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("name");
+      var log = lkResultLoggerModule.getLogger("name");
 
       // save origianl name (restore it when done)
       var originalName = window.name;
-      logger.logLabelValue("name", window.name);
+      log.labelValue("name", window.name);
       window.name = "New Window Name";
-      logger.logLabelValue("name", window.name);
+      log.labelValue("name", window.name);
 
       // restore to original name
       window.name = originalName;
@@ -438,9 +438,9 @@
 
   <lk-js-example width="640px" id="navigator">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("navigator");
+      var log = lkResultLoggerModule.getLogger("navigator");
 
-      logger.logLabelValueProperties("window.navigator", window.navigator );
+      log.labelValueProperties("window.navigator", window.navigator );
     </script>
   </lk-js-example>
 
@@ -458,9 +458,9 @@
 
   <lk-js-example width="640px" id="opener">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("opener");
+      var log = lkResultLoggerModule.getLogger("opener");
 
-      logger.logLabelValue("opener", window.opener);
+      log.labelValue("opener", window.opener);
     </script>
   </lk-js-example>
 
@@ -478,12 +478,12 @@
 
   <lk-js-example width="640px" id="parent">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("parent");
+      var log = lkResultLoggerModule.getLogger("parent");
 
-      logger.logLabelValue("parent", window.parent);
+      log.labelValue("parent", window.parent);
       if (window.parent != null) {
-        logger.logLabelValue("parent.name", window.parent.name);
-        logger.logLabelValue("window.parent === window", window.parent === window);
+        log.labelValue("parent.name", window.parent.name);
+        log.labelValue("window.parent === window", window.parent === window);
       }
     </script>
   </lk-js-example>
@@ -504,9 +504,9 @@
 
   <lk-js-example width="640px" id="screen">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("screen");
+      var log = lkResultLoggerModule.getLogger("screen");
 
-      logger.logLabelValue("screen", window.screen);
+      log.labelValue("screen", window.screen);
     </script>
   </lk-js-example>
 
@@ -523,10 +523,10 @@
 
   <lk-js-example width="640px" id="screenXY">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("screenXY");
+      var log = lkResultLoggerModule.getLogger("screenXY");
 
-      logger.logLabelValue("screenX", window.screenX);
-      logger.logLabelValue("screenY", window.screenY);
+      log.labelValue("screenX", window.screenX);
+      log.labelValue("screenY", window.screenY);
     </script>
   </lk-js-example>
 
@@ -538,9 +538,9 @@
 
   <lk-js-example width="640px" id="scrollbars">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("scrollbars");
+      var log = lkResultLoggerModule.getLogger("scrollbars");
 
-      logger.logLabelValueProperties("scrollbars", window.scrollbars);
+      log.labelValueProperties("scrollbars", window.scrollbars);
     </script>
   </lk-js-example>
 
@@ -552,10 +552,10 @@
 
   <lk-js-example width="640px" id="scrollMaxXY">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("scrollMaxXY");
+      var log = lkResultLoggerModule.getLogger("scrollMaxXY");
 
-      logger.logLabelValue("scrollMaxX", window.scrollMaxX);
-      logger.logLabelValue("scrollMaxY", window.scrollMaxY);
+      log.labelValue("scrollMaxX", window.scrollMaxX);
+      log.labelValue("scrollMaxY", window.scrollMaxY);
     </script>
   </lk-js-example>
 
@@ -567,10 +567,10 @@
 
   <lk-js-example width="640px" id="scrollXY">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("scrollXY");
+      var log = lkResultLoggerModule.getLogger("scrollXY");
 
-      logger.logLabelValue("scrollX", window.scrollX);
-      logger.logLabelValue("scrollY", window.scrollY);
+      log.labelValue("scrollX", window.scrollX);
+      log.labelValue("scrollY", window.scrollY);
     </script>
   </lk-js-example>
 
@@ -589,14 +589,14 @@
       // function to display some session storage info
       function displaySessionStorage() {
         // log sessionStorage info
-        var logger = lkResultLoggerModule.getLogger("sessionStorage", true);
+        var log = lkResultLoggerModule.getLogger("sessionStorage", true);
 
-        logger.logLabelValue("sessionStorage", window.sessionStorage);
-        logger.logLabelValue("sessionStorage.length", window.sessionStorage.length, "the number of key/value pairs");
+        log.labelValue("sessionStorage", window.sessionStorage);
+        log.labelValue("sessionStorage.length", window.sessionStorage.length, "the number of key/value pairs");
 
         var i;
         for (i=0; i<window.sessionStorage.length; i++) {
-          logger.logLabelValue(window.sessionStorage.key(i), window.sessionStorage.getItem(window.sessionStorage.key(i)));
+          log.labelValue(window.sessionStorage.key(i), window.sessionStorage.getItem(window.sessionStorage.key(i)));
         }
       }
 
@@ -614,8 +614,8 @@
             }
             displaySessionStorage();
           } catch (e) {
-            var logger = lkResultLoggerModule.getLogger("sessionStorage", true);
-            logger.logError("JSON Error: \n" + e + "\n["+jsonStr+"]");
+            var log = lkResultLoggerModule.getLogger("sessionStorage", true);
+            log.logError("JSON Error: \n" + e + "\n["+jsonStr+"]");
           }
         }
       }
@@ -639,13 +639,13 @@
 
   <lk-js-example width="640px" id="status">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("status");
+      var log = lkResultLoggerModule.getLogger("status");
 
-      logger.logLabelValue("status", window.status);
+      log.labelValue("status", window.status);
       window.status = "Test Status for this window.";
-      logger.logLabelValue("status", window.status);
-      logger.logLabelValue("statusbar", window.statusbar);
-      logger.logLabelValue("statusbar.visible", window.statusbar.visible);
+      log.labelValue("status", window.status);
+      log.labelValue("statusbar", window.statusbar);
+      log.labelValue("statusbar.visible", window.statusbar.visible);
     </script>
   </lk-js-example>
 
@@ -669,9 +669,9 @@
         var confirmResult = window.confirm("Are you sure you want to confirm?");
 
         // log sessionStorage info
-        var logger = lkResultLoggerModule.getLogger("confirm");
+        var log = lkResultLoggerModule.getLogger("confirm");
 
-        logger.logLabelValue("confirmResult", confirmResult);
+        log.labelValue("confirmResult", confirmResult);
       }
     </script>
   </lk-js-example>
@@ -763,18 +763,18 @@
         var computedStyle = window.getComputedStyle(computedStyleEle);
 
         // display all styles (could be hundreds) or just a few
-        var logger = lkResultLoggerModule.getLogger("getComputedStyle", true);
+        var log = lkResultLoggerModule.getLogger("getComputedStyle", true);
         if (mode === "all") {
           for (var i=0; i<computedStyle.length; i++) {
             var style = computedStyle[i];
-            logger.logLabelValue(style, computedStyle.getPropertyValue(style));
+            log.labelValue(style, computedStyle.getPropertyValue(style));
           }
         } else {
-          logger.logLabelValue("computedStyle", computedStyle);
-          logger.logLabelValue("computedStyle.length", computedStyle.length);
-          logger.logLabelValue("computedStyle.@font-family", computedStyle.getPropertyValue('font-family'));
-          logger.logLabelValue("computedStyle.@font-size", computedStyle.getPropertyValue('font-size'));
-          logger.logLabelValue("computedStyle.@text-decoration", computedStyle.getPropertyValue('text-decoration'));
+          log.labelValue("computedStyle", computedStyle);
+          log.labelValue("computedStyle.length", computedStyle.length);
+          log.labelValue("computedStyle.@font-family", computedStyle.getPropertyValue('font-family'));
+          log.labelValue("computedStyle.@font-size", computedStyle.getPropertyValue('font-size'));
+          log.labelValue("computedStyle.@text-decoration", computedStyle.getPropertyValue('text-decoration'));
         }
       }
 
@@ -872,9 +872,9 @@
 
         if (promptResult != null) {
           // log prompt info
-          var logger = lkResultLoggerModule.getLogger("prompt");
+          var log = lkResultLoggerModule.getLogger("prompt");
 
-          logger.logLabelValue("promptResult", promptResult);
+          log.labelValue("promptResult", promptResult);
         }
       }
     </script>

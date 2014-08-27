@@ -61,16 +61,16 @@
 
   <lk-js-example width="640px" id="basicProperties">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("basicProperties");
+      var log = lkResultLoggerModule.getLogger("basicProperties");
 
-      logger.logLabelValue("href", window.location.href);
-      logger.logLabelValue("protocol", window.location.protocol);
-      logger.logLabelValue("host", window.location.host);
-      logger.logLabelValue("hostname", window.location.hostname);
-      logger.logLabelValue("pathname", window.location.pathname);
-      logger.logLabelValue("search", window.location.search);
-      logger.logLabelValue("hash", window.location.hash);
-      logger.logLabelValue("origin", window.location.origin);
+      log.labelValue("href", window.location.href);
+      log.labelValue("protocol", window.location.protocol);
+      log.labelValue("host", window.location.host);
+      log.labelValue("hostname", window.location.hostname);
+      log.labelValue("pathname", window.location.pathname);
+      log.labelValue("search", window.location.search);
+      log.labelValue("hash", window.location.hash);
+      log.labelValue("origin", window.location.origin);
     </script>
   </lk-js-example>
 
@@ -199,9 +199,9 @@
 
   <lk-js-example width="640px" id="toString">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("toString");
+      var log = lkResultLoggerModule.getLogger("toString");
 
-      logger.logLabelValue("toString", document.location.toString());
+      log.labelValue("toString", document.location.toString());
     </script>
   </lk-js-example>
 

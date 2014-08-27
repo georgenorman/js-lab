@@ -54,9 +54,9 @@
 
   <lk-js-example width="640px" id="doctype">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("doctype");
+      var log = lkResultLoggerModule.getLogger("doctype");
 
-      logger.logLabelValueProperties("doctype", document.doctype);
+      log.labelValueProperties("doctype", document.doctype);
     </script>
   </lk-js-example>
 
@@ -68,9 +68,9 @@
 
   <lk-js-example width="640px" id="documentElement">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("documentElement");
+      var log = lkResultLoggerModule.getLogger("documentElement");
 
-      logger.logLabelValue("doctype", document.documentElement);
+      log.labelValue("doctype", document.documentElement);
     </script>
   </lk-js-example>
 
@@ -82,9 +82,9 @@
 
   <lk-js-example width="640px" id="documentURI">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("documentURI");
+      var log = lkResultLoggerModule.getLogger("documentURI");
 
-      logger.logLabelValue("documentURI", document.documentURI);
+      log.labelValue("documentURI", document.documentURI);
     </script>
   </lk-js-example>
 
@@ -96,9 +96,9 @@
 
   <lk-js-example width="640px" id="implementation">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("implementation");
+      var log = lkResultLoggerModule.getLogger("implementation");
 
-      logger.logLabelValue("implementation", document.implementation);
+      log.labelValue("implementation", document.implementation);
     </script>
   </lk-js-example>
 
@@ -110,16 +110,16 @@
 
   <lk-js-example width="640px" id="styleSheets">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("styleSheets");
+      var log = lkResultLoggerModule.getLogger("styleSheets");
 
-      logger.logLabelValue("styleSheets", document.styleSheets);
-      logger.logLabelValue("styleSheets.length", document.styleSheets.length);
+      log.labelValue("styleSheets", document.styleSheets);
+      log.labelValue("styleSheets.length", document.styleSheets.length);
 
       for (var i=0; i<document.styleSheets.length; i++) {
-        logger.logLabelValue("styleSheets["+i+"]", document.styleSheets[i]);
-        logger.logLabelValue("styleSheets["+i+"].href", document.styleSheets[i].href);
-        logger.logLabelValue("styleSheets["+i+"].type", document.styleSheets[i].type);
-        logger.logLabelValue("styleSheets["+i+"].ownerNode", document.styleSheets[i].ownerNode);
+        log.labelValue("styleSheets["+i+"]", document.styleSheets[i]);
+        log.labelValue("styleSheets["+i+"].href", document.styleSheets[i].href);
+        log.labelValue("styleSheets["+i+"].type", document.styleSheets[i].type);
+        log.labelValue("styleSheets["+i+"].ownerNode", document.styleSheets[i].ownerNode);
       }
     </script>
   </lk-js-example>
@@ -132,12 +132,12 @@
 
   <lk-js-example width="640px" id="children">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("children");
+      var log = lkResultLoggerModule.getLogger("children");
 
-      logger.logLabelValue("children", document.children);
-      logger.logLabelValue("children.length", document.children.length);
-      logger.logLabelValue("children.childElementCount", document.childElementCount);
-      logger.logLabelValue("children[0]", document.children[0]);
+      log.labelValue("children", document.children);
+      log.labelValue("children.length", document.children.length);
+      log.labelValue("children.childElementCount", document.childElementCount);
+      log.labelValue("children[0]", document.children[0]);
     </script>
   </lk-js-example>
 
@@ -149,9 +149,9 @@
 
   <lk-js-example width="640px" id="activeElement">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("activeElement");
+      var log = lkResultLoggerModule.getLogger("activeElement");
 
-      logger.logLabelValue("activeElement", document.activeElement);
+      log.labelValue("activeElement", document.activeElement);
     </script>
   </lk-js-example>
 
@@ -167,10 +167,10 @@
 
   <lk-js-example width="640px" id="anchors">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("anchors");
+      var log = lkResultLoggerModule.getLogger("anchors");
 
-      logger.logLabelValue("anchors", document.anchors);
-      logger.logLabelValue("anchors.length", document.anchors.length);
+      log.labelValue("anchors", document.anchors);
+      log.labelValue("anchors.length", document.anchors.length);
     </script>
   </lk-js-example>
 
@@ -182,9 +182,9 @@
 
   <lk-js-example width="640px" id="body">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("body");
+      var log = lkResultLoggerModule.getLogger("body");
 
-      logger.logLabelValue("body", document.body);
+      log.labelValue("body", document.body);
     </script>
   </lk-js-example>
 
@@ -196,9 +196,9 @@
 
   <lk-js-example width="640px" id="cookie">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("cookie");
+      var log = lkResultLoggerModule.getLogger("cookie");
 
-      logger.logLabelValue("cookie", document.cookie);
+      log.labelValue("cookie", document.cookie);
     </script>
   </lk-js-example>
 
@@ -215,9 +215,9 @@
 
   <lk-js-example width="640px" id="designMode">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("designMode");
+      var log = lkResultLoggerModule.getLogger("designMode");
 
-      logger.logLabelValue("designMode", document.designMode);
+      log.labelValue("designMode", document.designMode);
     </script>
   </lk-js-example>
 
@@ -229,10 +229,10 @@
 
   <lk-js-example width="640px" id="forms">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("forms");
+      var log = lkResultLoggerModule.getLogger("forms");
 
-      logger.logLabelValue("forms", document.forms);
-      logger.logLabelValue("forms.length", document.forms.length);
+      log.labelValue("forms", document.forms);
+      log.labelValue("forms.length", document.forms.length);
     </script>
   </lk-js-example>
 
@@ -244,9 +244,9 @@
 
   <lk-js-example width="640px" id="head">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("head");
+      var log = lkResultLoggerModule.getLogger("head");
 
-      logger.logLabelValue("head", document.head);
+      log.labelValue("head", document.head);
     </script>
   </lk-js-example>
 
@@ -258,10 +258,10 @@
 
   <lk-js-example width="640px" id="images">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("images");
+      var log = lkResultLoggerModule.getLogger("images");
 
-      logger.logLabelValue("images", document.images);
-      logger.logLabelValue("images.length", document.images.length);
+      log.labelValue("images", document.images);
+      log.labelValue("images.length", document.images.length);
     </script>
   </lk-js-example>
 
@@ -273,9 +273,9 @@
 
   <lk-js-example width="640px" id="lastModified">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("lastModified");
+      var log = lkResultLoggerModule.getLogger("lastModified");
 
-      logger.logLabelValue("lastModified", document.lastModified);
+      log.labelValue("lastModified", document.lastModified);
     </script>
   </lk-js-example>
 
@@ -287,10 +287,10 @@
 
   <lk-js-example width="640px" id="links">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("links");
+      var log = lkResultLoggerModule.getLogger("links");
 
-      logger.logLabelValue("links", document.links);
-      logger.logLabelValue("links.length", document.links.length);
+      log.labelValue("links", document.links);
+      log.labelValue("links.length", document.links.length);
     </script>
   </lk-js-example>
 
@@ -302,9 +302,9 @@
 
   <lk-js-example width="640px" id="location">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("location");
+      var log = lkResultLoggerModule.getLogger("location");
 
-      logger.logLabelValue("location", document.location);
+      log.labelValue("location", document.location);
     </script>
   </lk-js-example>
 
@@ -316,10 +316,10 @@
 
   <lk-js-example width="640px" id="plugins">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("plugins");
+      var log = lkResultLoggerModule.getLogger("plugins");
 
-      logger.logLabelValue("plugins", document.plugins);
-      logger.logLabelValue("plugins.length", document.plugins.length);
+      log.labelValue("plugins", document.plugins);
+      log.labelValue("plugins.length", document.plugins.length);
     </script>
   </lk-js-example>
 
@@ -331,9 +331,9 @@
 
   <lk-js-example width="640px" id="readyState">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("readyState");
+      var log = lkResultLoggerModule.getLogger("readyState");
 
-      logger.logLabelValue("readyState", document.readyState);
+      log.labelValue("readyState", document.readyState);
     </script>
   </lk-js-example>
 
@@ -345,9 +345,9 @@
 
   <lk-js-example width="640px" id="referrer">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("referrer");
+      var log = lkResultLoggerModule.getLogger("referrer");
 
-      logger.logLabelValue("referrer", document.referrer);
+      log.labelValue("referrer", document.referrer);
     </script>
   </lk-js-example>
 
@@ -359,10 +359,10 @@
 
   <lk-js-example width="640px" id="scripts">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("scripts");
+      var log = lkResultLoggerModule.getLogger("scripts");
 
-      logger.logLabelValue("scripts", document.scripts);
-      logger.logLabelValue("scripts.length", document.scripts.length);
+      log.labelValue("scripts", document.scripts);
+      log.labelValue("scripts.length", document.scripts.length);
     </script>
   </lk-js-example>
 
@@ -374,9 +374,9 @@
 
   <lk-js-example width="640px" id="title">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("title");
+      var log = lkResultLoggerModule.getLogger("title");
 
-      logger.logLabelValue("title", document.title);
+      log.labelValue("title", document.title);
     </script>
   </lk-js-example>
 
@@ -388,9 +388,9 @@
 
   <lk-js-example width="640px" id="URL">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("URL");
+      var log = lkResultLoggerModule.getLogger("URL");
 
-      logger.logLabelValue("URL", document.URL);
+      log.labelValue("URL", document.URL);
     </script>
   </lk-js-example>
 
@@ -428,9 +428,9 @@
 
   <lk-js-example width="640px" id="todo2">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("todo2");
+      var log = lkResultLoggerModule.getLogger("todo2");
 
-      //logger.log(navigator.todo2);
+      //log.msg(navigator.todo2);
     </script>
   </lk-js-example>
 
@@ -442,9 +442,9 @@
 
   <lk-js-example width="640px" id="todo3">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("todo3");
+      var log = lkResultLoggerModule.getLogger("todo3");
 
-      //logger.log(navigator.todo3);
+      //log.msg(navigator.todo3);
     </script>
   </lk-js-example>
 
@@ -456,9 +456,9 @@
 
   <lk-js-example width="640px" id="todo4">
     <script type="multiline-template">
-      var logger = lkResultLoggerModule.getLogger("todo4");
+      var log = lkResultLoggerModule.getLogger("todo4");
 
-      //logger.log(navigator.todo4);
+      //log.msg(navigator.todo4);
     </script>
   </lk-js-example>
 

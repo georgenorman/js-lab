@@ -105,7 +105,7 @@ module.exports = function(grunt) {
         }]
       },
 
-      jsLab_bom: {
+      jsLab_bom: { // @-@:p0 ugh - this needs work - bom, dom and lang are duplicated.
         src: ['src/html/bom/*.html'],
         dest: 'target/html/bom/',
         // NOTE: release JS and CSS file names are all lowercase
@@ -133,6 +133,21 @@ module.exports = function(grunt) {
           from: 'js/all-javascript.js',
           to: 'js/jslab-<%= pkg.version %>-min.js'
         }]
+      },
+
+      jsLab_lang: {
+        src: ['src/html/lang/*.html'],
+        dest: 'target/html/lang/',
+        // NOTE: release JS and CSS file names are all lowercase
+        replacements: [{
+          // use single minified file for PRD
+          from: 'css/all-css.css',
+          to: 'css/jslab-<%= pkg.version %>-min.css'
+        }, {
+          // use single minified file for PRD
+          from: 'js/all-javascript.js',
+          to: 'js/jslab-<%= pkg.version %>-min.js'
+        }]
       }
     },
 
@@ -146,6 +161,7 @@ module.exports = function(grunt) {
           {expand: true, flatten: true, src: ['target/html/*.html'], dest: 'releases/<%= pkg.version %>/html/'},
           {expand: true, flatten: true, src: ['target/html/bom/*.html'], dest: 'releases/<%= pkg.version %>/html/bom/'},
           {expand: true, flatten: true, src: ['target/html/dom/*.html'], dest: 'releases/<%= pkg.version %>/html/dom/'},
+          {expand: true, flatten: true, src: ['target/html/lang/*.html'], dest: 'releases/<%= pkg.version %>/html/lang/'},
           {expand: true, flatten: true, src: ['lib/img/*'], dest: 'releases/<%= pkg.version %>/img/'},
           {expand: true, flatten: true, src: ['lib/img/logo/*'], dest: 'releases/<%= pkg.version %>/img/logo/'},
           {expand: true, flatten: true, src: ['src/img/*'], dest: 'releases/<%= pkg.version %>/img/'},
@@ -180,7 +196,7 @@ module.exports = function(grunt) {
   grunt.registerTask('assemble-final', ['concat:jsLabCssFinal', 'concat:jsLabJsFinal']);
 
   // * replace doesn't appear to have an option to preserve directory structure - this gross and ugly hack does
-  grunt.registerTask('replace-hack', ['replace:jsLab_root', 'replace:jsLab_bom', 'replace:jsLab_dom']);
+  grunt.registerTask('replace-hack', ['replace:jsLab_root', 'replace:jsLab_bom', 'replace:jsLab_dom', 'replace:jsLab_lang']);
 
   // register main task(s)
   grunt.registerTask('docs', ['jsdoc']);
