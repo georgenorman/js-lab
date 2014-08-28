@@ -198,18 +198,18 @@
       log.expression("  typeof NaN", "", "#e66");
       log.expression("  typeof Number(3)");
 
-      log.typeOfExpressionAndValue("  typeof Number('3px')", "#e66");
-      log.typeOfExpressionAndValue("  typeof parseInt('3px')");
-      log.typeOfExpressionAndValue("  typeof parseInt('xx3')", "#e66");
-      log.typeOfExpressionAndValue("  typeof Number('030')");
-      log.typeOfExpressionAndValue("  typeof parseInt('030')");
-      log.typeOfExpressionAndValue("  typeof Number('0x30')");
-      log.typeOfExpressionAndValue("  typeof parseInt('0x30')");
+      log.typeOfExpressionAndValue("  Number('3px')", "#e66");
+      log.typeOfExpressionAndValue("  parseInt('3px')");
+      log.typeOfExpressionAndValue("  parseInt('xx3')", "#e66");
+      log.typeOfExpressionAndValue("  Number('030')");
+      log.typeOfExpressionAndValue("  parseInt('030')");
+      log.typeOfExpressionAndValue("  Number('0x30')");
+      log.typeOfExpressionAndValue("  parseInt('0x30')");
 
       // booleans
       log.label("\nBooleans");
-      log.expression("  typeof true");
-      log.expression("  typeof Boolean(true)");
+      log.typeOfExpressionAndValue("  true");
+      log.typeOfExpressionAndValue("  Boolean(true)");
 
       // strings
       log.label("\nStrings");
