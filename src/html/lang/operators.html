@@ -73,8 +73,11 @@
       // Create object
       var obj = {"a":"v1", "b":"v2", "c":"v3"};
 
+      log.label("Value of the 'b' property and size of obj");
       log.labelValue("  obj.b", obj.b);
       log.labelValue("  obj length", Object.keys(obj).length);
+
+      log.label("\nDelete the 'b' property");
       log.labelValue("  delete obj.b", delete obj.b);
       log.labelValue("  obj length", Object.keys(obj).length, "the object size is reduced", "#FF8C00");
       log.labelValue("  obj.b", obj.b);
@@ -172,48 +175,141 @@
     </p>
   </lk-bullet-point>
 
-  <lk-js-example width="720px" id="typeof">
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="unary.typeof.common">Common Code</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This section contains code shared by experiments on the typeof operator.
+    For example, typeofLogHelper is a helper object that logs expressions (e.g., takes a given
+    expression and logs a label, then logs the expression using the type of operator and
+    finally logs the value of the expression).
+  </p>
+
+  <lk-js-example width="720px" evalCode="false" id="regEx.common">
     <script type="multiline-template">
-      var log = lkResultLoggerModule.getLogger("typeof");
+      // Log the typeof the given expression plus the value of the given expression.
+      // (e.g., Number(7) will log: "typeof Number(7): number (value=7)".
+      var typeofLogHelper = (function() {
+        return {
+          typeOfExpressionAndValue: function(resultLogger, expression, labelColor) {
+            if (expression === undefined) {
+              resultLogger.error("undefined");
+            } else if (expression === null) {
+              resultLogger.error("null");
+            } else {
+              var expressionWithTypeOf = getExpressionWithTypeOf(expression);
+
+              var label = expressionWithTypeOf;
+              var value = eval(expressionWithTypeOf);
+              var comment = "value=" + eval(expression);
+
+              resultLogger.labelValue(label, value, comment, labelColor)
+            }
+          }
+        };
+
+        function getExpressionWithTypeOf(expression) {
+          var result;
+
+          // prepend the typeof operator to the expression, preserving indentation
+          var regex = /(^\s+)(.+)/;
+          var matches = expression.match(regex);
+
+          if (matches === null) {
+            result = "typeof " + expression;
+          } else {
+            result = matches[1] + "typeof " + matches[2];
+          }
+
+          return result;
+        }
+      }());
+    </script>
+  </lk-js-example>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="unary.typeof.undefined">typeof undefined</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="typeof.undefined" resultHeaderTitle="Results for undefined">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("typeof.undefined");
       var unAssignedVar;
 
       // undefined
-      log.label("Undefined");
-      log.expression("  typeof unAssignedVar");
-      log.expression("  typeof undefined");
+      log.expression("typeof unAssignedVar");
+      log.expression("typeof bogusVar");
+      log.expression("typeof undefined");
+    </script>
+  </lk-js-example>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="unary.typeof.object">typeof object</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="typeof.object" resultHeaderTitle="Results for objects">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("typeof.object");
 
       // objects
-      log.label("\nObjects");
-      log.expression("  typeof null", "", "#e66");
-      log.expression("  typeof {a:1}");
-      log.expression("  typeof new Boolean(true)", "using new operator");
-      log.expression("  typeof new Number(1)", "using new operator");
+      log.expression("typeof null", "", "#e66");
+      log.expression("typeof {a:1}");
+      log.expression("typeof new Boolean(true)", "using new operator");
+      log.expression("typeof new Number(1)", "using new operator");
+    </script>
+  </lk-js-example>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="unary.typeof.number">typeof number</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="typeof.number" resultHeaderTitle="Results for numbers">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("typeof.number");
 
       // numbers
-      log.label("\nNumbers");
-      log.expression("  typeof -3");
-      log.expression("  typeof 3");
-      log.expression("  typeof 3.14");
-      log.expression("  typeof Infinity");
-      log.expression("  typeof NaN", "", "#e66");
-      log.expression("  typeof Number(3)");
+      log.expression("typeof -3");
+      log.expression("typeof 3");
+      log.expression("typeof 3.14");
+      log.expression("typeof Infinity");
+      log.expression("typeof NaN", "", "#e66");
+      log.expression("typeof Number(3)");
 
-      log.typeOfExpressionAndValue("  Number('3px')", "#e66");
-      log.typeOfExpressionAndValue("  parseInt('3px')");
-      log.typeOfExpressionAndValue("  parseInt('xx3')", "#e66");
-      log.typeOfExpressionAndValue("  Number('030')");
-      log.typeOfExpressionAndValue("  parseInt('030')");
-      log.typeOfExpressionAndValue("  Number('0x30')");
-      log.typeOfExpressionAndValue("  parseInt('0x30')");
+      typeofLogHelper.typeOfExpressionAndValue(log, "Number('3px')", "#e66");
+      typeofLogHelper.typeOfExpressionAndValue(log, "parseInt('3px')");
+      typeofLogHelper.typeOfExpressionAndValue(log, "parseInt('xx3')", "#e66");
+      typeofLogHelper.typeOfExpressionAndValue(log, "Number('030')");
+      typeofLogHelper.typeOfExpressionAndValue(log, "parseInt('030')");
+      typeofLogHelper.typeOfExpressionAndValue(log, "Number('0x30')");
+      typeofLogHelper.typeOfExpressionAndValue(log, "parseInt('0x30')");
+    </script>
+  </lk-js-example>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="unary.typeof.boolean">typeof boolean</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="typeof.boolean" resultHeaderTitle="Results for booleans">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("typeof.boolean");
 
       // booleans
-      log.label("\nBooleans");
-      log.typeOfExpressionAndValue("  true");
-      log.typeOfExpressionAndValue("  Boolean(true)");
+      typeofLogHelper.typeOfExpressionAndValue(log, "true");
+      typeofLogHelper.typeOfExpressionAndValue(log, "Boolean(true)");
+    </script>
+  </lk-js-example>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="unary.typeof.string">typeof string</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="typeof.string" resultHeaderTitle="Results for strings">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("typeof.string");
 
       // strings
-      log.label("\nStrings");
-      log.expression("  typeof \"10\"");
+      log.expression("typeof \"10\"");
     </script>
   </lk-js-example>
 
@@ -240,13 +336,15 @@
       var array = ["v0", "v1", "v2", "v3", "v4", "v5", "v6"];
       var obj = {"a":"v1", "b":"v2", "c":"v3"};
 
-      log.label("By index (array only)");
+      log.label("In array - by index");
       log.labelValue("  2 in array", 2 in array);
       log.labelValue("  array[2]", array[2]);
 
-      log.label("\nBy key");
+      log.label("\nIn array - by key");
       log.labelValue("  '2' in array", '2' in array, "array is object, indexed by key; or maybe '2' was converted to int?");
       log.labelValue("  array['2']", array['2']);
+
+      log.label("\nIn object - by key");
       log.labelValue("  obj length", Object.keys(obj).length);
       log.labelValue("  'b' in obj", 'b' in obj);
 

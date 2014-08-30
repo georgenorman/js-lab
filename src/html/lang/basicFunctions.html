@@ -49,7 +49,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <p>
-    If the argument is NaN, positive infinity, or negative infinity, this method returns false.
+    Returns false if the argument is NaN, positive infinity or negative infinity.
   </p>
 
   <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isFinite">
@@ -91,7 +91,7 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <p>
-    If the argument, when coerced to a numeric value, is an IEEE-794 'Not A Number' value, this method returns true.
+    Returns true if the argument, when coerced to a numeric value, is an <a href="http://en.wikipedia.org/wiki/NaN">IEEE-754</a> 'Not A Number' value.
   </p>
 
   <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/isNaN">
@@ -158,6 +158,7 @@
 
       log.label("Simple numbers");
       log.expression("  parseInt('1234')");
+      log.expression("  parseInt('12.34')");
       log.expression("  parseInt('01234')");
       log.expression("  parseInt('1',2)");
       log.expression("  parseInt('123',2)", "in base-2, 2 is the first non-digit character", "#e66");
