@@ -187,12 +187,12 @@
   </p>
 
   <lk-js-example width="720px" evalCode="false" id="regEx.common">
-    <script type="multiline-template">
+    <script>
       // Log the typeof the given expression plus the value of the given expression.
       // (e.g., Number(7) will log: "typeof Number(7): number (value=7)".
       var typeofLogHelper = (function() {
         return {
-          typeOfExpressionAndValue: function(resultLogger, expression, labelColor) {
+          logExpressionAndValue: function(resultLogger, expression, labelColor) {
             if (expression === undefined) {
               resultLogger.error("undefined");
             } else if (expression === null) {
@@ -276,13 +276,13 @@
       log.expression("typeof NaN", "", "#e66");
       log.expression("typeof Number(3)");
 
-      typeofLogHelper.typeOfExpressionAndValue(log, "Number('3px')", "#e66");
-      typeofLogHelper.typeOfExpressionAndValue(log, "parseInt('3px')");
-      typeofLogHelper.typeOfExpressionAndValue(log, "parseInt('xx3')", "#e66");
-      typeofLogHelper.typeOfExpressionAndValue(log, "Number('030')");
-      typeofLogHelper.typeOfExpressionAndValue(log, "parseInt('030')");
-      typeofLogHelper.typeOfExpressionAndValue(log, "Number('0x30')");
-      typeofLogHelper.typeOfExpressionAndValue(log, "parseInt('0x30')");
+      typeofLogHelper.logExpressionAndValue(log, "Number('3px')", "#e66");
+      typeofLogHelper.logExpressionAndValue(log, "parseInt('3px')");
+      typeofLogHelper.logExpressionAndValue(log, "parseInt('xx3')", "#e66");
+      typeofLogHelper.logExpressionAndValue(log, "Number('030')");
+      typeofLogHelper.logExpressionAndValue(log, "parseInt('030')");
+      typeofLogHelper.logExpressionAndValue(log, "Number('0x30')");
+      typeofLogHelper.logExpressionAndValue(log, "parseInt('0x30')");
     </script>
   </lk-js-example>
 
@@ -295,8 +295,8 @@
       var log = lkResultLoggerModule.getLogger("typeof.boolean");
 
       // booleans
-      typeofLogHelper.typeOfExpressionAndValue(log, "true");
-      typeofLogHelper.typeOfExpressionAndValue(log, "Boolean(true)");
+      typeofLogHelper.logExpressionAndValue(log, "true");
+      typeofLogHelper.logExpressionAndValue(log, "Boolean(true)");
     </script>
   </lk-js-example>
 
