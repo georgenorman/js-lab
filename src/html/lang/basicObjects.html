@@ -62,19 +62,28 @@
 
         exports.prototype = {};
 
-        // The regExTestExpression method helps to log regEx.test() experiments
+        // The regExTestExpression method helps log regEx.test() experiments
         exports.prototype.regExTestExpression = function(re, str, comment, labelCssClass) {
           var escapedTestStr = str.replace(/\n/g, "\\n");
 
           this.labelValue("  re.test( '" + escapedTestStr + "' )", re.test(str), comment, labelCssClass);
         };
 
-        // The regExReplaceExpression method helps to log string.replace(regEx,newSubStr) experiments
+        // The regExReplaceExpression method helps log string.replace(regEx,newSubStr) experiments
         exports.prototype.regExReplaceExpression = function(re, str, newSubStr, comment, labelCssClass) {
           var escapedTestStr = str.replace(/\n/g, "\\n");
-          var escapedResultStr = str.replace(re, newSubStr);
+          var resultStr = str.replace(re, newSubStr);
+          var escapedResultStr = resultStr.replace(/\n/g, "\\n");
 
           this.labelValue("  str.replace( '" + escapedTestStr + "' )", escapedResultStr, comment, labelCssClass);
+        };
+
+        // The expressionAsDateTime method helps log Date.parse(expression) experiments
+        exports.prototype.expressionAsDateTime = function(expression, comment, labelCssClass) {
+          var evalValue = eval(expression);
+          var dateTimeValue = Number.isNaN(evalValue) ? "" : " =&gt; " + new Date(evalValue).toUTCString();
+
+          this.labelValue(expression, evalValue + dateTimeValue, comment, labelCssClass);
         };
 
         // Create a new instance
@@ -148,47 +157,76 @@
   <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Boolean">
     // Boolean constructor
     new Boolean(value)
+
+    // Preferred form for conversion
+    Boolean(value)
   </lk-api-reference>
 
   <lk-bullet-point iconClass="lk-bullet-point-fail">
     <p>
-      All non-null objects are implicitly true. Examples:
-<pre>
-  // non-null object is true
-  var result = new Boolean(new Boolean(false));
-
-  // non-null object is true
-  if (new Boolean(false)) { /* executes */ }
-
-  // null object is false
-  if (null) { /* does not execute */ }
-</pre>
+      Caution - Non-null objects are implicitly true, whereas the null object is false.
     </p>
+
+    <lk-js-example codeHeader="" width="680px" evalCode="false">
+      <script type="multiline-template">
+      // non-null object is true
+      var result = new Boolean(new Boolean(false));
+
+      // non-null object is true
+      if (new Boolean(false)) { /* executes */ }
+
+      // null object is false
+      if (null) { /* does not execute */ }
+      </script>
+    </lk-js-example>
   </lk-bullet-point>
 
-  <lk-js-example width="720px" id="boolean">
-    <script type="multiline-template">
-      var log = lkResultLoggerModule.getLogger("boolean");
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="fundamental.boolean.basic">Basic Evaluation</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-      log.heading1("Basic evaluation");
+  <lk-js-example width="720px" id="boolean.basic">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("boolean.basic");
+
+      log.heading3("Default is false");
       log.expression("  Boolean()");
+      log.newline();
+
+      log.heading3("Literals");
       log.expression("  Boolean(true)");
       log.expression("  Boolean(false)");
+      log.newline();
+
+      log.heading3("Zero is false");
       log.expression("  Boolean(0)");
+      log.newline();
+
+      log.heading3("Non-zero is true");
       log.expression("  Boolean(1)");
       log.expression("  Boolean(-12)");
       log.expression("  Boolean(12)");
-      log.newline();
+    </script>
+  </lk-js-example>
 
-      log.heading1("Non-Obvious evaluation");
-      log.expression("  Boolean(new Boolean(false))", "non-null object evals to true", "msg-important-label");
-      log.expression("  Boolean(null)", "null object evals to false");
-      log.expression("  null ? 'true' : 'false'", "null object evals to false");
-      log.expression("  Boolean('')");
-      log.expression("  Boolean(' ')");
-      log.expression("  Boolean('false')", "", "msg-important-label");
-      log.expression("  new Boolean(true) ? 'true' : 'false'");
-      log.expression("  new Boolean(false) ? 'true' : 'false'", "", "msg-important-label");
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="fundamental.boolean.nonObvious">Non-Obvious Evaluation</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="boolean.nonObvious">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("boolean.nonObvious");
+
+      log.expression("Boolean(new Boolean(false))", "non-null object evals to true", "msg-important-label");
+      log.expression("Boolean(null)", "null object evals to false");
+      log.expression("null ? 'true' : 'false'", "null object evals to false");
+      log.expression("Boolean('')");
+      log.expression("Boolean(' ')", "non-null object evals to true");
+      log.expression("Boolean('false')", "non-null object evals to true", "msg-important-label");
+      log.expression("new Boolean(true) ? 'true' : 'false'", "non-null object evals to true");
+      log.expression("new Boolean(false) ? 'true' : 'false'", "non-null object evals to true", "msg-important-label");
     </script>
   </lk-js-example>
 
@@ -220,16 +258,46 @@
   <h3 id="nad.number">Number</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <p>
+    A double-precision, 64-bit binary format, IEEE 754 value.
+  </p>
+
   <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number">
     // Number constructor
     new Number(value);
+
+    // Preferred form for conversion
+    Number(value);
   </lk-api-reference>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="nad.number.properties">Properties</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="number.properties">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("number.properties");
+
+      log.expression("Number.MAX_VALUE");
+      log.expression("Number.MIN_VALUE", "smallest possible positive number");
+      log.expression("-Number.MAX_VALUE");
+      log.expression("Number.MAX_SAFE_INTEGER", "Math.pow(2, 53) -1", "msg-important-label");
+      log.expression("Math.pow(2, 53) -1");
+      log.expression("-Number.MAX_SAFE_INTEGER", "", "msg-important-label");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="nad.number.conversions">Conversions</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <lk-js-example width="720px" id="number">
     <script type="multiline-template">
       var log = lkResultLoggerModule.getLogger("number");
 
-      log.heading1("Conversions");
+      log.heading3("From Value");
       log.expression("  Number('0')");
       log.expression("  Number('01')");
       log.expression("  Number('1234')");
@@ -240,12 +308,6 @@
       log.expression("  Number(false)");
       log.newline();
 
-      log.heading1("Properties");
-      log.expression("  Number.MAX_VALUE");
-      log.expression("  Number.MIN_VALUE");
-      log.newline();
-
-      log.heading1("Methods");
       log.heading3("To Exponential Notation");
       log.expression("  new Number(1234).toExponential()");
       log.expression("  new Number(1234567890).toExponential()");
@@ -255,6 +317,18 @@
 
       log.heading3("To Fixed Notation");
       log.expression("  new Number(1.2345678901234568e+8).toFixed(20)");
+      log.newline();
+
+      log.heading3("To String");
+      log.expression("  new Number(256).toString(16)");
+      log.expression("  new Number(256).toString(10)");
+      log.expression("  new Number(256).toString(2) ");
+      log.newline();
+
+      log.heading3("Comparison (implicit string to number)");
+      log.expression("  256 === 256");
+      log.expression("  256 === '256'");
+      log.expression("  256 == '256'");
     </script>
   </lk-js-example>
 
@@ -264,6 +338,10 @@
   <h3 id="nad.date">Date</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="nad.date.construction">Construction</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
   <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date">
     new Date();
     new Date(integerValue);
@@ -271,13 +349,178 @@
     new Date(year, month, day, hour, minute, second, millisecond);
   </lk-api-reference>
 
-  <lk-js-example width="720px" id="date">
-    <script type="multiline-template">
-      var log = lkResultLoggerModule.getLogger("date");
-      Window.now = new Date(); // TODO: Fix eval context issue with log.expression.
+  <lk-bullet-point iconClass="lk-bullet-point-info">
+    <p>
+      For max and min dates, see <a href="http://stackoverflow.com/questions/11526504/minimum-and-maximum-date">Minimum and maximum date</a>.
+    </p>
+  </lk-bullet-point>
 
-      log.heading1("Methods");
-      log.expression("Window.now.getDate()");
+  <lk-js-example width="720px" id="date.construction">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("date.construction");
+
+      log.heading3("Date");
+      log.expression("new Date()");
+      log.expression("new Date(0).toUTCString()", "unix epoch");
+      log.expression("new Date(1000).toUTCString()", "unix epoch +1 second");
+      log.expression("new Date(10000).toUTCString()", "unix epoch +10 seconds");
+      log.expression("new Date(8640000000000000)", "max date");
+      log.expression("new Date(-8640000000000000)", "min date");
+      log.expression("new Date('September 1, 2014')");
+      log.expression("new Date(2014, 8, 1)");
+      log.expression("new Date('Bogus 1, 2014')");
+      log.expression("new Date('Bogus 1')");
+      log.expression("new Date(NaN)");
+      log.expression("new Date(undefined)");
+      log.newline();
+
+      log.heading3("Time");
+      log.expression("new Date(0, 0, 0, 12, 17, 1)");
+      log.expression("new Date(0, 0, 0, 12, 17, 1).getTime()");
+      log.newline();
+
+      log.heading3("Date/Time");
+      log.expression("new Date('September 1, 2014 12:17:01')");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="nad.date.accessors">Accessors</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="date.accessors">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("date.accessors");
+      Window.now = new Date(); // HACK! TODO: Fix eval context issue with log.expression.
+
+      log.heading3("Date");
+      log.expression("Window.now.getMonth()", "month: 0-11)");
+      log.expression("Window.now.getDate()", "day of month: 1-31");
+      log.expression("Window.now.getDay()", "day of week: 0-6");
+      log.expression("Window.now.getFullYear()");
+      log.newline();
+
+      log.heading3("Time");
+      log.expression("Window.now.getHours()", "0-23");
+      log.expression("Window.now.getMinutes()", "0-59");
+      log.expression("Window.now.getSeconds()", "0-59");
+      log.expression("Window.now.getMilliseconds()", "0-999");
+      log.expression("Window.now.getTime()", "num ms since 01/01/1970, 00:00:00 UTC");
+      log.newline();
+
+      log.heading3("Time Zone");
+      log.expression("Window.now.getTimezoneOffset()", "in minutes, for current locale");
+      log.expression("Window.now.getTimezoneOffset()/60", "in hours, for current locale");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="nad.date.utc">UTC</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="date.utc">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("date.utc");
+      Window.now = new Date(); // HACK! TODO: Fix eval context issue with log.expression.
+
+      log.heading3("Date");
+      log.expression("Window.now.getUTCMonth()", "month: 0-11)");
+      log.expression("Window.now.getUTCDate()", "day of month: 1-31");
+      log.expression("Window.now.getUTCDay()", "day of week: 0-6");
+      log.expression("Window.now.getUTCFullYear()");
+      log.newline();
+
+      log.heading3("Time");
+      log.expression("Window.now.getUTCHours()", "0-23");
+      log.expression("Window.now.getUTCMinutes()", "0-59");
+      log.expression("Window.now.getUTCSeconds()", "0-59");
+      log.expression("Window.now.getUTCMilliseconds()", "0-999");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="nad.date.conversions">Conversions</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="date.conversions">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("date.conversions");
+      Window.now = new Date(); // HACK! TODO: Fix eval context issue with log.expression.
+
+      log.expression("Window.now.toString()", "date and time");
+      log.expression("Window.now.toDateString()");
+      log.expression("Window.now.toTimeString()");
+      log.expression("Window.now.toUTCString()");
+      log.expression("Window.now.toISOString()");
+      log.expression("Window.now.toJSON()", "JSON date format");
+      log.expression("Window.now.toLocaleDateString()");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="nad.date.parse">Parse</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    Interprets the given string as a date and time and returns it as a UTC time value.
+    At first, it attempts to parse the format of the String according to the <a href="http://ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">Date Time String Format</a> rules.
+    Failing that, it may fall back to any implementation-specific date formats.
+    Invalid Strings will cause Date.parse to return NaN.
+  </p>
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse">
+    Date.parse(string)  // YYYY-MM-DDTHH:mm:ss.sssZ
+  </lk-api-reference>
+
+  <lk-js-example width="720px" id="date.parse">
+    <script type="multiline-template">
+      // get the logger created by the <lk-js-example> tag
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("date.parse"));
+
+      log.heading3("Date");
+      log.expressionAsDateTime("Date.parse('2014-09-01')");
+      log.expressionAsDateTime("Date.parse('2013-09-01')");
+
+      log.newline();
+      log.heading3("Date and Time");
+      log.expressionAsDateTime("Date.parse('2014-09-01T12:34')");
+      log.expressionAsDateTime("Date.parse('2014-09-01T12:34:56')");
+
+      log.newline();
+      log.heading3("Date, Time and Zone");
+      log.expressionAsDateTime("Date.parse('2014-09-01T12:34:56-0400')");
+      log.expressionAsDateTime("Date.parse('2014-09-01T12:34:56+0400')");
+
+      log.newline();
+      log.heading3("Invalid");
+      log.expressionAsDateTime("Date.parse('2013-99-01')");
+      log.expressionAsDateTime("Date.parse('2014-09-01T12')");
+      log.expressionAsDateTime("Date.parse('2014-09-01T12:34:56+7890')");
+      log.expressionAsDateTime("Date.parse('bogus')");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="nad.date.misc">Misc</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="date.misc">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("date.misc");
+
+      log.heading3("Now");
+      log.expression("Date.now()", "currentTimeMillis");
+      log.expression("new Date().toDateString()");
     </script>
   </lk-js-example>
 
@@ -586,30 +829,30 @@
 
   <p>
     This experiment illustrates what happens when the "m" option is false, but the pattern requires a match to start relative to the beginning of a <b>line</b>.
-    If the pattern is matched on the second line, the test will fail, because the regex stops searching after the first line.
+    If the pattern is matched on the second line, the test will fail because the regex stops searching after the first line.
   </p>
 
-  <lk-js-example width="720px" id="regEx.options.multiLine-off">
+  <lk-js-example width="720px" id="options.multiLine-off">
     <script type="multiline-template">
       // get the logger created by the <lk-js-example> tag
-      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("regEx.options.multiLine-off"));
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("options.multiLine-off"));
 
       // perform experiments
-      var re1 = /^[a-z]*\d+\.\d+.*/;
-      log.heading1("Using re = " + re1);
-      log.labelValue("Multiline is set to", re1.multiline);
+      var re = /^[a-z]*\d+\.\d+.*/;
+      log.heading1("Using re = " + re);
+      log.labelValue("Multiline is set to", re.multiline);
       log.newline();
 
       log.heading3("True");
-      log.regExTestExpression(re1, "1.22aa", "pattern is met on first line");
-      log.regExTestExpression(re1, "aa1.22\naa3.4", "pattern is met on first line");
+      log.regExTestExpression(re, "1.22aa", "pattern is met on first line");
+      log.regExTestExpression(re, "aa1.22\naa3.4", "pattern is met on first line");
       log.newline();
 
       log.heading3("False");
-      log.regExTestExpression(re1, "$1.22", "pattern is never met");
-      log.regExTestExpression(re1, "A1.22B", "pattern is never met");
-      log.regExTestExpression(re1, " 1.22 ", "pattern is never met");
-      log.regExTestExpression(re1, "aa\n1.22\nbb", "pattern is met on second line");
+      log.regExTestExpression(re, "$1.22", "pattern is never met");
+      log.regExTestExpression(re, "A1.22B", "pattern is never met");
+      log.regExTestExpression(re, " 1.22 ", "pattern is never met");
+      log.regExTestExpression(re, "aa\n1.22\nbb", "pattern is met on second line");
     </script>
   </lk-js-example>
 
@@ -630,29 +873,36 @@
     </p>
   </lk-bullet-point>
 
-  <lk-js-example width="720px" id="regEx.options.multiLine-on">
+  <lk-js-example width="720px" id="options.multiLine-on">
     <script type="multiline-template">
       // get the logger created by the <lk-js-example> tag
-      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("regEx.options.multiLine-on"));
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("options.multiLine-on"));
 
       // perform experiments
-      var re1 = /^[a-z]*\d+\.\d+.*/m;
-      log.heading1("Using re = " + re1);
-      log.labelValue("Multiline is set to", re1.multiline);
+      var re = /^[a-z]*\d+\.\d+/m;
+      log.heading1("Using re = " + re);
+      log.labelValue("Multiline is set to", re.multiline);
       log.newline();
 
       log.heading3("True");
-      log.regExTestExpression(re1, "1.22aa", "pattern is met on first line");
-      log.regExTestExpression(re1, "aa1.22\naa3.4", "pattern is met on first line");
-      log.regExTestExpression(re1, "aa\n1.22\nbb", "pattern is met on second line");
-      log.regExTestExpression(re1, "aa\nbb\ncc1.22", "pattern is met on third line");
+      log.regExTestExpression(re, "1.22aa", "pattern is met on first line");
+      log.regExTestExpression(re, "aa1.22\naa3.4", "pattern is met on first line");
+      log.regExTestExpression(re, "aa\n1.22\nbb", "pattern is met on second line");
+      log.regExTestExpression(re, "aa\nbb\ncc1.22", "pattern is met on third line");
       log.newline();
 
       log.heading3("False");
-      log.regExTestExpression(re1, "$1.22", "pattern is never met");
-      log.regExTestExpression(re1, "A1.22B", "pattern is never met");
-      log.regExTestExpression(re1, "aA1.22bB", "pattern is never met");
-      log.regExTestExpression(re1, " 1.22 ", "pattern is never met");
+      log.regExTestExpression(re, "$1.22", "pattern is never met");
+      log.regExTestExpression(re, "A1.22B", "pattern is never met");
+      log.regExTestExpression(re, "aA1.22bB", "pattern is never met");
+      log.regExTestExpression(re, " 1.22 ", "pattern is never met");
+      log.newline();
+
+      log.heading3("Replace");
+      log.regExReplaceExpression(re, "1.22aa", "[REPLACED]", "pattern is met on first line");
+      log.regExReplaceExpression(re, "aa1.22\naa3.4", "[REPLACED]", "pattern is met on first line");
+      log.regExReplaceExpression(re, "aa\n1.22\nbb", "[REPLACED]", "pattern is met on second line");
+      log.regExReplaceExpression(re, "aa\nbb\ncc1.22", "[REPLACED]", "pattern is met on third line");
     </script>
   </lk-js-example>
 
@@ -679,22 +929,22 @@
       var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("options.ignoreCase-on"));
 
       // perform experiments
-      var re1 = /^[a-z]*\d+\.\d+.*/mi;
-      log.heading1("Using re = " + re1);
-      log.labelValue("IgnoreCase is set to", re1.ignoreCase);
+      var re = /^[a-z]*\d+\.\d+.*/mi;
+      log.heading1("Using re = " + re);
+      log.labelValue("IgnoreCase is set to", re.ignoreCase);
       log.newline();
 
       log.heading3("True");
-      log.regExTestExpression(re1, "1.22Aa");
-      log.regExTestExpression(re1, "aA1.22\naA3.4");
-      log.regExTestExpression(re1, "aA\n1.22\nbB");
-      log.regExTestExpression(re1, "aA\nbB\ncC1.22");
-      log.regExTestExpression(re1, "A1.22B");
+      log.regExTestExpression(re, "1.22Aa");
+      log.regExTestExpression(re, "aA1.22\naA3.4");
+      log.regExTestExpression(re, "aA\n1.22\nbB");
+      log.regExTestExpression(re, "aA\nbB\ncC1.22");
+      log.regExTestExpression(re, "A1.22B");
       log.newline();
 
       log.heading3("False");
-      log.regExTestExpression(re1, "$1.22", "pattern is never met");
-      log.regExTestExpression(re1, " 1.22 ", "pattern is never met");
+      log.regExTestExpression(re, "$1.22", "pattern is never met");
+      log.regExTestExpression(re, " 1.22 ", "pattern is never met");
     </script>
   </lk-js-example>
 

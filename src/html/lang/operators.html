@@ -44,6 +44,76 @@
 
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference#Operators">See MDN 'Expressions and operators'</a>
 
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="overview.commonJs">Shared JavaScript</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This section contains code that can be shared by all experiments on this page.
+    For example, the OperatorsLogHelper provides convenience methods for logging results
+    specific to the experiments on this page.
+  </p>
+
+  <lk-js-example width="720px" evalCode="false">
+    <script>
+      // Define OperatorsLogHelper class
+      var OperatorsLogHelper = (function() {
+        var exports = {};
+
+        exports.prototype = {};
+
+        // For the given expression, log its type and value
+        // (e.g., Number(7) will log: "typeof Number(7): number (value=7)".
+        exports.prototype.regExTestExpression = function(expression, labelColor) {
+          if (expression === undefined) {
+            this.error("undefined");
+          } else if (expression === null) {
+            this.error("null");
+          } else {
+            var expressionWithTypeOf = getExpressionWithTypeOf(expression);
+
+            var label = expressionWithTypeOf;
+            var value = eval(expressionWithTypeOf);
+            var comment = "value=" + eval(expression);
+
+            this.labelValue(label, value, comment, labelColor)
+          }
+        };
+
+        // Create a new instance
+        exports.create = function(resultLogger) {
+          var result = Object.create(exports.prototype);
+
+          // copy all methods (and properties) from the result logger, so
+          // clients can use this helper directly for all result logging.
+          tzGeneralUtilsModule.copyProperties(resultLogger, result);
+
+          return result;
+        };
+
+        // Private function
+        // Prepend the typeof operator to the expression, preserving indentation
+        function getExpressionWithTypeOf(expression) {
+          var result;
+
+          var regex = /(^\s+)(.+)/;
+          var matches = expression.match(regex);
+
+          if (matches === null) {
+            result = "typeof " + expression;
+          } else {
+            result = matches[1] + "typeof " + matches[2];
+          }
+
+          return result;
+        }
+
+        // return the class definition
+        return exports;
+      }());
+    </script>
+  </lk-js-example>
+
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <h2 id="unary">Unary operators</h2>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -101,14 +171,14 @@
 
       /** Base Shape class. */
       function Shape() {
-      this.name = "Abstract Shape";
+        this.name = "Abstract Shape";
       }
 
       /** Concrete Square subclass. */
       Square.prototype = new Shape();
       Square.prototype.constructor = Square;
       function Square() {
-      this.name = "Square";
+        this.name = "Square";
       }
 
       // Create base Shape and Square shape.
@@ -141,7 +211,7 @@
     <resultComment>
       Note: Deleting an item in an array does not remove the slot from the array.
       See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice">Array.splice</a>
-      to remove an item from an array.
+      to remove an item.
     </resultComment>
     <script type="multiline-template">
       var log = lkResultLoggerModule.getLogger("delete.fromArray");
@@ -176,63 +246,10 @@
   </lk-bullet-point>
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <h4 id="unary.typeof.common">Common Code</h4>
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-  <p>
-    This section contains code shared by experiments on the typeof operator.
-    For example, typeofLogHelper is a helper object that logs expressions (e.g., takes a given
-    expression and logs a label, then logs the expression using the type of operator and
-    finally logs the value of the expression).
-  </p>
-
-  <lk-js-example width="720px" evalCode="false" id="regEx.common">
-    <script>
-      // Log the typeof the given expression plus the value of the given expression.
-      // (e.g., Number(7) will log: "typeof Number(7): number (value=7)".
-      var typeofLogHelper = (function() {
-        return {
-          logExpressionAndValue: function(resultLogger, expression, labelColor) {
-            if (expression === undefined) {
-              resultLogger.error("undefined");
-            } else if (expression === null) {
-              resultLogger.error("null");
-            } else {
-              var expressionWithTypeOf = getExpressionWithTypeOf(expression);
-
-              var label = expressionWithTypeOf;
-              var value = eval(expressionWithTypeOf);
-              var comment = "value=" + eval(expression);
-
-              resultLogger.labelValue(label, value, comment, labelColor)
-            }
-          }
-        };
-
-        function getExpressionWithTypeOf(expression) {
-          var result;
-
-          // prepend the typeof operator to the expression, preserving indentation
-          var regex = /(^\s+)(.+)/;
-          var matches = expression.match(regex);
-
-          if (matches === null) {
-            result = "typeof " + expression;
-          } else {
-            result = matches[1] + "typeof " + matches[2];
-          }
-
-          return result;
-        }
-      }());
-    </script>
-  </lk-js-example>
-
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <h4 id="unary.typeof.undefined">typeof undefined</h4>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <lk-js-example width="720px" id="typeof.undefined" resultHeaderTitle="Results for undefined">
+  <lk-js-example width="720px" id="typeof.undefined" resultHeader="Results for undefined">
     <script type="multiline-template">
       var log = lkResultLoggerModule.getLogger("typeof.undefined");
       var unAssignedVar;
@@ -248,7 +265,7 @@
   <h4 id="unary.typeof.object">typeof object</h4>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <lk-js-example width="720px" id="typeof.object" resultHeaderTitle="Results for objects">
+  <lk-js-example width="720px" id="typeof.object" resultHeader="Results for objects">
     <script type="multiline-template">
       var log = lkResultLoggerModule.getLogger("typeof.object");
 
@@ -264,9 +281,10 @@
   <h4 id="unary.typeof.number">typeof number</h4>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <lk-js-example width="720px" id="typeof.number" resultHeaderTitle="Results for numbers">
+  <lk-js-example width="720px" id="typeof.number" resultHeader="Results for numbers">
     <script type="multiline-template">
-      var log = lkResultLoggerModule.getLogger("typeof.number");
+      // get the logger created by the <lk-js-example> tag
+      var log = OperatorsLogHelper.create(lkResultLoggerModule.getLogger("typeof.number"));
 
       // numbers
       log.expression("typeof -3");
@@ -276,13 +294,13 @@
       log.expression("typeof NaN", "", "msg-important-label");
       log.expression("typeof Number(3)");
 
-      typeofLogHelper.logExpressionAndValue(log, "Number('3px')", "msg-important-label");
-      typeofLogHelper.logExpressionAndValue(log, "parseInt('3px')");
-      typeofLogHelper.logExpressionAndValue(log, "parseInt('xx3')", "msg-important-label");
-      typeofLogHelper.logExpressionAndValue(log, "Number('030')");
-      typeofLogHelper.logExpressionAndValue(log, "parseInt('030')");
-      typeofLogHelper.logExpressionAndValue(log, "Number('0x30')");
-      typeofLogHelper.logExpressionAndValue(log, "parseInt('0x30')");
+      log.regExTestExpression("Number('3px')", "msg-important-label");
+      log.regExTestExpression("parseInt('3px')");
+      log.regExTestExpression("parseInt('xx3')", "msg-important-label");
+      log.regExTestExpression("Number('030')");
+      log.regExTestExpression("parseInt('030')");
+      log.regExTestExpression("Number('0x30')");
+      log.regExTestExpression("parseInt('0x30')");
     </script>
   </lk-js-example>
 
@@ -290,13 +308,14 @@
   <h4 id="unary.typeof.boolean">typeof boolean</h4>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <lk-js-example width="720px" id="typeof.boolean" resultHeaderTitle="Results for booleans">
+  <lk-js-example width="720px" id="typeof.boolean" resultHeader="Results for booleans">
     <script type="multiline-template">
-      var log = lkResultLoggerModule.getLogger("typeof.boolean");
+      // get the logger created by the <lk-js-example> tag
+      var log = OperatorsLogHelper.create(lkResultLoggerModule.getLogger("typeof.boolean"));
 
       // booleans
-      typeofLogHelper.logExpressionAndValue(log, "true");
-      typeofLogHelper.logExpressionAndValue(log, "Boolean(true)");
+      log.regExTestExpression("true");
+      log.regExTestExpression("Boolean(true)");
     </script>
   </lk-js-example>
 
@@ -304,7 +323,7 @@
   <h4 id="unary.typeof.string">typeof string</h4>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <lk-js-example width="720px" id="typeof.string" resultHeaderTitle="Results for strings">
+  <lk-js-example width="720px" id="typeof.string" resultHeader="Results for strings">
     <script type="multiline-template">
       var log = lkResultLoggerModule.getLogger("typeof.string");
 
