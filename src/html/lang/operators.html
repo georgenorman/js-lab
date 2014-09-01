@@ -79,7 +79,7 @@
 
       log.label("\nDelete the 'b' property");
       log.labelValue("  delete obj.b", delete obj.b);
-      log.labelValue("  obj length", Object.keys(obj).length, "the object size is reduced", "#FF8C00");
+      log.labelValue("  obj length", Object.keys(obj).length, "the object size is reduced", "msg-warning-label");
       log.labelValue("  obj.b", obj.b);
     </script>
   </lk-js-example>
@@ -253,7 +253,7 @@
       var log = lkResultLoggerModule.getLogger("typeof.object");
 
       // objects
-      log.expression("typeof null", "", "#e66");
+      log.expression("typeof null", "", "msg-important-label");
       log.expression("typeof {a:1}");
       log.expression("typeof new Boolean(true)", "using new operator");
       log.expression("typeof new Number(1)", "using new operator");
@@ -273,12 +273,12 @@
       log.expression("typeof 3");
       log.expression("typeof 3.14");
       log.expression("typeof Infinity");
-      log.expression("typeof NaN", "", "#e66");
+      log.expression("typeof NaN", "", "msg-important-label");
       log.expression("typeof Number(3)");
 
-      typeofLogHelper.logExpressionAndValue(log, "Number('3px')", "#e66");
+      typeofLogHelper.logExpressionAndValue(log, "Number('3px')", "msg-important-label");
       typeofLogHelper.logExpressionAndValue(log, "parseInt('3px')");
-      typeofLogHelper.logExpressionAndValue(log, "parseInt('xx3')", "#e66");
+      typeofLogHelper.logExpressionAndValue(log, "parseInt('xx3')", "msg-important-label");
       typeofLogHelper.logExpressionAndValue(log, "Number('030')");
       typeofLogHelper.logExpressionAndValue(log, "parseInt('030')");
       typeofLogHelper.logExpressionAndValue(log, "Number('0x30')");

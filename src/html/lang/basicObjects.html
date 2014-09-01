@@ -44,6 +44,56 @@
 
   <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference#Fundamental_objects">See MDN 'Fundamental objects'</a>
 
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="overview.commonJs">Shared JavaScript</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This section contains code that can be shared by all experiments on this page.
+    For example, the ObjectsLogHelper provides convenience methods for logging results
+    specific to the experiments on this page.
+  </p>
+
+  <lk-js-example width="720px" evalCode="false">
+    <script>
+      // Define ObjectsLogHelper class
+      var ObjectsLogHelper = (function() {
+        var exports = {};
+
+        exports.prototype = {};
+
+        // The regExTestExpression method helps to log regEx.test() experiments
+        exports.prototype.regExTestExpression = function(re, str, comment, labelCssClass) {
+          var escapedTestStr = str.replace(/\n/g, "\\n");
+
+          this.labelValue("  re.test( '" + escapedTestStr + "' )", re.test(str), comment, labelCssClass);
+        };
+
+        // The regExReplaceExpression method helps to log string.replace(regEx,newSubStr) experiments
+        exports.prototype.regExReplaceExpression = function(re, str, newSubStr, comment, labelCssClass) {
+          var escapedTestStr = str.replace(/\n/g, "\\n");
+          var escapedResultStr = str.replace(re, newSubStr);
+
+          this.labelValue("  str.replace( '" + escapedTestStr + "' )", escapedResultStr, comment, labelCssClass);
+        };
+
+        // Create a new instance
+        exports.create = function(resultLogger) {
+          var result = Object.create(exports.prototype);
+
+          // copy all methods (and properties) from the result logger, so
+          // clients can use this helper directly for all result logging.
+          tzGeneralUtilsModule.copyProperties(resultLogger, result);
+
+          return result;
+        };
+
+        // return the class definition
+        return exports;
+      }());
+    </script>
+  </lk-js-example>
+
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
   <h2 id="fundamental">Fundamental Objects</h2>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
@@ -52,7 +102,7 @@
   <h3 id="fundamental.object">Object</h3>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/fundamentalbal_Objects/Object">
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Object">
     // Object literal
     { "name1": value1, ... }
 
@@ -120,7 +170,7 @@
     <script type="multiline-template">
       var log = lkResultLoggerModule.getLogger("boolean");
 
-      log.label("Basic evaluation","");
+      log.heading1("Basic evaluation");
       log.expression("  Boolean()");
       log.expression("  Boolean(true)");
       log.expression("  Boolean(false)");
@@ -128,16 +178,17 @@
       log.expression("  Boolean(1)");
       log.expression("  Boolean(-12)");
       log.expression("  Boolean(12)");
+      log.newline();
 
-      log.label("\nNon-Obvious evaluation");
-      log.expression("  Boolean(null)");
+      log.heading1("Non-Obvious evaluation");
+      log.expression("  Boolean(new Boolean(false))", "non-null object evals to true", "msg-important-label");
+      log.expression("  Boolean(null)", "null object evals to false");
+      log.expression("  null ? 'true' : 'false'", "null object evals to false");
       log.expression("  Boolean('')");
       log.expression("  Boolean(' ')");
-      log.expression("  Boolean('false')", "", "#e66");
-      log.expression("  Boolean(new Boolean(false))", "non-null object evals to true", "#e66");
-      log.expression("  null ? 'true' : 'false'", "null object evals to false");
+      log.expression("  Boolean('false')", "", "msg-important-label");
       log.expression("  new Boolean(true) ? 'true' : 'false'");
-      log.expression("  new Boolean(false) ? 'true' : 'false'", "", "#e66");
+      log.expression("  new Boolean(false) ? 'true' : 'false'", "", "msg-important-label");
     </script>
   </lk-js-example>
 
@@ -178,33 +229,32 @@
     <script type="multiline-template">
       var log = lkResultLoggerModule.getLogger("number");
 
-      log.label("Conversions");
+      log.heading1("Conversions");
       log.expression("  Number('0')");
       log.expression("  Number('01')");
       log.expression("  Number('1234')");
-      log.expression("  Number('1234px')", "", "#FF8C00");
-      log.expression("  Number({})", "", "#FF8C00");
+      log.expression("  Number('1234px')", "", "msg-warning-label");
+      log.expression("  Number({})", "", "msg-warning-label");
       log.expression("  Number(null)");
       log.expression("  Number(true)");
       log.expression("  Number(false)");
+      log.newline();
 
-      log.label("\nProperties");
+      log.heading1("Properties");
       log.expression("  Number.MAX_VALUE");
       log.expression("  Number.MIN_VALUE");
+      log.newline();
 
-      log.label("\nMethods");
-      log.msg("To Exponential Notation:");
+      log.heading1("Methods");
+      log.heading3("To Exponential Notation");
       log.expression("  new Number(1234).toExponential()");
       log.expression("  new Number(1234567890).toExponential()");
       log.expression("  new Number(123456789012345678).toExponential()");
       log.expression("  new Number(123456789012345678901234567890).toExponential()");
+      log.newline();
 
-      log.msg("\nTo Fixed Notation:");
+      log.heading3("To Fixed Notation");
       log.expression("  new Number(1.2345678901234568e+8).toFixed(20)");
-
-      log.msg("\nValue Of:");
-      log.typeOfExpressionAndValue("  typeof '1.234'");
-      log.expression("  typeof Number.valueOf('1.234')");
     </script>
   </lk-js-example>
 
@@ -226,7 +276,7 @@
       var log = lkResultLoggerModule.getLogger("date");
       Window.now = new Date(); // TODO: Fix eval context issue with log.expression.
 
-      log.label("Methods");
+      log.heading1("Methods");
       log.expression("Window.now.getDate()");
     </script>
   </lk-js-example>
@@ -245,27 +295,31 @@
     <script type="multiline-template">
       var log = lkResultLoggerModule.getLogger("math");
 
-      log.label("Properties");
+      log.heading1("Properties");
       log.expression("  Math.E");
       log.expression("  Math.PI");
       log.expression("  Math.SQRT2");
+      log.newline();
 
-      log.label("\nMethods");
-      log.msg("Ceiling:");
+      log.heading1("Methods");
+      log.heading3("Ceiling");
       log.expression("  Math.ceil(0.001)");
       log.expression("  Math.ceil(1.001)");
       log.expression("  Math.ceil(1.999)");
+      log.newline();
 
-      log.msg("\nFloor:");
+      log.heading3("Floor");
       log.expression("  Math.floor(0.001)");
       log.expression("  Math.floor(1.001)");
       log.expression("  Math.floor(1.999)");
+      log.newline();
 
-      log.msg("\nMin and Max:");
+      log.heading3("Min and Max");
       log.expression("  Math.min(1, 2, 3, 33, 22, 11)");
       log.expression("  Math.max(1, 2, 3, 33, 22, 11)");
+      log.newline();
 
-      log.msg("\nExponent:");
+      log.heading3("Exponent");
       log.expression("  Math.pow(2,0)");
       log.expression("  Math.pow(2,1)");
       log.expression("  Math.pow(2,2)");
@@ -273,8 +327,9 @@
       log.expression("  Math.pow(2,4)");
       log.expression("  Math.pow(2,0.5)");
       log.expression("  Math.sqrt(2)");
+      log.newline();
 
-      log.msg("\nRandom:");
+      log.heading3("Random");
       log.expression("  Math.floor(Math.random()*6)", "between 0 and 5");
     </script>
   </lk-js-example>
@@ -282,11 +337,7 @@
   <lk-navigation-bar></lk-navigation-bar>
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <h2 id="text">Text processing</h2>
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-
-  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <h3 id="text.string">String</h3>
+  <h2 id="textString">String</h2>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <p>
@@ -311,27 +362,383 @@
   <lk-navigation-bar></lk-navigation-bar>
 
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
-  <h3 id="text.regExp">RegExp</h3>
+  <h2 id="regExp">RegExp</h2>
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <p>
     See <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions">Regular Expressions</a> in the JavaScript Guide.
   </p>
+
   <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp">
     /pattern/flags;
     new RegExp(pattern [, flags]);
   </lk-api-reference>
 
-  <lk-js-example width="720px" id="regExp">
-    <script type="multiline-template">
-      var log = lkResultLoggerModule.getLogger("regExp");
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="regExp.test">Test</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
-      // TODO
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/RegExp/test">
+    regexObj.test(str)
+  </lk-api-reference>
+
+  <p>
+    The following experiments test for simple patterns within a series of test strings.
+  </p>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="text_regEx.test.xdd.dd.ddx">Digits separated by periods (e.g., 'aa.1.22.333.4444.bb')</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This experiment tests for the presence of at least one occurrence of "digit(s) dot digit(s)",
+    while ignoring all leading and trailing non-digit characters (e.g., '+', '-', 'abc').
+  </p>
+
+  <lk-js-example width="720px" id="regEx.test.xdd.dd.ddx">
+    <script type="multiline-template">
+      // get the logger created by the <lk-js-example> tag
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("regEx.test.xdd.dd.ddx"));
+
+      // perform experiments
+      var re = /\d+\.\d+/;
+      log.heading1("Using re = " + re);
+      log.heading3("True");
+      log.regExTestExpression(re, "aa.1.22.333.4444.bb");
+      log.regExTestExpression(re, "abc12.34.56def");
+      log.regExTestExpression(re, "abc12.34def56.78ghi");
+      log.regExTestExpression(re, "12.34, 56.78.");
+      log.regExTestExpression(re, "1.2.3.4");
+      log.regExTestExpression(re, "12,345.67");
+      log.regExTestExpression(re, "123.456");
+      log.regExTestExpression(re, "12.34.56");
+      log.regExTestExpression(re, "+123.456");
+      log.regExTestExpression(re, "-123.456");
+      log.newline();
+
+      log.heading3("False");
+      log.regExTestExpression(re, "12.");
+      log.regExTestExpression(re, "12.abc");
+      log.regExTestExpression(re, "12..34");
+      log.regExTestExpression(re, "abcd.efghi");
+      log.regExTestExpression(re, "123456");
     </script>
   </lk-js-example>
 
   <lk-navigation-bar></lk-navigation-bar>
 
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="text_regEx.test.xdd.ddx">Digits separated by one period (e.g., 'aa.1.22.bb')</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This experiment tests for the existence of exactly one occurrence of "digit(s) dot digit(s)",
+    starting at the beginning of the string and
+    ignoring all leading and trailing non-digit characters (e.g., '+', '-', 'abc').
+  </p>
+
+  <lk-bullet-point iconClass="lk-bullet-point-info">
+    <p>
+      The string "aa 11 bb 22.33" will fail because the pattern requires a period after the
+      first occurrence of digit(s), as stipulated by the addition of the "^" character at the beginning of the pattern.
+    </p>
+
+    <p>
+      The string "12.34.56" will fail because the pattern requires that only one period exist between the
+      start and the end of the string, as stipulated by the "^" and "$" characters at the begin and end of the pattern.
+    </p>
+  </lk-bullet-point>
+
+  <lk-js-example width="720px" id="regEx.test.xdd.ddx">
+    <script type="multiline-template">
+      // get the logger created by the <lk-js-example> tag
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("regEx.test.xdd.ddx"));
+
+      // perform experiments
+      var re = /^\D*\d+\.\d+\D*$/;
+      log.heading1("Using re = " + re);
+      log.heading3("True");
+      log.regExTestExpression(re, "aa.1.22.bb");
+      log.regExTestExpression(re, "abc123.456def");
+      log.regExTestExpression(re, "abc 123.456 def");
+      log.regExTestExpression(re, "123.456");
+      log.regExTestExpression(re, "+123.456");
+      log.regExTestExpression(re, "-123.456");
+      log.regExTestExpression(re, "1.2");
+      log.regExTestExpression(re, ".12.34");
+      log.newline();
+
+      log.heading3("False");
+      log.regExTestExpression(re, "12.34.56", "too many periods");
+      log.regExTestExpression(re, "aa 11 bb 22.33", "period required after digit", "msg-warning-label");
+      log.regExTestExpression(re, "1,234.56", "period required after digit", "msg-warning-label");
+      log.regExTestExpression(re, "12.", "digit required after period");
+      log.regExTestExpression(re, ".12");
+      log.regExTestExpression(re, "12.abc");
+      log.regExTestExpression(re, "12..34");
+      log.regExTestExpression(re, "abcd.efghi");
+      log.regExTestExpression(re, "123456");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="text_regEx.test.dd.dd">Only digits separated by one period (e.g., '123.456')</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This experiment tests that the entire string conforms to the pattern: "digit(s) dot digit(s)".
+  </p>
+
+  <lk-js-example width="720px" id="regEx.test.dd.dd">
+    <script type="multiline-template">
+      // get the logger created by the <lk-js-example> tag
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("regEx.test.dd.dd"));
+
+      // perform experiments
+      var re = /^\d+\.\d+$/;
+      log.heading1("Using re = " + re);
+      log.heading3("True");
+      log.regExTestExpression(re, "123.456");
+      log.newline();
+
+      log.heading3("False");
+      log.regExTestExpression(re, "abc123.456def");
+      log.regExTestExpression(re, "+123.456");
+      log.regExTestExpression(re, "-123.456");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="regExp.replace">Replace</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-api-reference href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/replace">
+    str.replace(regexp|substr, newSubStr|function[, flags]);
+  </lk-api-reference>
+
+  <p>
+    The following experiments replace simple matched patterns within a series of test strings.
+    To replace multiple occurrences, see the <a href="#regExp.options.global-on">Global Option Experiment</a>
+  </p>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="text.regEx.replace.xdd.dd.ddx">Digits separated by periods (e.g., 'aa.1.22.333.4444.bb')</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This experiment replaces only the first occurrence of "digit(s) dot digit(s)",
+    ignoring all non-digit characters (e.g., '+', '-', 'abc') surrounding the pattern.
+  </p>
+
+  <lk-js-example width="720px" id="regEx.replace.xdd.dd.ddx">
+    <script type="multiline-template">
+      // get the logger created by the <lk-js-example> tag
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("regEx.replace.xdd.dd.ddx"));
+
+      // perform experiments
+      var re = /\d+\.\d+/;
+      log.heading1("Using re = " + re);
+      log.regExReplaceExpression(re, "aa.1.22.333.4444.bb", "[REPLACED]");
+      log.regExReplaceExpression(re, "abc12.34.56def", "[REPLACED]");
+      log.regExReplaceExpression(re, "abc12.34def56.78ghi", "[REPLACED]");
+      log.regExReplaceExpression(re, "12.34, 56.78.", "[REPLACED]");
+      log.regExReplaceExpression(re, "1.2.3.4", "[REPLACED]");
+      log.regExReplaceExpression(re, "12,345.67", "[REPLACED]");
+      log.regExReplaceExpression(re, "123.456", "[REPLACED]");
+      log.regExReplaceExpression(re, "12.34.56", "[REPLACED]");
+      log.regExReplaceExpression(re, "+123.456", "[REPLACED]");
+      log.regExReplaceExpression(re, "-123.456", "[REPLACED]");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="regExp.simpleExtraction">Extract data from String</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <lk-js-example width="720px" id="regEx.simpleExtraction">
+    <script type="multiline-template">
+      var log = lkResultLoggerModule.getLogger("regEx.simpleExtraction");
+
+      var testStr = "123.456";
+
+      log.heading1("Simple RegEx");
+      log.expression("  '" + testStr + "'.match( " + re + " )[1]");
+      log.expression("  '" + testStr + "'.match( " + re + " )[2]");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h3 id="regExp.options">Options</h3>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="regExp.options.multiLine-off">Option: multiLine - OFF</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This experiment illustrates what happens when the "m" option is false, but the pattern requires a match to start relative to the beginning of a <b>line</b>.
+    If the pattern is matched on the second line, the test will fail, because the regex stops searching after the first line.
+  </p>
+
+  <lk-js-example width="720px" id="regEx.options.multiLine-off">
+    <script type="multiline-template">
+      // get the logger created by the <lk-js-example> tag
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("regEx.options.multiLine-off"));
+
+      // perform experiments
+      var re1 = /^[a-z]*\d+\.\d+.*/;
+      log.heading1("Using re = " + re1);
+      log.labelValue("Multiline is set to", re1.multiline);
+      log.newline();
+
+      log.heading3("True");
+      log.regExTestExpression(re1, "1.22aa", "pattern is met on first line");
+      log.regExTestExpression(re1, "aa1.22\naa3.4", "pattern is met on first line");
+      log.newline();
+
+      log.heading3("False");
+      log.regExTestExpression(re1, "$1.22", "pattern is never met");
+      log.regExTestExpression(re1, "A1.22B", "pattern is never met");
+      log.regExTestExpression(re1, " 1.22 ", "pattern is never met");
+      log.regExTestExpression(re1, "aa\n1.22\nbb", "pattern is met on second line");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="regExp.options.multiLine-on">Option: multiLine - ON</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This experiment illustrates what happens when the "m" option is true.
+    The same pattern and strings are used from the previous experiment plus additional multi-line test strings have been added.
+  </p>
+
+  <lk-bullet-point iconClass="lk-bullet-point-info">
+    <p>
+      In order to find matches, relative to the beginning of a line for a multi-line test string, use the 'm' option.
+    </p>
+  </lk-bullet-point>
+
+  <lk-js-example width="720px" id="regEx.options.multiLine-on">
+    <script type="multiline-template">
+      // get the logger created by the <lk-js-example> tag
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("regEx.options.multiLine-on"));
+
+      // perform experiments
+      var re1 = /^[a-z]*\d+\.\d+.*/m;
+      log.heading1("Using re = " + re1);
+      log.labelValue("Multiline is set to", re1.multiline);
+      log.newline();
+
+      log.heading3("True");
+      log.regExTestExpression(re1, "1.22aa", "pattern is met on first line");
+      log.regExTestExpression(re1, "aa1.22\naa3.4", "pattern is met on first line");
+      log.regExTestExpression(re1, "aa\n1.22\nbb", "pattern is met on second line");
+      log.regExTestExpression(re1, "aa\nbb\ncc1.22", "pattern is met on third line");
+      log.newline();
+
+      log.heading3("False");
+      log.regExTestExpression(re1, "$1.22", "pattern is never met");
+      log.regExTestExpression(re1, "A1.22B", "pattern is never met");
+      log.regExTestExpression(re1, "aA1.22bB", "pattern is never met");
+      log.regExTestExpression(re1, " 1.22 ", "pattern is never met");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="regExp.options.ignoreCase-on">Option: ignoreCase - ON</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This experiment illustrates what happens when the "i" option is true.
+    The same pattern from the previous experiment is used, but the alpha-characters are now multi-cased.
+  </p>
+
+  <lk-bullet-point iconClass="lk-bullet-point-info">
+    <p>
+      In order to use case-insensitive matches, use the 'i' option.
+    </p>
+  </lk-bullet-point>
+
+  <lk-js-example width="720px" id="options.ignoreCase-on">
+    <script type="multiline-template">
+      // get the logger created by the <lk-js-example> tag
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("options.ignoreCase-on"));
+
+      // perform experiments
+      var re1 = /^[a-z]*\d+\.\d+.*/mi;
+      log.heading1("Using re = " + re1);
+      log.labelValue("IgnoreCase is set to", re1.ignoreCase);
+      log.newline();
+
+      log.heading3("True");
+      log.regExTestExpression(re1, "1.22Aa");
+      log.regExTestExpression(re1, "aA1.22\naA3.4");
+      log.regExTestExpression(re1, "aA\n1.22\nbB");
+      log.regExTestExpression(re1, "aA\nbB\ncC1.22");
+      log.regExTestExpression(re1, "A1.22B");
+      log.newline();
+
+      log.heading3("False");
+      log.regExTestExpression(re1, "$1.22", "pattern is never met");
+      log.regExTestExpression(re1, " 1.22 ", "pattern is never met");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
+
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+  <h4 id="regExp.options.global-on">Option: global - ON</h4>
+  <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
+
+  <p>
+    This experiment illustrates what happens when the "g" option is true.
+    The expressions and test strings are from the <a href="#regExp.replace">Replace</a> experiments.
+    In those experiments, only the <b>first occurrence</b> of the matched pattern was replaced.
+    In this experiment, every match is replaced.
+  </p>
+
+  <lk-bullet-point iconClass="lk-bullet-point-info">
+    <p>
+      In order to replace multiple occurrences in a given string, use the 'g' option.
+    </p>
+  </lk-bullet-point>
+
+  <lk-js-example width="720px" id="options.global-on">
+    <script type="multiline-template">
+      // get the logger created by the <lk-js-example> tag
+      var log = ObjectsLogHelper.create(lkResultLoggerModule.getLogger("options.global-on"));
+
+      // perform experiments
+      var re = /\d+\.\d+/g;
+      log.heading1("Using re = " + re);
+      log.regExReplaceExpression(re, "aa.1.22.333.4444.bb", "[REPLACED]");
+      log.regExReplaceExpression(re, "abc12.34.56def", "[REPLACED]");
+      log.regExReplaceExpression(re, "abc12.34def56.78ghi", "[REPLACED]");
+      log.regExReplaceExpression(re, "12.34, 56.78.", "[REPLACED]");
+      log.regExReplaceExpression(re, "1.2.3.4", "[REPLACED]");
+      log.regExReplaceExpression(re, "12,345.67", "[REPLACED]");
+      log.regExReplaceExpression(re, "123.456", "[REPLACED]");
+      log.regExReplaceExpression(re, "12.34.56", "[REPLACED]");
+      log.regExReplaceExpression(re, "+123.456", "[REPLACED]");
+      log.regExReplaceExpression(re, "-123.456", "[REPLACED]");
+    </script>
+  </lk-js-example>
+
+  <lk-navigation-bar></lk-navigation-bar>
       </main>
 
 <footer></footer>

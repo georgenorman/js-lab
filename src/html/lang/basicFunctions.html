@@ -161,7 +161,7 @@
       log.expression("  parseInt('12.34')");
       log.expression("  parseInt('01234')");
       log.expression("  parseInt('1',2)");
-      log.expression("  parseInt('123',2)", "in base-2, 2 is the first non-digit character", "#e66");
+      log.expression("  parseInt('123',2)", "in base-2, 2 is the first non-digit character", "msg-important-label");
       log.expression("  parseInt('2',2)");
       log.expression("  parseInt('-01234')");
       log.expression("  Number('01234')");
@@ -169,17 +169,17 @@
       log.label("\nMixed numbers and chars");
       log.expression("  parseInt('1234px')");
       log.expression("  parseInt('-1234px')");
-      log.expression("  parseInt('px1234')", "", "#FF8C00");
-      log.expression("  Number('1234px')", "", "#FF8C00");
+      log.expression("  parseInt('px1234')", "", "msg-warning-label");
+      log.expression("  Number('1234px')", "", "msg-warning-label");
 
       log.label("\nFloats");
       log.expression("  parseInt('12.34')");
 
       log.label("\nHexadecimal");
       log.expression("  parseInt('0xff')");
-      log.expression("  parseInt('0xff',10)", "", "#e66");
+      log.expression("  parseInt('0xff',10)", "", "msg-important-label");
       log.expression("  parseInt('-0xff')");
-      log.expression("  parseInt('ff')", "", "#FF8C00");
+      log.expression("  parseInt('ff')", "", "msg-warning-label");
       log.expression("  parseInt('ff',16)");
     </script>
   </lk-js-example>
