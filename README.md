@@ -15,6 +15,13 @@ JS experiments for the [JS Overview](http://www.thruzero.com/jcat3/apps/resource
   * [History Interface](http://www.thruzero.com/pages/jcat3/js-lab/html/bom/history.html)
   * [Document Interface](http://www.thruzero.com/pages/jcat3/js-lab/html/dom/document.html)
 
+## Testing Locally
+
+Just cd to the project directory and open the ```src/html/index.html``` file in your browser.
+The CSS and JavaScript files will be accessed in a non-minified and non-amalgamated way.
+
+Alternatively, you can perform a build, which will optimize the CSS and JavaScript files for deployment.
+
 ## Building a Release
 
 ### Setup
