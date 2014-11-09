@@ -26,7 +26,7 @@
   <style>
     @import "../css/all-css.css";
     li i {opacity:.5;}
-    li > div {margin-bottom:8px; opacity:.5;}
+    li > div {margin-bottom:8px; opacity:.75;}
   </style>
 </head>
 <body>
@@ -46,7 +46,7 @@
     JavaScript experiments for the <a href="http://www.thruzero.com/jcat3/apps/resources/resources.jsf?rid=javascript.overview">JavaScript Summary</a> at ThruZero.
   </p>
 
-  <h4>Language</h4>
+  <h4>Language <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference" style="font-size:12px;">ⓘ</a></h4>
   <ul>
     <li><a href="./lang/operators.html">Operators</a>
         <div>delete, typeof, in, instanceof...</div></li>
@@ -64,16 +64,24 @@
 
   <h4>Browser Object Model (BOM) <a href="https://developer.mozilla.org/en-US/docs/Web/API" style="font-size:12px;">ⓘ</a></h4>
   <ul>
-    <li><a href="./bom/window.html">Window Interface</a></li>
-    <li><a href="./bom/navigator.html">Navigator Interface</a></li>
-    <li><a href="./bom/screen.html">Screen Interface</a></li>
-    <li><a href="./bom/location.html?test=a+query+string#hash1">Location Interface</a></li>
-    <li><a href="./bom/history.html">History Interface</a></li>
+    <li><a href="./bom/window.html">Window Interface</a>
+      <div>applicationCache, location, localStorage, opener, parent, sessionStorage, confirm(), dispatchEvent(), find(),
+        getSelection(), prompt(), ...</div></li>
+    <li><a href="./bom/navigator.html">Navigator Interface</a>
+      <div>appVersion, platform, userAgent, onLine, geolocation, ...</div></li>
+    <li><a href="./bom/screen.html">Screen Interface</a>
+      <div>orientation, onorientationchange, availHeight, availWidth, colorDepth, ...</div></li>
+    <li><a href="./bom/location.html?test=a+query+string#hash1">Location Interface</a>
+      <div>href, protocol, host, search, hash, reload(), ...</div></li>
+    <li><a href="./bom/history.html">History Interface</a>
+      <div>length, back(), forward(), pushState(), ...</div></li>
   </ul>
 
   <h4>Document Object Model (DOM) <a href="https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model" style="font-size:12px;">ⓘ</a></h4>
   <ul>
-    <li><a href="./dom/document.html">Document Interface</a></li>
+    <li><a href="./dom/document.html">Document Interface</a>
+      <div>doctype, documentElement, styleSheets, children, body, cookie, designMode, forms, head, lastModified, readyState,
+        referrer, scripts, title, createAttribute(), ...</div></li>
     <li><i><a href="https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment">DocumentFragment</a> - TODO</i></li>
     <li><i><a href="https://developer.mozilla.org/en-US/docs/Web/API/Element">Element</a> - TODO</i></li>
     <li><i><a href="https://developer.mozilla.org/en-US/docs/Web/API/Event">Event</a> - TODO</i></li>
@@ -92,6 +100,7 @@
     <li><a href="http://ecma-international.org/ecma-262/5.1/">ECMAScript® Language Specification; ECMA-262 5.1 Edition</a></li>
     <li><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript">MDN - JavaScript</a></li>
     <li><a href="https://developer.mozilla.org/en-US/docs/Web/Reference/API">MDN - Web API Reference</a></li>
+    <li><a href="http://tango.freedesktop.org/Tango_Desktop_Project">Icons by Tango Desktop Project</a></li>
   </ul>
 </main>
 

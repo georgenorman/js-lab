@@ -164,15 +164,15 @@
 
   <lk-bullet-point iconClass="lk-bullet-point-fail">
     <p>
-      Caution - Non-null objects are implicitly true, whereas the null object is false.
+      Caution - Non-null objects are implicitly true (even if it's a boolean set to false), whereas the null object is always false.
     </p>
 
     <lk-js-example codeHeader="" width="680px" evalCode="false">
       <script type="multiline-template">
-      // non-null object is true
-      var result = new Boolean(new Boolean(false));
+      // non-null object is true, even though Boolean object is false
+      var result = new Boolean(new Boolean(false)); // true
 
-      // non-null object is true
+      // non-null object is true, even though Boolean object is false
       if (new Boolean(false)) { /* executes */ }
 
       // null object is false
@@ -226,7 +226,7 @@
       log.expression("Boolean(' ')", "non-null object evals to true");
       log.expression("Boolean('false')", "non-null object evals to true", "msg-important-label");
       log.expression("new Boolean(true) ? 'true' : 'false'", "non-null object evals to true");
-      log.expression("new Boolean(false) ? 'true' : 'false'", "non-null object evals to true", "msg-important-label");
+      log.expression("new Boolean(false) ? 'true' : 'false'", "non-null object evals to true, even if object value is false", "msg-important-label");
     </script>
   </lk-js-example>
 

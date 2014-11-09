@@ -49,19 +49,21 @@
   <!-- ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ -->
 
   <p>
-    This section contains code that can be shared by all experiments on this page.
-    For example, the OperatorsLogHelper provides convenience methods for logging results
-    specific to the experiments on this page.
+    This section contains code that's shared by experiments on this page.
+    For example, the OperatorsLogHelper provides convenience methods for
+    logging certain operator experiments.
   </p>
 
   <lk-js-example width="720px" evalCode="false">
     <script>
       // Define OperatorsLogHelper class
       var OperatorsLogHelper = (function() {
+        // class definition (public methods container)
         var exports = {};
 
         exports.prototype = {};
 
+        // public method: regExTestExpression
         // For the given expression, log its type and value
         // (e.g., Number(7) will log: "typeof Number(7): number (value=7)".
         exports.prototype.regExTestExpression = function(expression, labelColor) {
@@ -80,7 +82,7 @@
           }
         };
 
-        // Create a new instance
+        // Create a new instance of OperatorsLogHelper, with the given resultLogger.
         exports.create = function(resultLogger) {
           var result = Object.create(exports.prototype);
 
